@@ -4,13 +4,13 @@
 
 package com.eomcs.lms;
 
-public class App {
+public class AppTest {
     public String getGreeting() {
         return "Hello world.";
     }
 
     public static void main(String[] args) {
-        System.out.println(new AppTest().getGreeting());
+        System.out.println(new App().getGreeting());
         System.out.println("this code written by labtop");
     }
 }
