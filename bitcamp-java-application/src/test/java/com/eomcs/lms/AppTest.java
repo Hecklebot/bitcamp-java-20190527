@@ -12,5 +12,6 @@ public class AppTest {
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
         System.out.println("this code written by labtop");
+        System.out.println("this is test code")
     }
 }
