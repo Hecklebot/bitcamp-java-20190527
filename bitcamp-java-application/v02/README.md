@@ -11,7 +11,7 @@
 - ~/git/eomcs-study/eomcs-java-project/build.gradle (변경)
 
 이클립스 IDE로 import 한 후 애플리케이션을 실행한다.
-
+이건 이클립스 푸시 테스트
 ## 실습
 
 ### 작업1) 그레이들의 빌드 스크립트 파일에 이클립스 플러그인을 추가하라.
