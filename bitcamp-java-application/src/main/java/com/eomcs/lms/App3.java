@@ -8,31 +8,37 @@ public class App3 {
   public static void main(String[] args) {
     InputStream keyboard = System.in;
     scan = new Scanner(keyboard);
-    
-    int[] number = new int[100];
-    String[] input = new String[100]; 
+   
+    Board[] boards = new Board[100];
     
     int i=0;
-    for(;i<number.length;i++) {
-      number[i] = getIntValue("번호? ");
-      input[i] = getStringValue("내용? ");
+    for(;i<boards.length;i++) {
+      boards[i] = new Board();
       
-      System.out.println("계속 입력하시겠습니까? (Y/n)");
+      boards[i].writer = getStringValue("작성자: ");
+      boards[i].contents= getStringValue("내용: ");
+      boards[i].writeDate = getDateValue("작성일: ");
+      boards[i].viewCount = getIntValue("조회수: ");
+      
+      System.out.println("계속 입력?");
       String response = scan.nextLine();
-      
       if(response.equals("n")) {
         break;
       }
+      
     }
-    
-    System.out.println();
     
     int i2=0;
     for(;i2<=i;i2++) {
-      System.out.printf("%s 번째 게시글입니다.\t %s, 2019-01-01, \n", number[i2], input[i2]);
+      System.out.printf("%s,\t %s,\t %s,\t %s\n", boards[i2].writer, boards[i].contents, boards[i].writeDate
+          , boards[i].viewCount);
     }
+    
+    
+    
+    
+    
   }
-  
   private static int getIntValue(String message) {
     while(true) {
       try {
@@ -49,6 +55,17 @@ public class App3 {
     return scan.nextLine();
   }
   
+  private static java.sql.Date getDateValue(String message){
+    while(true) {
+      try {
+        System.out.print(message);
+        return java.sql.Date.valueOf(scan.nextLine());
+      } catch(IllegalArgumentException e) {
+        System.out.println("2019-01-01과 같이 입력하세요.");
+      }
+    }
+  }
+
   
   
 }

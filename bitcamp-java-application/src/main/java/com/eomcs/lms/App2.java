@@ -12,23 +12,20 @@ public class App2 {
     InputStream keyboard = System.in;
     scan = new Scanner(keyboard);
     
-    int[]number = new int[100];
-    String[] name = new String[100];
-    String[] email = new String[100];
-    String[] password = new String[100];
-    String[] picture = new String[100];
-    String[] phoneNumber = new String[100];
+    Member[] members = new Member[100];
     
+    for(int i=0; i<members.length;i++) {
+      members[i] = new Member();
+    }
     int i=0;
-    for(; i<number.length;i++) {
-      number[i] = getIntValue("번호는? ");
-      name[i] = getStringValue("이름은? ");
-      email[i] = getStringValue("이메일은? ");
-      password[i] = getStringValue("암호는? ");
-      picture[i] = getStringValue("사진은? ");
-      phoneNumber[i] = getStringValue("전화번호는? ");
+    for(;i<members.length;i++) {
+      members[i].name = getStringValue("이름: ");
+      members[i].PhoneNumber = getStringValue("전화번호: ");
+      members[i].age = getIntValue("나이: ");
+      members[i].gender = getStringValue("성별: ");
+      members[i].address = getStringValue("주소: ");
       
-      System.out.print("계속 입력하시겠습니까? (Y/n)");
+      System.out.print("계속 입력하시겠습니까? (Y/n)"); 
       String response = scan.nextLine();
       
       if(response.equals("n")) {
@@ -38,14 +35,13 @@ public class App2 {
     
     int i2=0;
     for(;i2<=i;i2++) {
-      System.out.printf("%s , %s\t, %s\t, 2019-01-01\n", name[i2], email[i2], phoneNumber[i2]);
+      System.out.printf("%s, %s, %s, %s, %s\n", members[i2].name, members[i2].PhoneNumber, members[i2].age
+          , members[i2].gender, members[i2].address);
     }
     
-   
     
-    System.out.println();
     
-
+    
   }
   
   private static int getIntValue(String message) {
