@@ -27,8 +27,7 @@ public class App {
     rdm = new Random();
     
     while (true) {
-      System.out.print("명령> ");
-      String command = keyScan.nextLine();
+      String command = prompt(); //짧은 메소드를 만드는 이유: 코드를 설명하기 수월해진다.
       if(command.equals("quit")) {
         System.out.println("시스템 종료");
         break;
@@ -51,6 +50,13 @@ public class App {
     }
   }
 
+//메소드 이름은 동사형 또는 동사로 시작한다.
+  
+  static String prompt() {
+    System.out.print("명령> ");
+    return keyScan.nextLine();
+  }
+  
   private static int getIntValue(String message) {
     while (true) {
       try {
