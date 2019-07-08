@@ -1,14 +1,17 @@
-package com.eomcs.lms;
+package com.eomcs.lms.handler;
 
 import java.util.Scanner;
+import com.eomcs.lms.domain.Member;
+import com.eomcs.lms.util.Input;
 
 public class MemberHandler {
-  static Scanner keyScan;
-  static Member[] members = new Member[100];
-  static int membersSize = 0;
+  
+  public static Scanner keyScan;
+  private static Member[] members = new Member[100];
+  private static int membersSize = 0;
 
   
-  static void addMember() {
+  public static void addMember() {
     Member member = new Member();
     
     member.no = Input.getIntValue("번호? ");
@@ -23,7 +26,7 @@ public class MemberHandler {
     System.out.println("저장완료");
   }
 
-  static void listMember() {
+  public static void listMember() {
     for (int i = 0; i < membersSize; i++) {
       Member member = members[i];
       System.out.printf("%s, %s, %s, %s\n", member.name, member.email, member.tel,  
