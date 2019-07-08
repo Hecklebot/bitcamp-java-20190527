@@ -19,13 +19,15 @@ public class App {
   static int boardsSize =0;
   
   public static void main(String[] args) {
-
     keyScan = new Scanner(System.in);
     
     LessonHandler.keyScan = keyScan;
     MemberHandler.keyScan = keyScan;
     BoardHandler.keyScan = keyScan;
     Input.keyScan = keyScan;
+    
+    float f = Float.POSITIVE_INFINITY;
+    System.out.println(f);
     
     while (true) {
       String command = prompt(); //짧은 메소드를 만드는 이유: 코드를 설명하기 수월해진다.

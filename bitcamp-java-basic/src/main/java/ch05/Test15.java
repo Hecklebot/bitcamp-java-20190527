@@ -34,17 +34,3 @@ public class Test15 {
   for (배열의 항목 값을 담을 변수 선언 : 배열, Collection 객체 등)
     문장1;
  */
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -15,7 +15,7 @@ public class Test12 {
     
     // && 와 &의 차이점
     boolean b1 = true;
-    boolean b2 = false && (b1 = false);
+    boolean b2 = false && (b1 = false); //and는 하나만 false면 false기 때문에 앞이 false면 뒤는 보지 않는다.
     System.out.printf("b1=%b, b2=%b\n", b1, b2);
     // && 연산자는 l-value의 값으로 결과를 유추할 수 있다면, r-value를 실행하지 않는다.
     
@@ -25,12 +25,12 @@ public class Test12 {
     // & 연산자는 l-value의 값으로 결과가 결정되었다 하더라도 r-value를 끝까지 실행한다.
     
     b1 = true;
-    b2 = true || (b1 = false);
+    b2 = true || (b1 = false); //or는 하나만 true여도 true기 때문에 앞이 true면 뒤는 보지 않는다.
     System.out.printf("b1=%b, b2=%b\n", b1, b2);
     
     b1 = true;
     b2 = true | (b1 = false);
-    System.out.printf("b1=%b, b2=%b\n", b1, b2);
+    System.out.printf("b1=%b, b2=%b\n", b1, b2); // |은 앞의 결과와 상관없이 뒤를 계산한다.
   }
 }
 
