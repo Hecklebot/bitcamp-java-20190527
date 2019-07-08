@@ -17,6 +17,7 @@ public class App2 {
     for(int i=0; i<members.length;i++) {
       members[i] = new Member();
     }
+    
     int i=0;
     for(;i<members.length;i++) {
       members[i].name = getStringValue("이름: ");
@@ -35,8 +36,8 @@ public class App2 {
     
     int i2=0;
     for(;i2<=i;i2++) {
-      System.out.printf("%s, %s, %s, %s, %s\n", members[i2].name, members[i2].PhoneNumber, members[i2].age
-          , members[i2].gender, members[i2].address);
+      System.out.printf("%s, %s, %s, %s, %s\n", members[i2].name, members[i2].PhoneNumber, 
+          members[i2].age, members[i2].gender, members[i2].address);
     }
     
     

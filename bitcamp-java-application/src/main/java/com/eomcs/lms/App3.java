@@ -13,12 +13,14 @@ public class App3 {
     
     int i=0;
     for(;i<boards.length;i++) {
-      boards[i] = new Board();
+      Board board = new Board();
       
-      boards[i].writer = getStringValue("작성자: ");
-      boards[i].contents= getStringValue("내용: ");
-      boards[i].writeDate = getDateValue("작성일: ");
-      boards[i].viewCount = getIntValue("조회수: ");
+      board.writer = getStringValue("작성자: ");
+      board.contents= getStringValue("내용: ");
+//      board.writeDate = getDateValue("작성일: ");
+      board.viewCount = getIntValue("조회수: ");
+      
+      boards[i] = board;
       
       System.out.println("계속 입력?");
       String response = scan.nextLine();
@@ -30,8 +32,9 @@ public class App3 {
     
     int i2=0;
     for(;i2<=i;i2++) {
-      System.out.printf("%s,\t %s,\t %s,\t %s\n", boards[i2].writer, boards[i].contents, boards[i].writeDate
-          , boards[i].viewCount);
+      Board board = boards[i2];
+      System.out.printf("%s,\t %s,\t %s,\t %s\n", board.writer, board.contents, 
+          board.writeDate, board.viewCount);
     }
     
     
@@ -39,6 +42,10 @@ public class App3 {
     
     
   }
+  
+  
+  
+  
   private static int getIntValue(String message) {
     while(true) {
       try {

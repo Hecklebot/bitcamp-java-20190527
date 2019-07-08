@@ -4,7 +4,6 @@
 
 package com.eomcs.lms;
 
-import java.sql.Date;
 import java.util.Scanner;
 
 public class App {
@@ -53,6 +52,11 @@ public class App {
           lesson.endDate, lesson.totalHours);
     }
   }
+    
+       
+      
+    
+    
   
   private static int getIntValue(String message){
     while(true) {

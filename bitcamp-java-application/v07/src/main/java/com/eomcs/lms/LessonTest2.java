@@ -1,7 +1,5 @@
 package com.eomcs.lms;
 
-import java.sql.Date;
-
 public class LessonTest2 {
   public static void main(String[] args) {
     //레퍼런스 배열을 가리키는 레퍼런스 만들기

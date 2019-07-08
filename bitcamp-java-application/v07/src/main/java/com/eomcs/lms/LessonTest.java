@@ -8,11 +8,11 @@ public class LessonTest {
     //수업 데이터를 저장하기 위해 낱개의 메모리를 준비해서 사용하는 경우
     int no=1;
     String title = "java";
-    String contents = "java development";
-    Date startDate = Date.valueOf("2019-1-1");
-    Date endDate = Date.valueOf("2019-2-1");
-    int totalHours = 100;
-    int dayHours = 4;
+//    String contents = "java development";
+//    Date startDate = Date.valueOf("2019-1-1");
+//    Date endDate = Date.valueOf("2019-2-1");
+//    int totalHours = 100;
+//    int dayHours = 4;
     
     //수업 데이터를 저장하기 위해 미리 준비한 메모리 설계도를 사용하는 경우
     //-> Lesson 메모리 설계도(클래스)에 따라 메모리를 준비하기
@@ -31,11 +31,11 @@ public class LessonTest {
     System.out.printf("%s -- %s\n", title, lesson.title);
     
     
-    Lesson[] les = new Lesson[2147483469];
+//    Lesson[] les = new Lesson[2147483469];
 
-    for(Lesson l : les) {
-      l = new Lesson();
-    }
+//    for(Lesson l : les) {
+//      l = new Lesson();
+//    }
     
     
   }
