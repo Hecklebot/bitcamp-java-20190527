@@ -4,16 +4,16 @@ import java.sql.Date;
 import java.util.Scanner;
 import com.eomcs.lms.domain.Board;
 
-public class BoardHandler2 {
-  private static Board[] boards = new Board[100];
-  private static int boardsSize = 0;
+public class BoardHandler {
+  private Board[] boards = new Board[100];
+  private int boardsSize = 0;
 
   public static Scanner keyScan;
 
   
-  public static void addBoard() {
+  public void addBoard() {
     Board board = new Board();
-
+    
     board.no = getIntValue("번호? ");
     board.contents = getStringValue("내용? ");
     board.createdDate = getDateValue("작성일? ");
@@ -22,11 +22,12 @@ public class BoardHandler2 {
   }
 
   
-  public static void listBoard() {
+  public void listBoard() {
     for (int i = 0; i < boardsSize; i++) {
       Board board = new Board();
       board = boards[i];
-      System.out.printf("%s 번째 게시글입니다.\t %s, 2019-01-01, \n", board.no, board.contents);
+      System.out.printf("%s 번째 게시글입니다.\t %s, %s, \n", board.no, board.contents,
+          board.createdDate);
     }
   }
 
