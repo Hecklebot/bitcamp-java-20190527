@@ -13,6 +13,9 @@ public class Test07 {
     plus2(new int[] {});
     plus2(new int[] {10});
     plus2(new int[] {10, 20});
+
+    // plus2(); 컴파일 오류
+    // plus2(10); 컴파일 오류
     
     
   }

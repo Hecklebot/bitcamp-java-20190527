@@ -15,8 +15,6 @@ public class App {
 
   
   static Scanner keyScan;
-  static Board[] boards = new Board[100];
-  static int boardsSize =0;
   
   public static void main(String[] args) {
 

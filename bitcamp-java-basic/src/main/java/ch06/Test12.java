@@ -23,7 +23,7 @@ public class Test12 {
     return a + b;
   }
   
-  static long sum2(long n) {
+  static long sum2(int n) {
     if (n == 1)
       return n;
     

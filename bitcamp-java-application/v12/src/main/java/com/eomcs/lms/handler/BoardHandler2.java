@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.util.Scanner;
 import com.eomcs.lms.domain.Board;
 
-public class BoardHandler {
+public class BoardHandler2 {
   private static Board[] boards = new Board[100];
   private static int boardsSize = 0;
 
@@ -26,8 +26,7 @@ public class BoardHandler {
     for (int i = 0; i < boardsSize; i++) {
       Board board = new Board();
       board = boards[i];
-      System.out.printf("%s 번째 게시글입니다.\t %s, %s, \n", board.no, board.contents,
-          board.createdDate);
+      System.out.printf("%s 번째 게시글입니다.\t %s, 2019-01-01, \n", board.no, board.contents);
     }
   }
 
