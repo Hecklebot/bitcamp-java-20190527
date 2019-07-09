@@ -7,8 +7,7 @@ public class Member {
   public String name;
   public String email;
   public String password;
-  public String photo;
   public String tel;
-  public Date registeredDate;
-
+  public String photo;
+  public Date registeredDate;  
 }

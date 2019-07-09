@@ -3,8 +3,7 @@ package com.eomcs.lms.util;
 import java.sql.Date;
 import java.util.Scanner;
 
-public class Input { //instance field를 사용하지 않는 클래스는 그냥 static method로 
-                     //input2, input3, input4... 필요없음
+public class Input {
   
   public static Scanner keyScan;
   
@@ -34,10 +33,5 @@ public class Input { //instance field를 사용하지 않는 클래스는 그냥
     System.out.print(message);
     return keyScan.nextLine();
   }
-  
-  public static String prompt() {
-    System.out.print("명령> ");
-    String command = keyScan.nextLine();
-    return command;
-  }
+
 }
