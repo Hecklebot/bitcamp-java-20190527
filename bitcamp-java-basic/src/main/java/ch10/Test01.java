@@ -24,7 +24,6 @@ public class Test01 {
     obj3.a = 400; // = My1.a
     
     System.out.println(My1.a);
-    
     // 인스턴스 필드는 인스턴스 마다 존재하는 변수이다.
     // 즉 인스턴스 마다 개별적으로 다뤄야 할 값을 저장한다.
     obj1.b = 100;

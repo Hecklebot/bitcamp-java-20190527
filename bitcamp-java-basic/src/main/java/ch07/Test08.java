@@ -44,7 +44,7 @@ public class Test08 {
     scores[2] = new Score();
     
     // 레퍼런스 배열의 각 항목이 유효한 인스턴스의 주소를 갖고 있을 때 사용할 수 있다.
-    System.out.println(scores[0].name);
+    System.out.println(scores[0].name); // null
     System.out.println(scores[0].kor);
     
     // 잊지말자!
@@ -53,7 +53,6 @@ public class Test08 {
     // - 단 자바 기본 타입(byte, short, int, long, float, double, boolean, char)은
     //   해당 타입의 메모리를 배열로 만들 수 있다.
     // - 그 외 모든 타입은 오직 레퍼런스 배열만 생성한다.
-    
   }
 }
 

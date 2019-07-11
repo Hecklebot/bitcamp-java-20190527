@@ -2,6 +2,7 @@
 package ch08;
 
 import java.util.Scanner;
+import ch08.util.Calculator2;
 
 public class Test08 {
   
@@ -26,10 +27,10 @@ public class Test08 {
       // 이유? 메서드의 접근 허용이 같은 패키지만 가능하기 때문이다.
       // 해결책? 해당 클래스로 가서 메서드를 공개하라!
       //
-      case "+": result = ch08.util.Calculator2.plus(a, b); break;
-      case "-": result = ch08.util.Calculator2.minus(a, b); break;
-      case "*": result = ch08.util.Calculator2.multiple(a, b); break;
-      case "/": result = ch08.util.Calculator2.divide(a, b); break;
+      case "+": result = Calculator2.plus(a, b); break;
+      case "-": result = Calculator2.minus(a, b); break;
+      case "*": result = Calculator2.multiple(a, b); break;
+      case "/": result = Calculator2.divide(a, b); break;
       default:
         System.out.println("지원하지 않는 연산자입니다.");
         return; // main() 메서드를 그만 실행하고 나간다. 즉 JVM 종료!

@@ -17,15 +17,15 @@ public class Test15 {
     Date d3 = new Date(System.currentTimeMillis());
     System.out.println(d3);
     
-    Date d4 = new Date(119, 0, 15);
+    Date d4 = new Date(119, 0, 15); //year은 1900년을 기준으로 더함. 1900 + 119 = 2019. 걍 쓰지마라
     System.out.println(d4);
     
     // java.sql.Date
-    java.sql.Date d5 = new java.sql.Date(System.currentTimeMillis());
+    java.sql.Date d5 = new java.sql.Date(System.currentTimeMillis()); //sql의 Date는 util의 Date를 상속받은 subClass
     System.out.println(d5);
     
     // 간접적으로 객체를 생성하기
-    java.sql.Date d6 = java.sql.Date.valueOf("2019-1-16");
+    java.sql.Date d6 = java.sql.Date.valueOf("2019-1-16"); //스태틱 메소드를 사용해 객체생성
     System.out.println(d6);
   }
 }

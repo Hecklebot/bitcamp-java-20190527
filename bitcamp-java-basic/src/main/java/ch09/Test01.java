@@ -1,6 +1,8 @@
 // 클래스 필드가 필요한 이유 
 package ch09;
 
+import ch07.Score10;
+
 public class Test01 {
   
   public static void main(String[] args) {

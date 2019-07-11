@@ -2,7 +2,6 @@
 package ch10;
 
 class Monitor1 {
-  
   // 인스턴스 변수(클래스 변수 포함)가 생성되면 0으로 자동 초기화 된다.
   // byte, short, int, long = 0
   // float, double = 0.0
@@ -15,7 +14,7 @@ class Monitor1 {
   int contrast; // 명암 (0% ~ 100%)
   int widthRes; // 해상도 너비
   int heightRes; // 해상도 높이
-  
+
   void display() {
     System.out.println("----------------------------------");
     System.out.printf("밝기(%d)\n", this.bright);
@@ -29,11 +28,11 @@ public class Test03 {
   public static void main(String[] args) {
     // 모니터 인스턴스 생성
     Monitor1 m1 = new Monitor1();
-    
+    m1.display(); 
     // 모니터의 중요 필드 값을 초기화시키지 않고 사용하면 제대로 동작이 안 될 수 있다.
-    m1.display(); // 현실 세계에서 모니터의 각 값들이 유효한 기본 값으로 초기화 되지 않은 상태에서 
-                  // 모니터를 켠다면? 까만 화면만 볼 뿐이다. 
-                  // 사용자는 모니터가 고장난 줄 알고 AS를 요청할 것이다.
+    // 현실 세계에서 모니터의 각 값들이 유효한 기본 값으로 초기화 되지 않은 상태에서 
+    // 모니터를 켠다면? 까만 화면만 볼 뿐이다. 
+    // 사용자는 모니터가 고장난 줄 알고 AS를 요청할 것이다.
     
     // 그래서 모니터를 만든 후 출하하기 전에 
     // 모니터의 인스턴스 필드의 값을 유효한 값으로 설정해야 한다.

@@ -17,7 +17,6 @@ public class Test03 {
     // 인스턴스 필드는 new 명령을 수행해야지만 생성된다.
     My3 obj1 = new My3();
     My3 obj2 = new My3();
-    
     // 인스턴스 필드는 인스턴스의 주소가 있어야만 접근할 수 있다.
     obj1.ia = 200;
     obj1.ia = 300;
@@ -34,6 +33,8 @@ public class Test03 {
     // 클래스 필드는 클래스 이름으로 사용하라!
     
     System.out.println(My3.sa);
+    System.out.println(obj1.sa);
+    System.out.println(obj2.sa);
     
     
   }

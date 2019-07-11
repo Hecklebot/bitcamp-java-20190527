@@ -19,6 +19,12 @@ public class Test05 {
   static void m2() {
     a = 300;
   }
+  
+  //같은 클래스에 소속된 멤버는 non static method도 불러올 수 잇다.(this X)
+//  void m3() {
+//    a = 500;
+//  }
+  
 }
 
 

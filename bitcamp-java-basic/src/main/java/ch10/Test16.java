@@ -7,14 +7,18 @@ public class Test16 {
   public static void main(String[] args) throws Exception {
     
     Calendar c1;
-    
     // 생성자가 있다하더라도 접근 권한이 없으면 호출할 수 없다.
     //c1 = new Calendar(); // 컴파일 오류!
     
     // Calendar는 인스턴스 생성을 도와주는 별도의 클래스 메서드(스태틱 메서드)를 제공한다.
-    c1 = Calendar.getInstance();
+    c1 = Calendar.getInstance(); //getInstace 메소드(static)를 통해 객체를 생성
     
-    System.out.println(c1.get(Calendar.YEAR));
+    System.out.println(c1.get(5)); //get 1=연, 2=월-1, 5=일, 이렇게 쓸 거면 주석달기, 그냥 이렇게 쓰지 말고
+    System.out.println(c1.get(Calendar.DATE)); //이렇게 써라
+
+//    final int YEAR = 2019; //상수는 어차피 고정값이니 굳이 인스턴스를 만들 때 마다 생성할 필요가 없다 -> static으로 만들어서 한 번만 생성, 관련 클래스에서 선언하고, 다른 클래스에서 쓸 수 있도록 public을 준다.
+//    final int MONTH = 7;
+//    final int DAY = 11;
     
     /* 
      # 팩토리 메서드(factory method)

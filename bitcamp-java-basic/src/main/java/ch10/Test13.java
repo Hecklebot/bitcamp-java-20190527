@@ -5,8 +5,9 @@ class A {
   static int a = 7;
   
   static {
-    System.out.println("A.static{}");
-    a += B.b;
+    System.out.println("A.static{}"); //"A.static{}" 출력
+    a += B.b; //class B를 로딩 -> B의 스태틱 블럭을 처리하고 (b)29를 가져와 a(7)에 더함 ->36
+    //B클래스를 이미 로딩했기 때문에 다시 로딩하지 않는다.
   }
 }
 
@@ -14,8 +15,9 @@ class B {
   static int b = 22;
   
   static {
-    System.out.println("B.static{}");
-    b += A.a;
+    System.out.println("B.static{}"); //"B.static{}" 출력
+    b += A.a; // a(7)을 가져와 b(22)에 더함 -> 29
+    //A클래스를 이미 로딩했기 때문에 다시 로딩하지 않는다.
   }
 }
 

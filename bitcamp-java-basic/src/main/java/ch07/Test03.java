@@ -39,7 +39,6 @@ public class Test03 {
     Class c = Class.forName("ch07.Test03$Score");
     Score s3 = (Score)c.newInstance();
     
-    
     // 물론 다음과 같이 한 줄에 표현할 수도 있다.
     Score s2 = new Score();
     

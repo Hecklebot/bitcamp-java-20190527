@@ -1,11 +1,14 @@
 // String 클래스 사용법 - String 인스터스에 있는 값을 비교하기 : equals()
 package ch11;
 
+import java.util.Calendar;
+
 public class Test04 {
   public static void main(String[] args) {
     
     String s1 = new String("Hello");
     String s2 = new String("Hello"); 
+    
     
     if (s1 == s2) // 인스턴스가 같은 지 비교한다.
       System.out.println("s1 == s2");

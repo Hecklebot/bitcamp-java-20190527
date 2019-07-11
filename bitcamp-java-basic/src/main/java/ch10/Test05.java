@@ -2,12 +2,15 @@
 package ch10;
 
 class Monitor3 {
+  //인스턴스 필드에는 조건문 등을 쓸 수없다.
   int bright; // 밝기 (0% ~ 100%)
+//  if(bright>50) {} //<- 에러
   int contrast; // 명암 (0% ~ 100%)
   int widthRes; // 해상도 너비
   int heightRes; // 해상도 높이
   
   { // 인스턴스 블록 <= 실무에서는 인스턴스 블록을 잘 사용하지 않는다. 대신에 생성자를 주로 사용한다.
+    //값을 설정하는 것이 복잡한 경우 초기화문장이 아닌 인스턴스 블록 또는 생성자를 사용한다.
     this.bright = 50;
     this.contrast = 50;
     this.widthRes = 1920;
