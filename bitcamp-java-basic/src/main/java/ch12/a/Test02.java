@@ -1,4 +1,4 @@
-// 캐슐화(encapsulation) 필요성 - 사례 2
+// 캡슐화(encapsulation) 필요성 - 사례 2
 package ch12.a;
 
 public class Test02 {

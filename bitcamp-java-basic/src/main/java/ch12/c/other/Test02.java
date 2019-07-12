@@ -10,7 +10,7 @@ public class Test02 {
     // private
     //obj1.v1 = 100; // 컴파일 오류!
 
-    // protected
+    // defalut
     //obj1.v2 = 100; // 컴파일 오류! My 클래스와 Test02 클래스는 서로 다른 패키지 소속이다.
     
     // protected
