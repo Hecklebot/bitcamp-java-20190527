@@ -9,6 +9,15 @@ public class Test02 {
     Convertible c3 = new Convertible();
     DumpTruck c4 = new DumpTruck();
     
+    Object obj = new Object(); //Object 클래스는 자바 모든 클래스의 상위 클래스이기 때문에 어떤 객체든 받을 수 있다.
+    obj = new String();
+    obj = new DumpTruck();
+    obj = new Convertible();
+    obj = new Car();
+    obj = new SUV();
+    
+    
+    
     test(c1);
     test(c2);
     test(c3);

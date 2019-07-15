@@ -8,7 +8,7 @@ public class Test01 {
     //
     Calculator2 c1 = new Calculator2();
     c1.plus(5); // Calculator의 메서드 
-    c1.multiple(2); // Calculator2의 메서드 
+    c1.multiple(2); // Calculator2의 메서드 -> Calculator의 result가 private이기 때문에 Calculator2에서 접근할 수 없다.
     c1.minus(2); // Calculator의 메서드 
     c1.divide(4); // Calculator2의 메서드
     System.out.println(c1.getResult());

@@ -29,10 +29,10 @@ public class Test02 {
     
     // A 타입의 인스턴스를 B 타입의 인스턴스라고 주장하면, 컴파일러는 통과시킨다.
     // 그러나 JVM은 오류를 발생시킨다.
-    B obj4 = (B) obj3; // runtime 예외 발생!
+    //B obj4 = (B) obj3; // runtime 예외 발생!
     
     obj3.m1();
-    obj4.m2();
+    //obj4.m2();
   }
 
 }

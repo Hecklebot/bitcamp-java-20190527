@@ -6,7 +6,7 @@ public class Convertible extends Sedan {
   
   @Override
   public void run() {
-    System.out.println("쎙쎙~~ 달린다!");
+    System.out.println("쌩쌩~~ 달린다!");
   }
 
 }

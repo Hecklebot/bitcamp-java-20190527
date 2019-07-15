@@ -14,7 +14,7 @@ public class Test01 {
     
     score.compute();
     
-    System.out.printf("%d(%f)\n", score.getSum(), score.getAver());
+    System.out.printf("%d(%.2f)\n", score.getSum(), score.getAver());
 
   }
 

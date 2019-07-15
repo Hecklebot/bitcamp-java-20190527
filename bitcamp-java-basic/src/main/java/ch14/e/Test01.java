@@ -25,12 +25,12 @@ public class Test01 {
   }
   
   static void test(PickupTruck car) {
-    System.out.println("---------------------");
+    System.out.println("************************");
     car.run();
     car.stop();
     car.run();
     car.stop();
-    System.out.println("---------------------");
+    System.out.println("************************");
   }
   
   static void test(SUV car) {
