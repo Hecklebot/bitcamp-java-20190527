@@ -55,47 +55,26 @@ public class ArrayList<E> { // 타입 정보를 받는 변수: 타입 파라미�
     return this.size;
   }
   
-  @SuppressWarnings("unchecked")
-  public E get(int index) {
-    if(index < 0 || index >= size) {
-      throw new IndexOutOfBoundsException(String.format("index = %s", index));
-    }
-    return (E) list[index];
-  }
-  
-  @SuppressWarnings("unchecked")
-  public E set(int index, E obj) {
-    if(index < 0 || index >= size) {
-      throw new IndexOutOfBoundsException(String.format("index = %s", index));
-    }
-    E old = (E) list[index];
-    list[index] = obj;
-    
-    return old;
-  }
-  
-  
-  @SuppressWarnings("unchecked")
-  public E remove(int index) {
-    if(index < 0 || index >= size) {
-      throw new IndexOutOfBoundsException(String.format("index = %s", index));
-    }
-    
-    E old = (E) list[index];
-    // 방법 1 : 직접 반복문을 이용하여 삭제 처리하기
-    /*
-    for(int i = index; i<size; i++) {
-      list[i] = list[i+1];
-    }
-    list[--size] = null; //배열의 크기가 하나 줄었으니 줄어들은 끝 자리를 null처리한다. -> 메모리 절약
-     */
-    
-    // 방법 2 : 배열 복사를 이용해 삭제 처리하기
-    System.arraycopy(list, index+1, list, index, size - (index + 1));
-    list[--size] = null; //삭제한 후 기존 맨 끝방 값은 null로 설정한다.
-                           //-> 레퍼런스가 남아있지 않게 하여 가비지 컬렉터가 정상적으로 활동하도록 한다.
-    
-    
-    return old;
-  }
+//  public static void main(String[] args) {
+//    ArrayList<Board> boards = new ArrayList<>();
+//    Board b = new Board();
+//    b.setContents("aaaa");
+//    boards.add(b);
+//
+//    b = new Board();
+//    b.setContents("bbbb");
+//    boards.add(b);
+//
+//    b = new Board();
+//    b.setContents("cccc");
+//    boards.add(b);
+//
+//    Board[] boards2 = new Board[2];
+//    boards.toArray(boards2);
+//
+//    for (Board board : boards2) {
+//      System.out.println(board.getContents());
+//    }
+//
+//  }
 }
