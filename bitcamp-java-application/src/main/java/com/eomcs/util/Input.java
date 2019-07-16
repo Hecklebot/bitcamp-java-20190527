@@ -1,4 +1,5 @@
-package com.eomcs.lms.util;
+//프로젝트와 관계없이 사용할 수 있는 패키지
+package com.eomcs.util;
 
 import java.sql.Date;
 import java.util.Scanner;

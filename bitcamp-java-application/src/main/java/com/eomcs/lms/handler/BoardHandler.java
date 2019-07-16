@@ -1,8 +1,9 @@
 package com.eomcs.lms.handler;
 
 import java.sql.Date;
+import com.eomcs.util.ArrayList;
+import com.eomcs.util.Input;
 import com.eomcs.lms.domain.Board;
-import com.eomcs.lms.util.Input;
 
 public class BoardHandler {
   
@@ -12,7 +13,7 @@ public class BoardHandler {
   //-> 의존객체를 강제로 설정하게 만드는 방법? 생성자를 정의하는 것이다.
   //   의존객체를 넘겨받는 생성자를 정의하는 것이다.
   private Input input;
-  private BoardList boardList = new BoardList(30);
+  private ArrayList boardList = new ArrayList(30);
   
   
   public BoardHandler(Input input) {
@@ -31,8 +32,9 @@ public class BoardHandler {
   }
 
   public void listBoard() {
-    Board[] boards = boardList.toArray();
-    for (Board board : boards) {
+    Object[] list = boardList.toArray();
+    for (Object obj : list) {
+      Board board = (Board) obj;
       System.out.printf("%s, %s, %s, %s\n", board.getNo(), board.getContents(), board.getCreatedDate(),
           board.getViewCount());
     }
