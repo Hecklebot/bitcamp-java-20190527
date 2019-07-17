@@ -9,6 +9,7 @@ class My1 /*extends Object*/ {
 
 public class Test01 {
 
+  @SuppressWarnings("unlikely-arg-type")
   public static void main(String[] args) {
     
     // instanceof 연산자를 사용하여 해당 인스턴스가 Object 타입인지 확인해 보자.

@@ -22,7 +22,7 @@ public class Test02 {
     // 해시값?
     // - 인스턴스 마다 부여된 고유의 식별자이다.
     // - 주의! 주소 아니다!
-    // - 인스턴스가 같은지 검사할 때 사요할 수 있다.
+    // - 인스턴스가 같은지 검사할 때 사용할 수 있다.
     // - toString()을 재정의하지 않고 원래 메서드를 그대로 사용하면
     //   무조건 인스턴스마다 새 해시값이 부여된다.
     
@@ -36,6 +36,11 @@ public class Test02 {
     
     System.out.println(obj2.toString());
     System.out.println(obj3.toString());
+    System.out.println(obj2.equals(obj3));
+    
+    System.out.println(Integer.toHexString(obj2.hashCode()));
+    System.out.println(obj2);
+    
   }
 
 }
