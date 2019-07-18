@@ -1,13 +1,13 @@
-package algorithm.data_structure.stack2;
+package algorithm.data_structure.stack.step2;
 
-public class Stack<E> {
+public class Stack2<E> {
   
   public static final int DEFAULT_SIZE = 5;
   
   Object[] list;
   int size;
   
-  public Stack() {
+  public Stack2() {
     list = new Object[DEFAULT_SIZE];
   }
   
