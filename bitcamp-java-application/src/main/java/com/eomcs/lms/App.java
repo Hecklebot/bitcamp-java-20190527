@@ -105,7 +105,6 @@ public class App {
       } else {
         System.out.println("해당 명령은 지원하지 않습니다.");
       }
-        
       System.out.println();
     }
   }
