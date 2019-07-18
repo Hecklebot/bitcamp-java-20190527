@@ -2,6 +2,7 @@
 package ch15;
 
 public class Test11_3 {
+  int a = 3;
   public static void main(String[] args) {
     // 배열의 클래스 정보
     String[] obj2 = new String[10];

@@ -55,8 +55,8 @@ public class Test08_2 {
     Student s4 = new Student("유관순", 22, true);
     
     System.out.println(s1 == s2);
-    System.out.println(s1.hashCode());
-    System.out.println(s2.hashCode());
+    System.out.println(Integer.toHexString(s1.hashCode()));
+    System.out.println(Integer.toHexString(s2.hashCode()));
     System.out.println(s3.hashCode());
     System.out.println(s4.hashCode());
     

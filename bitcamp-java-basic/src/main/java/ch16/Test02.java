@@ -8,7 +8,7 @@ public class Test02 {
   public static void main(String[] args) {
     
     // echo() 의 리턴 값을 원하는 타입으로 받기 위해 형변환 해야 하는 일이 번거롭다.
-    // 해결책? 각 타입에 대해 echo()를 만들라
+    // 해결책? 각 타입에 대해 echo()를 만들라 -> 오버로딩
     // 
     String obj1 = echo(new String("Hello"));
     Date obj2 = echo(new Date());

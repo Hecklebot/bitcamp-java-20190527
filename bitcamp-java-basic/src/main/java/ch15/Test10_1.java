@@ -28,7 +28,6 @@ public class Test10_1 {
     map.put(k1, new Student("홍길동", 20, false));
     map.put(k2, new Student("임꺽정", 30, true));
     map.put(k3, new Student("유관순", 17, true));
-    
     // put(Object key, Object value)
     // => put() 메서드는 key로 넘겨받은 객체에 대해 hashCode()를 호출하여 
     //    정수 값을 얻는다.

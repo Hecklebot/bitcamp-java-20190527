@@ -1,5 +1,5 @@
 // static nested class 문법 적용 - Node 클래스를 스태틱 중첩 클래스로 정의한다.
-package algorithm.data_structure.linkedlist2;
+package algorithm.data_structure.linkedlist.step2;
 
 public class LinkedList {
   protected Node head;

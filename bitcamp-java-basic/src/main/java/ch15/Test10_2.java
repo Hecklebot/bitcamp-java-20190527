@@ -19,7 +19,6 @@ public class Test10_2 {
     map.put(k3, new Student("유관순", 17, true));
     map.put(k4, new Student("안중근", 24, true));
     map.put(k5, new Student("윤봉길", 22, false));
-    
     //k3 key로 저장한 값을 k3 key로 꺼내보자
     System.out.println(map.get(k3));
     
