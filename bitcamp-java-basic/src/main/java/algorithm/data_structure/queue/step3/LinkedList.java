@@ -1,16 +1,15 @@
 //LinkedList : 목록으로 다루는 값을 특정 타입으로 제한하기 위해 제네릭 적용하기
-package com.eomcs.util;
+package algorithm.data_structure.queue.step3;
 
 import java.lang.reflect.Array;
 
-public class LinkedList<T> implements List<T> {
+public class LinkedList<T> {
   Node<T> head;
   Node<T> tail;
   int size = 0;
 
   public LinkedList() {}
-  
-  @Override
+
   public boolean add(T value) {
     Node<T> temp = new Node<>(value);
     if (head == null) {
@@ -27,8 +26,7 @@ public class LinkedList<T> implements List<T> {
     // 결과 : head의 value는 null next는 다음 Node, tail에 head.next를 대입하고, tail.vaule에 입력받은 value,
     // tail.next은 null
   }
-  
-  @Override
+
   public T get(int index) {
     if (index < 0 || index >= size) {
       throw new IndexOutOfBoundsException(String.format("인덱스가 유효하지 않습니다. length = %s", this.size));
@@ -41,7 +39,6 @@ public class LinkedList<T> implements List<T> {
     return node.value;
   }
 
-  @Override
   public T set(int index, T value) {
     if (index < 0 || index >= size) {
       throw new IndexOutOfBoundsException(String.format("인덱스가 유효하지 않습니다. length = %s", this.size));
@@ -57,13 +54,12 @@ public class LinkedList<T> implements List<T> {
     return oldValue; // 기존 변경값 리턴
   }
 
-  @Override
+
   public int size() {
     return size;
   }
 
   // 특정 위치의 값을 삭제하는 remove 메서드
-  @Override
   public T remove(int index) {
     if (index < 0 || index >= size) {
       throw new IndexOutOfBoundsException(String.format("인덱스가 유효하지 않습니다. length = %s", this.size));
@@ -95,7 +91,7 @@ public class LinkedList<T> implements List<T> {
     
     return oldValue; // 기존 변경값 리턴
   }
-  @Override
+
   public void clear() {
     if(size == 0) {
       return;
@@ -112,7 +108,7 @@ public class LinkedList<T> implements List<T> {
     head = tail = null;
     size = 0;
   }
-  @Override
+
   public Object[] toArray() {
     //LinkedList에 있는 데이터를 저장할 배열을 준비한다.
     Object[] obj = new Object[size];
@@ -138,7 +134,6 @@ public class LinkedList<T> implements List<T> {
   }
   
   @SuppressWarnings("unchecked")
-  @Override
   public T[] toArray(T[] a) {
     if (a.length < size) { //받은 배열 크기가 더 작으면? 새 배열 만들어서 리턴
       // 파라미터로 넘겨 받은 배열의 크기가 저장된 데이터의 갯수보다 작다면, 이 메서드에서 새 배열을 만든다.

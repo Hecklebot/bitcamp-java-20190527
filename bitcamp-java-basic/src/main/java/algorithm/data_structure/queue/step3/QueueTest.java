@@ -1,4 +1,4 @@
-package com.eomcs.util;
+package algorithm.data_structure.queue.step3;
 
 public class QueueTest {
 
@@ -15,18 +15,18 @@ public class QueueTest {
     }
     
     System.out.println();
-    Stack<String> stack = new Stack<>();
-    stack.push("aaa");
-    stack.push("bbb");
-    stack.push("ccc");
-    stack.push("ddd");
-    
-    
-    while(!stack.empty()) {
-      System.out.println(stack.pop());
-    }
-  }
+//    Stack<String> stack = new Stack<>();
+//    stack.push("aaa");
+//    stack.push("bbb");
+//    stack.push("ccc");
+//    stack.push("ddd");
+//    
+//    
+//    while(!stack.empty()) {
+//      System.out.println(stack.pop());
+//    }
+//  }
   
 
-  
+  }  
 }
