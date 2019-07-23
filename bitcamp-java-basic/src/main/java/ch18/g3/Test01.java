@@ -25,9 +25,9 @@ public class Test01 {
   }
   
   private static void display(Printer2 printer, String text, String waterMarkText) {
-    printer.waterMark(waterMarkText);
+    printer.watermark(waterMarkText);
     printer.print(text);
-    printer.waterMark(waterMarkText);
+    printer.watermark(waterMarkText);
   }
   
 }

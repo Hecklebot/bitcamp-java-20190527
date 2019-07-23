@@ -22,7 +22,7 @@ public class Printer2Adapter implements Printer2 {
   }
 
   @Override
-  public void waterMark(String title) {
+  public void watermark(String title) {
     //단, Printer2에 추가된 워터마킹 기능은 아답터에서 실행한다.
     System.out.println(title);
   }

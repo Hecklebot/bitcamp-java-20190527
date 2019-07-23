@@ -9,7 +9,7 @@ public class WaterMarkPrinter implements Printer2 {
   }
   
   // 신규 프로젝트에 추가한 Printer2 인터페이스 규칙을 구현한다.
-  public void waterMark(String title) {
+  public void watermark(String title) {
     System.out.println("**" + title + "**");
   }
 }
