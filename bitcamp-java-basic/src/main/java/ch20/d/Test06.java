@@ -39,6 +39,10 @@ public class Test06 {
     System.out.println(iterator.next());
     System.out.println(iterator.next());
     
+//    while(iterator.hasNext()) {
+//      System.out.println(iterator.next());
+//    }
+    
     // 키 목록에서 값을 모두 꺼낸 다음에 또 꺼내려한다면 실행 오류 발생!
     //System.out.println(iterator.next()); // runtime 오류!
     

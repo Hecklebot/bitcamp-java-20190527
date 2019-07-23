@@ -116,12 +116,13 @@ public class LinkedList {
   
   // 중첩 클래스는 크게 static이냐 non-static이냐로 나눌 수 있는데,
   // 바깥 클래스의 특정 인스턴스를 사용하지 않는다면 static nested class로 선언하라!
-  // 그러나 바깥 큭래스의 특정 인스턴스를 사용한다면 그 인스턴스에 종속되기 때문에
+  // 그러나 바깥 클래스의 특정 인스턴스를 사용한다면 그 인스턴스에 종속되기 때문에
   // non-static nested class로 선언하라!
   // => 다음 Array 클래스는 LinkedList의 특정 인스턴스의 값을 사용해야 하기 때문에 
   //    non-static 클래스로 선언한다.
   // => 내부에서만 사용할 클래스라면 비공개로 처리하라.
-  // 
+  
+  // Array는 e처럼 LinkedList의 인스턴스를 사용하기 때문에, non-static nested class로 선언한다.
   private class Array {
     // 이제 Array 클래스는 LinkedList의 인스턴스 멤버가 되었다.
     // => 즉 인스턴스 필드나, 메서드처럼 특정 인스턴스에 대해 주소를 받는다는 것이다.
@@ -144,8 +145,8 @@ public class LinkedList {
       //
       Object[] arr = new Object[LinkedList.this.size()];
       
-      for (int i = 0; i < LinkedList.this.size(); i++) {
-        arr[i] = LinkedList.this.get(i);
+      for (int i = 0; i < /*LinkesList.this*/size(); i++) { //가능
+        arr[i] = get(i); //가능
       }
       return arr;
     }
@@ -164,6 +165,29 @@ public class LinkedList {
       return arr;
     }
   }
+  
+  //Node 클래스는 LinkedList의 특정 인스턴스를 다루지 않는다.
+  //따라서, static nested class로 선언한다.
+  private static class Node {
+    public Object value;
+    public Node prev;
+    public Node next;
+    
+    public Node() {
+    }
+    
+    public Node(Object value) {
+      this.value = value;
+    }
+    
+    public Node(Object value, Node prev, Node next) {
+      this(value);
+      this.prev = prev;
+      this.next = next;
+    }
+  }
+
+  
 
 }
 

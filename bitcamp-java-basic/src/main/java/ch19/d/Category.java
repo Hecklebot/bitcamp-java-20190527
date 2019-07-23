@@ -7,7 +7,7 @@ package ch19.d;
 public final class Category {
   
   // static nested class 문법이 필요한 이유?
-  // 작은 클래스를 패키지 멤버 클래스로 만들면 소스 파일이 너무 많이 생기기 때문에 관리하기가 번거롭다.
+  // 패키지 멤버 클래스로 만들면 소스 파일이 너무 많이 생기기 때문에 관리하기가 번거롭다.
   // => 예: Computer.java, Mouse.java, Appliance.java, Book.java
   // 
   // => 이렇게 작은 크기에 클래스가 많은 경우 

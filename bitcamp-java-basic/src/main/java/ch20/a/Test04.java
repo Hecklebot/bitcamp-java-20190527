@@ -30,7 +30,7 @@ public class Test04 {
         return result;
       }
       */
-
+      
       @Override
       public boolean equals(Object obj) {
         if (this == obj)
@@ -57,9 +57,9 @@ public class Test04 {
     
     Student s4 = new Student("bbb", 30);
     
-    System.out.println(s2 == s4);
-    System.out.println(s2.equals(s4));
-    System.out.println(s2.hashCode() == s4.hashCode());
+    System.out.println(s2 == s4); //false
+    System.out.println(s2.equals(s4)); //false
+    System.out.println(s2.hashCode() == s4.hashCode()); //false
     
     ArrayList<Student> list = new ArrayList<>();
     list.add(s1);

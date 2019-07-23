@@ -8,7 +8,7 @@ public class Test03 {
 
   // 이 클래스 내부에서만 사용할 클래스라면 이렇게 중첩 클래스로 만드는 것이 유지보수하기 좋다.
   //
-  public static class MyFilenameFilter implements FilenameFilter {
+  private static class MyFilenameFilter implements FilenameFilter {
     @Override
     public boolean accept(File dir, String name) {
       if (name.endsWith(".txt"))

@@ -9,7 +9,8 @@ public class Test05 {
   
   public static void main(String[] args) {
     // 1) 리턴 값은 return 명령을 사용하여 처리한다.
-    Calculator c1 = (a, b) -> { return a + b; };
+    //Calculator c1 = (a, b) ->   a + b; ; // 가능
+    Calculator c1 = (a, b) -> {return  a + b;};
     System.out.println(c1.compute(10, 20));
     
     // 2) 한 문장으로 된 표현식(=값을 리턴하는 한 문장의 코드)을 경우 괄호 생략할 수 있다. 

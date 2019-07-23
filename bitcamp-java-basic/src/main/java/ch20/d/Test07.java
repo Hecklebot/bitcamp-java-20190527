@@ -35,6 +35,8 @@ public class Test07 {
     Iterator<String> iterator = keySet.iterator();
     
     System.out.println(iterator.next());
+    System.out.println("=============================================================");
+    
     
     map.put("bba", new Student("bba", 20));
     map.put("bbc", new Student("bbc", 20));
@@ -45,8 +47,11 @@ public class Test07 {
     // 해결책?
     // => 값을 변경하면 다시 Iterator를 얻어야 한다.
     // 
-    System.out.println(iterator.next());
-    System.out.println(iterator.next());
+    //키가 들어있는 목록에서 값을 꺼내 줄 Iterator를 다시 리턴받아야 한다.
+    iterator = keySet.iterator();
+    while(iterator.hasNext()) {
+      System.out.println(iterator.next());
+    }
     
   }
 }
