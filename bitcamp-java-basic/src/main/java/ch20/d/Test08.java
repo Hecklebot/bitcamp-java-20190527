@@ -53,7 +53,7 @@ public class Test08 {
 
 /*
 HashMap과 Hashtable의 비교
-항목                               HashMap           Hashtable
+항목                                                   HashMap           Hashtable
 ------------------------------------------------------------------------
 1) key, value null 허용         |    Yes         |      No
 2) Thread-safe             |     No         |      Yes

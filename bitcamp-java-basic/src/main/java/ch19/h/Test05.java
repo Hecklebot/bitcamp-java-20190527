@@ -13,7 +13,7 @@ public class Test05 {
     Calculator c1 = (a, b) -> {return  a + b;};
     System.out.println(c1.compute(10, 20));
     
-    // 2) 한 문장으로 된 표현식(=값을 리턴하는 한 문장의 코드)을 경우 괄호 생략할 수 있다. 
+    // 2) 한 문장으로 된 표현식(=값을 리턴하는 한 문장의 코드)을 경우 괄호 생략할 수 있다. return도 생략할 수 있다.
     Calculator c2 = (a, b) -> a - b;
     System.out.println(c2.compute(10, 20));
     

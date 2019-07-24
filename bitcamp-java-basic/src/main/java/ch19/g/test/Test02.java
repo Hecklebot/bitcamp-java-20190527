@@ -7,9 +7,10 @@ public class Test02 {
   
   EvenFilter filter = new EvenFilter();
   
-//  int[] r = list.toArray (new EvenFilter() {
-//    return (value % 2) == 1;
-//  });
-  
+  int[] r = list.toArray (new EvenFilter() {
+    public boolean accept(int value) {
+      return (value % 2) == 1;
+    }
+  });
   
 }
