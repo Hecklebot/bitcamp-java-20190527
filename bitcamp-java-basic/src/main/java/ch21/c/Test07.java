@@ -13,7 +13,7 @@ public class Test07 {
     // 물론 이번 예제에서 main()에 붙이는 것은 아무 의미가 없다.
     //=> throws 절에는 java.lang.Throwable 클래스만 선언할 수 있다.
     //    Object 클래스와 같은 것은 선언할 수 없다.
-    throws RuntimeException { 
+    throws RuntimeException { //throws를 선언해도 main()의 호출자는 JVM이기 때문에 예외가 발생한다.
     
     ArrayList<String> list = new ArrayList<>();
     

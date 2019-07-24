@@ -11,7 +11,7 @@ public class Test04 {
       // => "이 메서드에서는 Exception 예외가 발생합니다"라는 의미다. 
       // => throws 절에는 java.lang.Throwable 클래스만 선언할 수 있다.
       //    Object 클래스와 같은 것은 선언할 수 없다.
-      throws Exception { // 여러 예외를 퉁쳐서 하나로 표현할 수 있다.
+      throws Exception { // 여러 예외를 퉁쳐서 하나로 표현할 수 있다. -> import 할 때, * 안쓰는 것과 같은 이유
       /*
       throws ClassNotFoundException, // 이 메서드에서 발생하는 예외의 목록을 지정한다.
              NoSuchMethodException,  // 만약 메서드를 실행하는 중에 이런 예외가 발생한다면,

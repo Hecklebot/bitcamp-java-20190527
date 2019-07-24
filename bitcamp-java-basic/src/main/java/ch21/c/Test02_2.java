@@ -4,7 +4,7 @@ package ch21.c;
 import java.lang.reflect.Constructor;
 import java.util.Scanner;
 
-public class Test02 {
+public class Test02_2 {
 
   public static void main(String[] args) {
     
@@ -42,6 +42,13 @@ public class Test02 {
     
     System.out.println("종료!");
 
+  }
+  
+  static int divide(int a, int b) throws Exception {
+    if (b == 0) {
+      throw new Exception("0으로 나눌 수 없습니다.");
+    }
+    return a / b;
   }
 
 }

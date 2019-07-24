@@ -52,14 +52,15 @@ public class Test03 {
   // 
   static String getName(int index) throws Exception { // 어떤 예외 던지는지 알려주기
     if (index < 0 || index >= list.size())
-      //throw new Object(); // 컴파일 오류!
+      throw new Exception("무효한 인덱스입니다."); // 예외 던지기
+
+    //throw new Object(); // 컴파일 오류!
       // throw 명령으로 던질 수 있는 예외는 java.lang.Throwable 타입이어야 한다.
       // 다른 타입의 객체는 던질 수 없다.
       // 애플리케이션에서 발생하는 예외는 가능한 java.lang.Exception을 사용하라!
       // java.lang.Error 클래스는 JVM에서 발생하는 시스템 예외를 위한 클래스이다. 사용하지 말라!
       // 그리고 Throwable 클래스의 객체로 가능한 사용하지 말라!
       // 
-      throw new Exception("무효한 인덱스입니다."); // 예외 던지기
     
     return list.get(index);
   }

@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Test04 {
   public static void main(String[] args) {
-    
+
     Scanner keyboard = new Scanner(System.in);
     
     HashMap<String,Command> commandMap = new HashMap<>();
@@ -50,7 +50,7 @@ public class Test04 {
         // NumberFormatException 예외까지 받을 수 있기 때문에 
         // 그 다음에 배치한 NumberFormatException catch 블록은 실행되지 않는다.
         //
-      } catch (NumberFormatException e) {
+      } catch (NumberFormatException e) { //얘가 RuntimeException보다 늦게 나오면 컴파일 오류 ->RuntimeException이 다 걸러버려서 얘한테 올 수 없다.
         System.out.println("정수 값을 입력하세요!");
         
       } catch (RuntimeException e) { // OK! 공통 부모이기 때문에 가능!

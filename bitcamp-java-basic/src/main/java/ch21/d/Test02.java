@@ -75,7 +75,7 @@ public class Test02 {
   static int divide(int a, int b) {
     if (b == 0) {
       // 호출자에게 어떤 값으로 알려줘야 오류를 전달할 수 있을까?
-      // => 옛날에는 이런 경우 결과로 잘 리턴하지 않는 이상한 값을 사용하였다.
+      // => 옛날에는 이런 경우 결과로 divide() 계산결과로 잘 나올수 없는 값을 리턴했다.
       return -1919191919;
     }
     return a / b;
