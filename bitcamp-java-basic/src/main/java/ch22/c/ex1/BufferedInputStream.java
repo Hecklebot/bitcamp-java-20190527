@@ -1,31 +1,28 @@
-package ch22.c;
+package ch22.c.ex1;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-// InputStream에 기능을 덧붙이는 플러그인 역할을 수행하는 클래스이다.
-// => 이런 클래스를 데코레이터(decorator)라 한다.
-// => 데코레이터는 기능을 덧붙이는 대상 클래스와 같은 조상을 가져야 한다.
-//    그리고 생성자에게 대상 객체 주소를 받아야 한다.
-//    작업을 수행할 때 대상 객체를 사용한다.
-//    그리고 자신만의 기능을 덧붙인다.
-public class BufferedInputStream extends InputStream {
+// 상속을 이용한 기능 추가
+// 기존의 FileInputStream에 버퍼링 기능을 추가하기
+public class BufferedInputStream extends FileInputStream {
   
-  InputStream in;
   byte[] buf = new byte[8192];
   int size = 0;
   int cursor = 0;
   int count = 0;
   
   
-  public BufferedInputStream(InputStream in) {
-    this.in = in;
+  public BufferedInputStream(String name) throws IOException {
+    super(name);
   }
   
+  @Override
   public int read() throws IOException {
     if (cursor >= size) {   // 버퍼에 보관된 데이터를 다 읽었으면
       count++;
-      size = in.read(buf);  // 다시 FileInputStream을 사용해서 1024바이트를 읽어 온다.
+      size = read(buf);     // 다시 상속받은 메서드를 사용해서 8192바이트를 읽어 온다.
       if (size == -1)       // 파일에 읽을 데이터가 없다면, 즉, 다 읽었다면 -1을 리턴한다.
         return -1;
       cursor = 0;           // FileInputStream을 사용하여 1024 바이트를 읽어 버퍼에 저장했다면,

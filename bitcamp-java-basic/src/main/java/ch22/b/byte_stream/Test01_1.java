@@ -1,6 +1,6 @@
 // 바이너리 데이터 입출력 - FileOutputStream 클래스 사용법
 // 
-package ch22.b;
+package ch22.b.byte_stream;
 
 import java.io.FileOutputStream;
 
@@ -42,6 +42,8 @@ public class Test01_1 {
       out.write(127);
       out.write(0x11223344); // 00010001 00100010 00110011 01000100
       out.write(0x55667788); // 맨 끝 1바이트만 출력한다.
+      out.write('A'); // 0x0041
+      out.write('가'); // 0xac00
       
       out.close();
       

@@ -13,11 +13,8 @@ public class Test11_3 {
     // anonymous class 
     File[] files = file.listFiles(new FileFilter() {
       @Override
-      public boolean accept(File pathname) {
-        if (pathname.isFile() && pathname.getName().endsWith(".txt"))
-          return true;
-        else 
-          return false;
+      public boolean accept(File file) {
+        return file.isFile() && file.getName().endsWith(".txt");
       }
     });
     

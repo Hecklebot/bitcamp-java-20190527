@@ -1,5 +1,5 @@
 // 문자 데이터 출력하기
-package ch22.d;
+package ch22.b.character_stream;
 
 import java.io.FileWriter;
 
@@ -12,12 +12,15 @@ public class Test01_1 {
     //
     try (FileWriter out = new FileWriter("data.txt")) {
       
-      out.write('A'); // => 0x41 1바이트 출력
-      out.write('B'); // => 0x42 1바이트 출력
-      out.write('C'); // => 0x43 1바이트 출력
-      out.write('가'); // => 0xEAB080 3바이트 출력 
-      out.write('각'); // => 0xEAB081 3바이트 출력 
-      out.write('간'); // => 0xEAB084 3바이트 출력
+      // write(문자코드)
+      // -> JVM에서 문자를 다루기 위해 사용하는 UTF-16코드를
+      //    OS기본 문자집합 코드로 변환하여 출력한다.
+      out.write('A'); // 0x0041 => 0x41 1바이트 출력
+      out.write('B'); // 0x0042 => 0x42 1바이트 출력
+      out.write('C'); // 0x0043 => 0x43 1바이트 출력
+      out.write('가'); // 0xac00 => 0xEAB080 3바이트 출력 
+      out.write('각'); // 0xac01 => 0xEAB081 3바이트 출력 
+      out.write('간'); // 0xac02 => 0xEAB084 3바이트 출력
       
       // character stream 클래스 FileWriter는 문자 데이터를 출력할 때  
       // 자바 내부에서 문자열을 다룰 때 사용하는 UTF-16 코드를 
@@ -28,6 +31,8 @@ public class Test01_1 {
       // 
       // 따라서 같은 프로그램을 어느 OS에서 실행하느냐에 따라 
       // 출력되는 코드 값이 달라진다.
+      // 만약 이클립스에서 실행한다면 무조건 UTF-8로 인코딩되어 출력된다.
+      // 콘솔창에서 실행한다면 위에서 설명한대로 OS에 따라 다르게 인코딩된다.
       // 
       // OS에 상관없이 동일한 character set으로 출력하고 싶다면 
       // JVM을 실행할 때 file.encoding 프로퍼티에 character set 이름을 지정하라.

@@ -1,6 +1,6 @@
 // 바이너리 데이터 입출력 - FileOutputStream - 배열 단위로 출력하기
 // 
-package ch22.b;
+package ch22.b.byte_stream;
 
 import java.io.FileOutputStream;
 

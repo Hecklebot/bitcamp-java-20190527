@@ -11,30 +11,55 @@ public class Test14 {
     // 예) ch22.a.Test14
     //
     File dir = new File("bin/main");
-    
-    findClass(dir, "");
+
+    findClass2(dir, "");
     System.out.println("완료!");
   }
-  
-  static void findClass(File dir, String packageName) {
-    File[] files = dir.listFiles(pathname -> 
-      pathname.isDirectory() ||
-      (pathname.isFile() && pathname.getName().endsWith(".class")) ?
-          true : false);
-    
-    for (File file : files) {
-      if (file.isFile()) {
-        System.out.printf("%s%s\n", 
-            packageName, 
-            file.getName().replace(".class", ""));
+
+  static void findClass(File path, String packageName) {
+    // 1) path가 파일이면 끝이 패키지 이름과 파일 이름을 합쳐 출력한다. 단, 파일 이름이 .class면 제외하고 출력한다.
+    if (path.isFile()) {
+      System.out.print(
+          String.format("%s.%s\n", packageName, path.getName().replace(".class", "")).substring(1));
+      return;
+    }
+
+    // 2) path가 디렉토리라면 하위 디렉토리와 파일 목록을 얻는다. 단 필터를 이용해 디렉토리와 클래스 파일 목록만 추출한다.
+    File[] files = path.listFiles(f -> f.isDirectory() || f.getName().endsWith(".class"));
+
+    // 3) findClass를 재귀호출해 하위 디렉토리를 검사한다.
+    for (File f : files) {
+      if (f.isDirectory()) {
+        findClass(f, packageName + "." + f.getName());
       } else {
-        findClass(file, packageName + file.getName() + ".");
+        findClass(f, packageName);
       }
     }
+
   }
+  
+  static void findClass2(File path, String packageName) {
+
+    // 1) path가 파일이면 끝이 패키지 이름과 파일 이름을 합쳐 출력한다. 단, 파일 이름이 .class면 제외하고 출력한다.
+    File[] files = path.listFiles(f -> f.isDirectory() || f.getName().endsWith(".class"));
+    // 2) path가 디렉토리라면 하위 디렉토리와 파일 목록을 얻는다. 단 필터를 이용해 디렉토리와 클래스 파일 목록만 추출한다.
+    for (File f : files) {
+      if (f.isDirectory()) {
+        findClass(f, packageName + "." + f.getName());
+      } else {
+        System.out.println(String.format(
+            "%s.%s", packageName, 
+            f.getName().replace(".class", ""))
+              .substring(1));
+      }
+    }
+
+    // 3) findClass를 재귀호출해 하위 디렉토리를 검사한다.
+
+  
+  }
+  
+  
 }
-
-
-
 
 

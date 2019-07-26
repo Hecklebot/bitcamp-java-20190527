@@ -1,5 +1,5 @@
 // 문자 데이터 읽기
-package ch22.d;
+package ch22.b.character_stream;
 
 import java.io.FileReader;
 
@@ -37,7 +37,8 @@ public class Test01_2 {
       // JVM을 실행할 때 다음 옵션을 지정하지 않으면 
       //   -Dfile.encoding=문자표
       // JVM은 OS의 기본 문자표라고 가정하고 파일을 읽는다.
-      // 
+      // 만약 이클립스에서 실행한다면 UTF-8이라 가정하고 읽는다.
+      // 만약 콘솔창에서 실행한다면 OS에서 따라 다르게 읽는다.
       
     } catch (Exception e) {
       e.printStackTrace();

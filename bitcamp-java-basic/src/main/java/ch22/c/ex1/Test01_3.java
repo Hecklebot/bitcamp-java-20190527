@@ -1,8 +1,7 @@
 // 버퍼 사용 - 버퍼를 적용하여 데이터 읽기를 대신 처리해주는 도우미 클래스 사용
 // 
-package ch22.c;
+package ch22.c.ex1;
 
-import java.io.FileInputStream;
 
 public class Test01_3 {
   public static void main(String[] args) {
