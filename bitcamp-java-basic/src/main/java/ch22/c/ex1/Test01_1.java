@@ -16,7 +16,6 @@ public class Test01_1 {
       
       int b;
       int count = 0;
-
       while ((b = in.read()) != -1) {
         count++;
       }
@@ -24,6 +23,7 @@ public class Test01_1 {
       long end = System.currentTimeMillis();
       System.out.println(end - start);
       System.out.println(count);
+      
       in.close();
       
     } catch (Exception e) {

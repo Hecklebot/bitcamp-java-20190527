@@ -9,9 +9,9 @@ public class Test11_4 {
     
     File file = new File(".");
     
-    // lambda class 
+    // anonymous class 
     File[] files = file.listFiles(pathname -> 
-      pathname.isFile() && pathname.getName().endsWith(".txt")
+        pathname.isFile() && pathname.getName().endsWith(".txt")
     );
     
     for (File f : files) {

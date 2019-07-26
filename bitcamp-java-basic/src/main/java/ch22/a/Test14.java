@@ -11,55 +11,61 @@ public class Test14 {
     // 예) ch22.a.Test14
     //
     File dir = new File("bin/main");
-
+    
     findClass2(dir, "");
     System.out.println("완료!");
   }
-
+  
   static void findClass(File path, String packageName) {
-    // 1) path가 파일이면 끝이 패키지 이름과 파일 이름을 합쳐 출력한다. 단, 파일 이름이 .class면 제외하고 출력한다.
+    // 1) path가 파일이면 패키지 이름과 파일 이름을 합쳐 출력하고 리턴한다.
+    //    => 단 파일 이름에서 .class 확장자 명은 제외한다.
+    //    => 파일 명이 Hello.class 이고 패키지명이 aaa.bbb 라면
+    //       출력할 이름은 aaa.bbb.Hello 이다.
     if (path.isFile()) {
-      System.out.print(
-          String.format("%s.%s\n", packageName, path.getName().replace(".class", "")).substring(1));
+      System.out.println(
+          String.format("%s.%s", 
+                    packageName, 
+                    path.getName().replace(".class", ""))
+                .substring(1));
       return;
     }
-
-    // 2) path가 디렉토리라면 하위 디렉토리와 파일 목록을 얻는다. 단 필터를 이용해 디렉토리와 클래스 파일 목록만 추출한다.
-    File[] files = path.listFiles(f -> f.isDirectory() || f.getName().endsWith(".class"));
-
-    // 3) findClass를 재귀호출해 하위 디렉토리를 검사한다.
-    for (File f : files) {
-      if (f.isDirectory()) {
-        findClass(f, packageName + "." + f.getName());
-      } else {
-        findClass(f, packageName);
-      }
+    
+    // 2) path가 디렉토리라면 하위 디렉토리와 파일 목록을 얻는다.
+    //    => 단 필터를 이용하여 디렉토리와 클래스 파일(.class) 목록만 추출한다.
+    File[] files = path.listFiles(
+        f -> f.isDirectory() || f.getName().endsWith(".class"));
+    
+    // 3) 하위 디렉토리와 파일 목록에서 클래스를 찾는다.
+    for (File file : files) {
+      if (file.isDirectory())
+        findClass(file, packageName + "." + file.getName());
+      else 
+        findClass(file, packageName);
     }
-
   }
   
   static void findClass2(File path, String packageName) {
-
-    // 1) path가 파일이면 끝이 패키지 이름과 파일 이름을 합쳐 출력한다. 단, 파일 이름이 .class면 제외하고 출력한다.
-    File[] files = path.listFiles(f -> f.isDirectory() || f.getName().endsWith(".class"));
-    // 2) path가 디렉토리라면 하위 디렉토리와 파일 목록을 얻는다. 단 필터를 이용해 디렉토리와 클래스 파일 목록만 추출한다.
-    for (File f : files) {
-      if (f.isDirectory()) {
-        findClass(f, packageName + "." + f.getName());
-      } else {
-        System.out.println(String.format(
-            "%s.%s", packageName, 
-            f.getName().replace(".class", ""))
-              .substring(1));
+    // 1) path의 하위 디렉토리와 파일 목록을 얻는다.
+    //    => 단 필터를 이용하여 디렉토리와 클래스 파일(.class) 목록만 추출한다.
+    File[] files = path.listFiles(
+        f -> f.isDirectory() || f.getName().endsWith(".class"));
+    
+    // 2) 하위 디렉토리와 파일 목록에서 클래스를 찾는다.
+    for (File file : files) {
+      if (file.isDirectory())
+        findClass(file, packageName + "." + file.getName());
+      else {
+        System.out.println(
+          String.format("%s.%s",
+                    packageName, 
+                    file.getName().replace(".class", ""))
+                .substring(1));
       }
     }
-
-    // 3) findClass를 재귀호출해 하위 디렉토리를 검사한다.
-
-  
   }
-  
-  
 }
+
+
+
 
 

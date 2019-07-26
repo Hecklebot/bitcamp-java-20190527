@@ -1,6 +1,6 @@
 // 버퍼 사용 - 사용 후
 // 
-package ch22.c.ex1;
+package ch22.c.ex2;
 
 import java.io.FileInputStream;
 

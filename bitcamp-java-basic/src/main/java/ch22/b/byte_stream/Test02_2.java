@@ -12,7 +12,7 @@ public class Test02_2 {
       
       // 데이터를 저장할 바이트 배열을 준비한다.
       byte[] buf = new byte[1024];
-
+      
       // 바이너리 데이터를 읽어 배열에 저장하기
       // read(byte[]) 
       //   => 읽은 데이터를 바이트 배열에 채운다. 
@@ -36,6 +36,7 @@ public class Test02_2 {
     
     System.out.println("출력 완료!");
   }
+  
 }
 
 

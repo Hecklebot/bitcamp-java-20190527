@@ -13,7 +13,7 @@ public class Test08 {
     // 하위 파일이나 디렉토리 이름 알아내기
     String[] names = file.list();
     for (String name : names) {
-        System.out.println(name);
+      System.out.println(name);
     }
     
   }    

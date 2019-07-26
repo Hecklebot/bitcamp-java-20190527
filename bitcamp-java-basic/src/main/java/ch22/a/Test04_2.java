@@ -7,7 +7,6 @@ public class Test04_2 {
 
   public static void main(String[] args) throws Exception {
     
-    
     // 디렉토리 안에 하위 디렉토리나 파일이 있다면 삭제할 수 없다.
     File dir = new File("temp2");
     if (dir.delete()) {

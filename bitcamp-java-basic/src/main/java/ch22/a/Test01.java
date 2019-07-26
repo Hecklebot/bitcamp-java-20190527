@@ -21,15 +21,11 @@ public class Test01 {
     System.out.println(dir.getAbsolutePath()); // 절대 경로
     System.out.println(dir.getCanonicalPath()); // 계산된 경로
 
-    System.out.println("---------------------------");
-    
     // 디렉토리가 존재하지 않는 경우 크기는 0이 나온다.
     System.out.println(dir.getTotalSpace()); // HDD 전체 용량
     System.out.println(dir.getFreeSpace()); // 빈 용량
     System.out.println(dir.getUsableSpace()); // 빈 용량 중에서 사용할 수 있는 용량
     
-    System.out.println("---------------------------");
-
     // 디렉토리가 존재하지 않는 경우 리턴 값은 false이다.
     System.out.println(dir.isDirectory());
     System.out.println(dir.isFile());
