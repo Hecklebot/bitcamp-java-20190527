@@ -1,12 +1,18 @@
 // DataInputStream에 버퍼기능을 추가해 DataInputStream2만들기
-package ch22.c.ex3.byte_stream;
+package ch22.c.ex4;
 
+import java.io.FileInputStream;
 
 public class Test02_2 {
   
   public static void main(String[] args) throws Exception {
 
-    BufferedDataInputStream in = new BufferedDataInputStream("temp/data.bin");
+    // 파일에서 데이터를 읽는 일을 할 객체를 준비한다.
+    FileInputStream other = new FileInputStream("temp/data.bin");
+    // 위 객체에 버퍼링 기능을 붙인다.
+    BufferedInputStream other2 = new BufferedInputStream(other);
+    // 위 객체에 primitive type 값을 읽는 데코레이터를 덧붙인다.
+    DataInputStream in = new DataInputStream(other2);
 
     // 바이너리 데이터를 읽을 때는 저장한 순서(파일 포맷)에 맞춰 읽어야 한다.
     System.out.println("읽기 시작..");

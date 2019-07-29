@@ -1,15 +1,24 @@
-package ch22.c.ex3.byte_stream;
+package ch22.c.ex4;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import ch22.c.ex1.byte_stream.BufferedOutputStream;
+import java.io.OutputStream;
 
-// Buffer 기능을 추가하기 위해 기존에 작성한 BufferedOutputStream을 상속받는다
-public class DataOutputStream2 extends BufferedOutputStream {
+//데코레이터 설계 패턴을 적용하여 기존 OutputStream에 기능을 추가한다.
+//-> DecoratorOutputStream을 상속받는다.
+public class DataOutputStream extends DecoratorOutputStream {
 
-  public DataOutputStream2(String name) throws FileNotFoundException {
-    super(name);
+  public DataOutputStream(OutputStream other) throws FileNotFoundException {
+    super(other);
   }
+  
+  // 자신에게 1바이트 출력하라고 요청이 들어오면 생성자에서 받은 다른 OutputStream 객체에 일을 떠넘긴다.
+  // -> 왜? 데코레이터가 하는 일이 그렇다
+  @Override
+  public void write(int b) throws IOException {
+    other.write(b);
+  }
+  
 
   public void writeInt(int value) throws IOException {
     write(value >> 24);
@@ -54,6 +63,7 @@ public class DataOutputStream2 extends BufferedOutputStream {
       write(0);
     }
   }
+
 
 
 

@@ -1,15 +1,21 @@
-package ch22.c.ex3.byte_stream;
+package ch22.c.ex4;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import ch22.c.ex1.byte_stream.BufferedInputStream;
+import java.io.InputStream;
 
-// 버퍼기능을 추가하기 위해 기존의 BufferedInputStream을 상속받는다.
-public class DataInputStream extends BufferedInputStream {
+public class DataInputStream extends DecoratorInputStream {
 
-  public DataInputStream(String name) throws IOException {
-    super(name);
+  public DataInputStream(InputStream other) throws FileNotFoundException {
+    super(other);
   }
 
+  @Override
+  public int read() throws IOException {
+    // TODO Auto-generated method stub
+    return other.read();
+  }
+  
   public int readInt() throws IOException {
     int value = 0;
     value |= read() << 24;
