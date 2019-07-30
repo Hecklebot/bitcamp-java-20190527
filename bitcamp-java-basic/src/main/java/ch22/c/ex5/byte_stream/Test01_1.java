@@ -1,4 +1,4 @@
-// 자바에서 제공하는 데코레잍 사용하기: 버퍼없이 대량의 primitive 타입의 값 출력하기
+// 자바에서 제공하는 데코레이터 사용하기: 버퍼없이 대량의 primitive 타입의 값 출력하기
 package ch22.c.ex5.byte_stream;
 
 import java.io.DataOutputStream;

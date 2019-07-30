@@ -5,13 +5,13 @@ import java.io.Serializable;
 // java.io.Serializable
 // => serialize를 허락하고 싶다면 이 인터페이스를 구현한다.
 // => 자바는 기본적으로 보안을 위해서 자동으로 serialize 하는 것을 허락하지 않는다.
-// => 개발자가 직접 이 인터페이스를 붙인 클래스에 대해서만 serializa 할 수 있다.
+// => 개발자가 직접 이 인터페이스를 붙인 클래스에 대해서만 serialize 할 수 있다.
 // => 따라서 이 인터페이스는 serialize 기능을 활성화시키는 표시자로서 역할을 한다.
-//    그래서 이 인터페이스에는 메서드가 선언되어 있지 않다.
-//    이 인터페이스를 구현하는 클래스는 따로 메서드를 구현할 필요가 없다.
+// 그래서 이 인터페이스에는 메서드가 선언되어 있지 않다.
+// 이 인터페이스를 구현하는 클래스는 따로 메서드를 구현할 필요가 없다.
 //
 public class Score2 implements Serializable {
-  
+
   private String name;
   private String tel; // Test2_1을 실행한 후 이 필드를 추가하라!
   private int kor;
@@ -19,11 +19,20 @@ public class Score2 implements Serializable {
   private int math;
   private int sum;
   private float aver;
-  
+
   public Score2() {
     System.out.println("Score2()");
   }
-  
+
+
+  @Override
+  public String toString() {
+    return "Score2 [name=" + name + ", tel=" + tel + ", kor=" + kor + ", eng=" + eng + ", math="
+        + math + ", sum=" + sum + ", aver=" + aver + "]";
+  }
+
+
+
   public Score2(String name, int kor, int eng, int math) {
     this.name = name;
     this.kor = kor;
@@ -32,21 +41,7 @@ public class Score2 implements Serializable {
     compute();
   }
 
-  // Test2_1을 실행하여 Score2 값을 출력한 후 toString() 메서드를 다시 생성하라.
-  @Override
-  public String toString() {
-    return "Score2 [name=" + name + ", tel=" + tel + ", kor=" + kor + ", eng=" + eng + ", math="
-        + math + ", sum=" + sum + ", aver=" + aver + "]";
-  }
 
-  //Test2_1을 실행하여 Score2 값을 출력한 후 tel 필드의 getter/setter를 추가하라. 
-  public String getTel() {
-    return tel;
-  }
-
-  public void setTel(String tel) {
-    this.tel = tel;
-  }
 
   public String getName() {
     return name;
@@ -54,6 +49,15 @@ public class Score2 implements Serializable {
 
   public void setName(String name) {
     this.name = name;
+
+  }
+
+  public String getTel() {
+    return tel;
+  }
+
+  public void setTel(String tel) {
+    this.tel = tel;
   }
 
   public int getKor() {
@@ -90,13 +94,11 @@ public class Score2 implements Serializable {
   public float getAver() {
     return aver;
   }
-  
+
   public void compute() {
     this.sum = this.kor + this.eng + this.math;
     this.aver = this.sum / 3f;
   }
 }
-
-
 
 

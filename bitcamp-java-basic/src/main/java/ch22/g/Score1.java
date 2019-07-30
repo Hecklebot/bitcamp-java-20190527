@@ -21,8 +21,6 @@ public class Score1 implements Serializable {
     return "Score1 [name=" + name + ", kor=" + kor + ", eng=" + eng + ", math=" + math + ", sum="
         + sum + ", aver=" + aver + "]";
   }
-  
-  
 }
 
 
