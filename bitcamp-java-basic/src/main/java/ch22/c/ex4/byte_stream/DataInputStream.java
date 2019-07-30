@@ -1,4 +1,4 @@
-package ch22.c.ex4;
+package ch22.c.ex4.byte_stream;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -10,12 +10,14 @@ public class DataInputStream extends DecoratorInputStream {
     super(other);
   }
 
+  //read()는 공통 기능이기 때문에 상위 클래스의 기능을 그대로 사용한다.
   @Override
   public int read() throws IOException {
     // TODO Auto-generated method stub
     return other.read();
   }
   
+  // DataInputStream만의 기능은 따로 정의해 사용할 수 있게 한다.
   public int readInt() throws IOException {
     int value = 0;
     value |= read() << 24;

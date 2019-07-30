@@ -31,8 +31,6 @@ public class Test01_3 {
 
     long end = System.currentTimeMillis();
     System.out.println(end - start);
-    System.out.println(count);
-    System.out.println(in.count);
 
     in.close();
 

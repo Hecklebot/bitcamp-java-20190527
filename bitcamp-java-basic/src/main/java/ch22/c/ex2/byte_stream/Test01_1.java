@@ -9,7 +9,6 @@ public class Test01_1 {
     FileOutputStream out = new FileOutputStream("temp/data.bin");
 
     int value = 0x22334455;
-
     // 위의 4바이트 value 값을 출력하시오!
     // -> 상위 바이트를 출력하고 싶으면 맨 뒤로 이동시켜야 한다.
     // -> >> 연산자를 사용하여 비트를 이동시킨다.

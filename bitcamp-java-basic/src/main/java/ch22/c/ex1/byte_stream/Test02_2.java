@@ -7,7 +7,7 @@ public class Test02_2 {
   public static void main(String[] args) throws Exception {
 
     FileOutputStream out = new FileOutputStream("temp/data.bin");
-
+    
     System.out.println("데이터 쓰는 중...");
 
     long start = System.currentTimeMillis();

@@ -20,7 +20,7 @@ public class BufferedInputStream extends FileInputStream {
   public int read() throws IOException {
     if (cursor >= size) { // 버퍼에 보관된 데이터를 다 읽었으면, 
       count++;
-      size = read(buf); // 다시 상속 받은 메서드를 사용하여 8192 바이트를 읽어 온다.
+      size = read(buf); // 다시 상속 받은 메서드를 사용하여 8192 바이트를 읽어 온다. read()는 배열의 요소수를 리턴한다.
       if (size == -1) // 물론 읽은 데이터가 없다면, 즉 파일의 데이터를 다 읽었다면 -1을 리턴한다.
         return -1;
       cursor = 0; // 새로 8192 바이트를 읽어 버퍼에 저장했다면,
