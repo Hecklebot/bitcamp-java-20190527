@@ -3,7 +3,7 @@ package ch21.g;
 
 public class Test02_3 {
 
-  public static void main(String[] args) throws RuntimeException {
+  public static void main(String[] args) /*throws RuntimeException*/ {
 
       System.out.println(100 / 0);
       // RuntimeException 예외가 발생되는 코드를 작성할 경우

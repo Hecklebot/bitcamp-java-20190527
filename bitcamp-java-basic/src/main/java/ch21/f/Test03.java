@@ -24,7 +24,7 @@ public class Test03 {
   
   public static void main(String[] args) {
     
-    try (
+    try ( //autoCloseable 만
         // java.lang.AutoCloseable 을 구현하지 않은 객체는 선언할 수 없다.
         //MyResource1 r1 = new MyResource1(); // 컴파일 오류!
         //String str = "Hello"; // 컴파일 오류!
@@ -41,6 +41,7 @@ public class Test03 {
       System.out.println("예외 발생!");
     }
      
+    System.out.println("quit");
   }
 }
 
