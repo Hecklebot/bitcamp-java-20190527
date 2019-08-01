@@ -2,10 +2,10 @@ package design_pattern.observer2.before.v4;
 
 import java.io.Reader;
 
-public class TextAnalyzer {
+public class TextAnalyzer_practice {
   Reader in;
   
-  public TextAnalyzer(Reader in) {
+  public TextAnalyzer_practice(Reader in) {
     this.in = in;
   }
   
@@ -28,20 +28,19 @@ public class TextAnalyzer {
           isEmpty = false;
         }
         
-        if (!startLineComment) {
-          if (ch == '/') {
-            if (countSlash == 0) {
-              countSlash++;
-            } else {
-              totalLinecomment++;
-              startLineComment = true;
+        if(!startLineComment) {     // 1. startLineComment가 true면
+          if(ch =='/') {            // 2. 다음 글자가 /인지 확인하고
+            if(countSlash == 0) {   // 3. countSlash가 0이면(첫 /이면)
+              countSlash++;         // 4. countSlash++(/가 한번 나왔다고 표시)
+            } else {                // 5. countSlash가 0 이상이면(/가 한번 나왔으면)
+              totalLinecomment++;   // 6. "//"이니 한 줄 주석 수 +1
+              countSlash = 0;       // 7. 다시 countSlash를 0으로 만듦(다음 /는 첫 /)
             }
-          } else {
-            countSlash = 0;
           }
-        } else if (ch == '\n') {
-          startLineComment = false;
+        } else if(ch == '\n') {     // 8. startLineComment가 false일 때 줄바꿈이 되면
+          startLineComment = false; // 9. startLineComment를 false로 초기화(줄바꿈되어 주석이 끝이니까)
         }
+        
       }
       
       if (!isEmpty) {

@@ -1,11 +1,11 @@
-package design_pattern.observer2.before.v4;
+package design_pattern.observer2.before.v5;
 
 import java.io.Reader;
 
-public class TextAnalyzer {
+public class TextAnalyzer_practice {
   Reader in;
   
-  public TextAnalyzer(Reader in) {
+  public TextAnalyzer_practice(Reader in) {
     this.in = in;
   }
   
@@ -15,11 +15,14 @@ public class TextAnalyzer {
       int count = 0;
       int totalLine = 0;
       int totalLinecomment = 0;
-      boolean startLineComment = false;
+      boolean startLinecomment = false;
       int countSlash = 0;
       boolean isEmpty = true;
+      StringBuffer line = new StringBuffer();
+      String mainClassName = null;
       while ((ch = in.read()) != -1) {
         count++;
+        
         if (ch == '\n') {
           totalLine++;
           isEmpty = true;
@@ -28,22 +31,38 @@ public class TextAnalyzer {
           isEmpty = false;
         }
         
-        if (!startLineComment) {
+        if (!startLinecomment) {
           if (ch == '/') {
             if (countSlash == 0) {
               countSlash++;
             } else {
               totalLinecomment++;
-              startLineComment = true;
+              startLinecomment = true;
             }
           } else {
             countSlash = 0;
           }
         } else if (ch == '\n') {
-          startLineComment = false;
+          startLinecomment = false;
+        }
+        
+        // mainClassName의 값 알아내기
+        if(!(ch =='\n')) {
+          line.append((char)ch);
+        } else {
+          if(line.indexOf("mainClassName") != -1) {
+            int i = line.indexOf("\""); // 1. 이 줄에 mainClassName가 있고, "도 있으면
+            if(i != -1) {
+              mainClassName = line.substring(i+1, line.indexOf("\"", i+1)); //2. i+1위치부터 시작해서 다음 "를 찾아 인덱스를 리턴
+            }
+            i = line.indexOf("'");
+            if(i != -1) { // 3. 이 줄에 mainClassName가 있고, '도 있으면
+              mainClassName = line.substring(i+1, line.indexOf("'", i+1));
+            }
+          }
+          line.setLength(0); // 4. line.indexOf("mainClassName") != -1가 false면(mainClassName이 없는 줄이면) 스트링 버퍼를 비운다.
         }
       }
-      
       if (!isEmpty) {
         totalLine++;
       }
@@ -51,6 +70,7 @@ public class TextAnalyzer {
       System.out.printf("총 읽은 문자 수: %d\n", count);
       System.out.printf("총 줄 수: %d\n", totalLine);
       System.out.printf("총 한 줄 주석 수: %d\n", totalLinecomment);
+      System.out.printf("mainClassName: %s\n", mainClassName);
       
     } catch (Exception e) {
       System.out.println("분석 중 오류 발생!");
