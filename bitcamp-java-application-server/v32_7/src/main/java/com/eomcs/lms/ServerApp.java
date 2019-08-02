@@ -1,4 +1,4 @@
-// v32_8: 회원/수업/게시물 요청을 처리하는 코드를 별도의 클래스로 분리한다.
+// v32_7: 수업과 게시물 데이터를 다루는 CRUD 명령을 처리한다.
 package com.eomcs.lms;
 
 import java.io.IOException;
@@ -7,6 +7,7 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import com.eomcs.lms.domain.Board;
 import com.eomcs.lms.domain.Lesson;
 import com.eomcs.lms.domain.Member;
 
@@ -14,6 +15,7 @@ public class ServerApp {
 
   static ArrayList<Member> memberList = new ArrayList<>();
   static ArrayList<Lesson> lessonList = new ArrayList<>();
+  static ArrayList<Board> boardList = new ArrayList<>();
   static ObjectInputStream in;
   static ObjectOutputStream out;
 
@@ -35,20 +37,10 @@ public class ServerApp {
         ServerApp.in = in;
         ServerApp.out = out;
 
-        BoardServlet boardServlet = new BoardServlet(in, out);
-        
         loop: while (true) {
           // 클라이언트가 보낸 명령을 읽는다.
           String command = in.readUTF();
           System.out.println(command + "요청 처리중...");
-          
-          if(command.startsWith("/board/")) {
-            boardServlet.service(command);
-            out.flush();
-            continue;
-          }
-          
-          
           // 명령어에 따라 처리한다.
           switch (command) {
             case "/member/add":
@@ -80,6 +72,21 @@ public class ServerApp {
               break;
             case "/lesson/update":
               updateLesson();
+              break;
+            case "/board/add":
+              addBoard();
+              break;
+            case "/board/list":
+              listBoard();
+              break;
+            case "/board/delete":
+              deleteBoard();
+              break;
+            case "/board/detail":
+              detailBoard();
+              break;
+            case "/board/update":
+              updateBoard();
               break;
             case "quit":
               out.writeUTF("ok");
@@ -126,6 +133,17 @@ public class ServerApp {
     return -1;
   }
   
+  private static int indexOfBoard(int no) {
+    int i = 0;
+    for (Board b : boardList) {
+      if (b.getNo() == no) {
+        return i;
+      }
+      i++;
+    }
+    return -1;
+  }
+
   private static void addMember() throws ClassNotFoundException, IOException {
     // 클라리언트가 보낸 객체를 읽는다.
     Member member = (Member) in.readObject();
@@ -312,7 +330,97 @@ public class ServerApp {
 
   }
 
-  
+  private static void addBoard() throws ClassNotFoundException, IOException {
+    // 클라리언트가 보낸 객체를 읽는다.
+    Board board = (Board) in.readObject();
+    boardList.add(board);
+    out.writeUTF("ok");
+  }
+
+  private static void listBoard() throws IOException {
+    out.writeUTF("ok");
+    out.reset(); // 기존에 serialize 했던 객체의 상태를 무시하고 다시 serialize 한다.
+    out.writeObject(boardList);
+  }
+
+  private static void detailBoard() throws IOException {
+    int no = in.readInt();
+
+    int index = indexOfBoard(no);
+    // if문에서는 부정적인 조건을 찾는게 코딩이 수월하다 왜?
+    // 코드의 흐름을 들여쓰기로 구분하는게 좋다. 다른 들여쓰기 -> 다른 흐름
+
+    if (index == -1) {
+      fail("해당 번호의 게시물이 없습니다.");
+      return;
+    }
+    out.writeUTF("ok");
+    out.writeObject(boardList.get(index));
+
+
+    // for (Member m : memberList) {
+    // if (m.getNo() == no) {
+    // out.writeUTF("ok");
+    // out.writeObject(m);
+    // return;
+    // }
+    // out.writeUTF("fail");
+    // }
+    //
+    // out.writeUTF("fail");
+    // out.writeUTF("해당 번호의 회원이 없습니다.");
+
+  }
+
+  private static void updateBoard() throws IOException, ClassNotFoundException {
+    // 인덱스를 알고 있을 때, 사용할 수 있는 방법
+    Board board = (Board) in.readObject();
+    int index = indexOfBoard(board.getNo());
+
+    if (index == -1) {
+      fail("해당 번호의 게시물이 없습니다.");
+      return;
+    }
+
+    boardList.set(index, board);
+    out.writeUTF("ok");
+
+    // for (int i = 0; i < memberList.size(); i++) {
+    // Member m = memberList.get(i);
+    // if (member.getNo() == m.getNo()) {
+    // // 기존 객체를 클라이언트가 보낸 객체로 교체한다.
+    // memberList.set(i, member);
+    // out.writeUTF("ok");
+    // return;
+    // }
+    // }
+
+  }
+
+  private static void deleteBoard() throws IOException {
+    int no = in.readInt();
+
+    int index = indexOfBoard(no);
+    if (index == -1) {
+      fail("해당 번호의 게시물이 없습니다.");
+      return;
+    }
+
+    boardList.remove(index);
+    out.writeUTF("ok");
+
+    // for (Member m : memberList) {
+    // if (m.getNo() == no) {
+    // memberList.remove(m);
+    // out.writeUTF("ok");
+    // return;
+    // }
+    // }
+
+    // out.writeUTF("fail");
+    // out.writeUTF("해당 번호의 회원이 없습니다.");
+
+  }
 
   // private static void updateMember0() throws IOException, ClassNotFoundException {
   // Member member = (Member) in.readObject();
