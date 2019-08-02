@@ -1,19 +1,20 @@
-package com.eomcs.lms;
+package com.eomcs.lms.servlet;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import com.eomcs.lms.domain.Board;
+import com.eomcs.lms.Servlet;
+import com.eomcs.lms.domain.Member;
 
 // 게시물 요청을 처리하는 담당자
-public class BoardServlet implements Servlet {
+public class MemberServlet implements Servlet {
   
-  ArrayList<Board> boardList = new ArrayList<>();
+  ArrayList<Member> boardList = new ArrayList<>();
   ObjectInputStream in;
   ObjectOutputStream out;
   
-  public BoardServlet(ObjectInputStream in, ObjectOutputStream out) {
+  public MemberServlet(ObjectInputStream in, ObjectOutputStream out) {
     this.in = in;
     this.out = out;
   }
@@ -21,20 +22,20 @@ public class BoardServlet implements Servlet {
   @Override
   public void service(String command) throws Exception {
     switch (command) {
-      case "/board/add":
-        addBoard();
+      case "/member/add":
+        addMember();
         break;
-      case "/board/list":
-        listBoard();
+      case "/member/list":
+        listMember();
         break;
-      case "/board/delete":
-        deleteBoard();
+      case "/member/delete":
+        deleteMember();
         break;
-      case "/board/detail":
-        detailBoard();
+      case "/member/detail":
+        detailMember();
         break;
-      case "/board/update":
-        updateBoard();
+      case "/member/update":
+        updateMember();
         break;
       default:
         out.writeUTF("fail");
@@ -42,23 +43,23 @@ public class BoardServlet implements Servlet {
     }
   }
 
-  private void addBoard() throws ClassNotFoundException, IOException {
+  private void addMember() throws ClassNotFoundException, IOException {
     // 클라리언트가 보낸 객체를 읽는다.
-    Board board = (Board) in.readObject();
+    Member board = (Member) in.readObject();
     boardList.add(board);
     out.writeUTF("ok");
   }
 
-  private void listBoard() throws IOException {
+  private void listMember() throws IOException {
     out.writeUTF("ok");
     out.reset(); // 기존에 serialize 했던 객체의 상태를 무시하고 다시 serialize 한다.
     out.writeObject(boardList);
   }
 
-  private void detailBoard() throws IOException {
+  private void detailMember() throws IOException {
     int no = in.readInt();
 
-    int index = indexOfBoard(no);
+    int index = indexOfMember(no);
     // if문에서는 부정적인 조건을 찾는게 코딩이 수월하다 왜?
     // 코드의 흐름을 들여쓰기로 구분하는게 좋다. 다른 들여쓰기 -> 다른 흐름
 
@@ -84,10 +85,10 @@ public class BoardServlet implements Servlet {
 
   }
 
-  private void updateBoard() throws IOException, ClassNotFoundException {
+  private void updateMember() throws IOException, ClassNotFoundException {
     // 인덱스를 알고 있을 때, 사용할 수 있는 방법
-    Board board = (Board) in.readObject();
-    int index = indexOfBoard(board.getNo());
+    Member board = (Member) in.readObject();
+    int index = indexOfMember(board.getNo());
 
     if (index == -1) {
       fail("해당 번호의 게시물이 없습니다.");
@@ -109,10 +110,10 @@ public class BoardServlet implements Servlet {
 
   }
 
-  private void deleteBoard() throws IOException {
+  private void deleteMember() throws IOException {
     int no = in.readInt();
 
-    int index = indexOfBoard(no);
+    int index = indexOfMember(no);
     if (index == -1) {
       fail("해당 번호의 게시물이 없습니다.");
       return;
@@ -134,9 +135,9 @@ public class BoardServlet implements Servlet {
 
   }
 
-  private int indexOfBoard(int no) {
+  private int indexOfMember(int no) {
     int i = 0;
-    for (Board b : boardList) {
+    for (Member b : boardList) {
       if (b.getNo() == no) {
         return i;
       }
