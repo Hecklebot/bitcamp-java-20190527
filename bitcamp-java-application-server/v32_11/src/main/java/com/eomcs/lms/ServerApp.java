@@ -1,4 +1,4 @@
-// v32_12: DAO 클래스들의 공통 필드나 메서드를 뽑아 슈퍼 클래스로 정의(generalization)한다.
+// v32_11: Servlet 클래스에서 데이터 저장 기능을 별도의 클래스로 분리
 package com.eomcs.lms;
 
 import java.io.ObjectInputStream;
