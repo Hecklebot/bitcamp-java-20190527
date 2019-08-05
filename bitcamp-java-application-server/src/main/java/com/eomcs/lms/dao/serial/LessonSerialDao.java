@@ -1,4 +1,4 @@
-package com.eomcs.lms.dao;
+package com.eomcs.lms.dao.serial;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,40 +9,39 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import com.eomcs.lms.domain.Board;
+import com.eomcs.lms.dao.LessonDao;
+import com.eomcs.lms.domain.Lesson;
 
-public class BoardSerialDao {
-
-  ArrayList<Board> list = new ArrayList<>();
+public class LessonSerialDao implements LessonDao {
+  ArrayList<Lesson> list = new ArrayList<>();
   File file;
 
-  public BoardSerialDao(String file) throws ClassNotFoundException {
+  public LessonSerialDao(String file) throws Exception {
     this.file = new File(file);
 
     try {
       loadData();
     } catch (IOException e) {
-      System.out.println("게시물 데이터 로딩 중 오류 발생");
+      System.out.println("강의정보 데이터 로딩 중 오류 발생");
     }
-
   }
-
 
   @SuppressWarnings("unchecked")
   private void loadData() throws IOException, ClassNotFoundException {
+    File file = new File("./lesson.ser");
 
     try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
-      list = (ArrayList<Board>) in.readObject();
-      System.out.println("게시물 데이터 로딩 완료");
+      list = (ArrayList<Lesson>) in.readObject();
+      System.out.println("강의 데이터 로딩 완료");
     }
   }
 
+  public void saveData() {
+    File file = new File("./lesson.ser");
 
-  public void saveData() throws IOException {
-
-    try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
+    try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));) {
       out.writeObject(list);
-      System.out.println("게시물 데이터 저장 완료");
+      System.out.println("강의 데이터 저장 완료");
 
     } catch (FileNotFoundException e) {
       System.out.println("파일을 생성할 수 없습니다.");
@@ -53,44 +52,50 @@ public class BoardSerialDao {
     }
   }
 
-  public int insert(Board board) throws Exception {
-    list.add(board);
+  @Override
+  public int insert(Lesson lesson) throws Exception {
+    list.add(lesson);
     return 1;
   }
 
-  public List<Board> findAll() throws Exception {
+  @Override
+  public List<Lesson> findAll() throws Exception {
     return list;
   }
 
-  public Board findBy(int no) throws Exception {
+  @Override
+  public Lesson findBy(int no) throws Exception {
     int index = indexOf(no);
-    if(index == -1) {
+
+    if (indexOf(index) == -1) {
       return null;
     }
     return list.get(index);
   }
 
-  public int update(Board board) throws Exception {
-    int index = indexOf(board.getNo());
-    if(index == -1) {
+  @Override
+  public int update(Lesson lesson) throws Exception {
+    int index = indexOf(lesson.getNo());
+    if (index == -1) {
       return 0;
     }
-    list.set(index, board);
+    list.set(index, lesson);
     return 1;
   }
 
+  @Override
   public int delete(int no) throws Exception {
     int index = indexOf(no);
-    if(index == -1) {
+    if (index == -1) {
       return 0;
     }
-    list.remove(index);
+    list.remove(no);
     return 1;
   }
 
   private int indexOf(int no) {
     int i = 0;
-    for (Board b : list) {
+    for (Lesson b : list) {
       if (b.getNo() == no) {
         return i;
       }
@@ -98,6 +103,7 @@ public class BoardSerialDao {
     }
     return -1;
   }
+
 
 
 }

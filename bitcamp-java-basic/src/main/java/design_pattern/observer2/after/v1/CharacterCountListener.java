@@ -2,7 +2,7 @@ package design_pattern.observer2.after.v1;
 
 public class CharacterCountListener implements CharacterListener {
 
-  int count = 0;
+  int count;
   
   @Override
   public void readed(int ch) {

@@ -47,7 +47,7 @@ public class TextAnalyzer_practice {
         }
         
         // mainClassName의 값 알아내기
-        if(!(ch =='\n')) {
+        if(ch !='\n') {
           line.append((char)ch);
         } else {
           if(line.indexOf("mainClassName") != -1) {
