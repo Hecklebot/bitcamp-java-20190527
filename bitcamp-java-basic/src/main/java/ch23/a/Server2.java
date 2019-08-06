@@ -17,7 +17,7 @@ public class Server2 {
     //    클라이언트는 내부에 설정된 시간(timeout)동안 기다리다 응답을 받지 못하면 
     //    예외를 던지고 연결 요청을 취소한다.
     // => new ServerSocket(포트번호, 대기열크기);
-    ServerSocket serverSocket = new ServerSocket(8888, 3);
+    ServerSocket serverSocket = new ServerSocket(8888, 2);
     
     System.out.println("서버 소켓 생성 완료!");
     System.out.println("클라이언트의 연결을 기다림!");

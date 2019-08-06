@@ -28,6 +28,8 @@ public class Server3 {
         System.out.println("클라이언트가 연결되었음.");
         
         // 클라이언트가 보낼 데이터의 크기를 먼저 읽는다.
+        // 일반적인 파일 입출력에선 다 읽으면 read()가 -1을 리턴한다.
+        // 하지만 Socket에선 -1을 리턴하지 않아서 다 읽었는지를 확인하는게 아니고 파일 길이만큼 읽어야 한다.
         long fileLen = in.readLong(); 
         System.out.printf("받는 파일의 크기: %d byte\n", fileLen);
         
@@ -51,7 +53,7 @@ public class Server3 {
           fileOut.flush();
           System.out.println("다운로드 완료!");
           
-          out.println("success");
+          out.println("success"); // 클라이언트에게 다 받았다고 알려줌
           out.flush();
           
         } catch (Exception e){

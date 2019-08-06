@@ -28,7 +28,7 @@ public class CalculatorServer {
           out.printf("결과는 %d 입니다.\n", a + b);
           out.flush();
         }
-      }
+      } // while
       
     } catch (Exception e) {
       e.printStackTrace();

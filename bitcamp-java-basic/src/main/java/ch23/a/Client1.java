@@ -14,7 +14,7 @@ public class Client1 {
     //1) 서버에 연결 요청을 할 때 사용할 도구를 준비한다.
     //   => 서버와의 연결이 이루어지면 Socket 객체를 리턴한다.
     Socket socket = new Socket(
-        "localhost", // IP 주소(ex: 234.3.4.56) 또는 도메인명(ex: www.daum.net)
+        "localhost", // IP 주소(ex: 234.3.4.56) 또는 도메인명(ex: www.daum.net; host address)
             // 특수 IP : 127.0.0.1 - 로컬 컴퓨터를 가리킨다.
             // 특수 도메인명 : localhost - 127.0.0.1을 가리킨다.
             // 
