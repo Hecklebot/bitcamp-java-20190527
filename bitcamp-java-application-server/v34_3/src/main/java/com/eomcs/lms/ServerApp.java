@@ -1,4 +1,4 @@
-// v35_2: serverstop 명령어를 받으면 JVM 강제종료하기(좋은 방법은 아니다.)
+// v34_3: Runnable 인터페이스를 사용하여 간접적으로 스레드를 실행하기
 package com.eomcs.lms;
 
 import java.io.ObjectInputStream;
@@ -8,13 +8,13 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import com.eomcs.lms.context.AppInitListener;
 import com.eomcs.lms.context.ServletContextListener;
 import com.eomcs.lms.servlet.Servlet;
 
 public class ServerApp {
+
+  public static boolean isStopping = false;
 
   int port;
   ArrayList<ServletContextListener> listeners = new ArrayList<>();
@@ -26,8 +26,6 @@ public class ServerApp {
   // 서버가 실행되는 동안 공유할 객체를 보관하는 저장소를 준비한다.
   HashMap<String, Object> servletContext = new HashMap<>();
 
-  // Thread Pool
-  ExecutorService executorService = Executors.newCachedThreadPool();
 
   public void execute() {
 
@@ -45,20 +43,22 @@ public class ServerApp {
       while (true) {
         System.out.println("클라이언트 요청을 기다리는 중...");
         Socket socket = serverSocket.accept();
-
-        // 스레드 풀을 사용할 때는 직접 스레드를 만들지 않는다.
-        // 단지 스레드풀에게 스레드가 실행할 코드(Runnable)를 제출한다.
-        // -> 스레드풀은 남은 스레드가 없으면 새로 만들어 해당 코드(RequestHandler)를 실행할 것이다.
-        // -> 남아있는 스레드가 있다면 그 스레드를 이용하여 해당 코드(RequestHandler)를 실행할 것이다.
-        executorService.submit(new RequestHandler(socket));
+        new Thread(new RequestHandler(socket)).start();
+        if (isStopping) {
+          break;
+        }
       } // while
 
+      // 서버가 될 때 관찰자에게 보고한다.
+      for (ServletContextListener listener : listeners) {
+        listener.contextDestroyed(servletContext);
+      }
 
 
     } catch (Exception e) {
       e.printStackTrace();
     }
-    
+    System.out.println("서버 종료");
 
   }
 
@@ -79,22 +79,7 @@ public class ServerApp {
     return null;
   }
 
-  // serverStop 명령처리
-  private void stop() {
-    // 서버가 종료될 때 관찰자에게 보고한다.
-    for (ServletContextListener listener : listeners) {
-      listener.contextDestroyed(servletContext);
-    }
-
-    // 스레드 풀에게 동작을 멈추라고 알려준다.
-    // -> 그러면 스레드 풀은 작업중인 모든 스레드의 작업이 완료될 때까지 기다렸다가 스레드 풀의 작업을 종료한다.
-    executorService.shutdown();
-    
-    System.out.println("서버 종료");
-
-    System.exit(0); // 현재 실행중인 스레드까지 강제종료시킨다.
-  }
-
+  
   // Thread를 상속받아 직접 스레드 역할을 하는 대신에
   // Thread에서 독립적으로 실행할 코드를 정의한다.
   private class RequestHandler implements Runnable { // 중첩 클래스도 상위 클래스의 멤버다
@@ -120,7 +105,8 @@ public class ServerApp {
         Servlet servlet = null;
 
         if (command.equals("serverstop")) { // 어차피 서버종료 요청하면 끝
-          stop();
+          isStopping = true;
+          return;
         } else if ((servlet = findServlet(command)) != null) { // findServlet()를 수행해서 servlet에 뭔가
           // 들어갔다면
           servlet.service(command, in, out); // 그 servlet에서 service()를 수행
