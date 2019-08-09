@@ -9,7 +9,7 @@ public class Test07 {
     // 기본 우선순위는 5이다.
     //
     Thread mainThread = Thread.currentThread();
-    System.out.println(mainThread.getPriority());
+    System.out.println(mainThread.getPriority()); // -> 기본순위, 자식 스레드는 부모 스레드의 우선순위를 상속받는다.
     
     System.out.printf("우선순위 범위: %d ~ %d\n", 
         Thread.MIN_PRIORITY, Thread.MAX_PRIORITY);

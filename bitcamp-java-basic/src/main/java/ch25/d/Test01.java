@@ -30,7 +30,7 @@ public class Test01 {
       // => prepareStatement(sql, 자동생성된 PK 값 리턴 여부)
       try (PreparedStatement stmt = con.prepareStatement(
           "insert into x_board(title, contents) values(?,?)", 
-          Statement.RETURN_GENERATED_KEYS)) {
+          Statement.RETURN_GENERATED_KEYS)) { // RETURN_GENERATED_KEYS: sql을 실행한 후 자동으로 생성된 키 값, 없다면 null
         
         stmt.setString(1, title);
         stmt.setString(2, contents);

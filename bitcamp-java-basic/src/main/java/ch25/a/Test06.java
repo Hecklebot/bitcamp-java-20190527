@@ -23,7 +23,7 @@ public class Test06 {
         // executeBatch() : 여러 개의 SQL을 전달한다.
         // 
         int count = stmt.executeUpdate("insert into x_board(title,contents)"
-            + " values('제목10','내용')");
+            + " values('제목10','내용'");
         
         // executeUpdate()의 리턴 값은 SQL을 실행한 후 입력, 변경, 삭제된 
         // row(=record)의 개수이다.

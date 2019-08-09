@@ -8,8 +8,8 @@ public class Test03 {
     // 스레드의 생명주기
     // new Thread()    start()              sleep()/wait()
     //     준비 -------------------> Running ---------------> Not Runnable
-    //                               ^  |    <---------------
-    //                               |  |    timeout/notify()
+    //                               ^  |  <---------------
+    //                               |  |   timeout/notify()
     //                               X  |
     //                               |  |  run() 메서드 종료
     //                               |  V
@@ -22,7 +22,7 @@ public class Test03 {
     // 
     // run() 메서드 종료 후 다시 running 상태로 돌아갈 수 없다. 
     // => 새로 스레드를 만들어 실행하는 방법 밖에 없다!
-    Thread t = new Thread() {
+    Thread t = new Thread() { // 익명클래스
       @Override
       public void run() {
         for (int i = 0; i < 1000; i++) {
@@ -32,7 +32,7 @@ public class Test03 {
     }; // 스레드 객체 생성 => 준비 상태
     t.start(); // => Running 상태
     
-    new Thread(new Runnable() {
+    new Thread(new Runnable() { // Runnable 구현체 익명클래스
       @Override
       public void run() {
         for (int i = 0; i < 1000; i++) {

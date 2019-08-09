@@ -36,9 +36,9 @@ public class Test06 {
 
 // JVM의 스레드 계층도:
 // system(TG)
-//   ==> Reference Handler(T)
-//   ==> Finalizer(T)
-//   ==> Signal Dispatcher(T)
+//   ==> Reference Handler(T) -> reference count 등 관리
+//   ==> Finalizer(T) -> garbage 관련 작업
+//   ==> Signal Dispatcher(T) -> 입력신호 전달
 //   main(TG)
 //     ==> main(T) : main() 메서드를 호출한다.
 //   InnocuousThreadGroup(TG)

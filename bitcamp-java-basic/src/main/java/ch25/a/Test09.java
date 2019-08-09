@@ -16,7 +16,7 @@ public class Test09 {
       try (Statement stmt = con.createStatement()) {
         
         try (ResultSet rs = stmt.executeQuery(
-            "select * from x_board order by board_id desc")) {
+            "select * from x_board order by board_id")) {
         
           while (rs.next()) {
             

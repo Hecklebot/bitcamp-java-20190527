@@ -20,7 +20,8 @@ public class Test07 {
         // => 서버의 select 실행 결과를 가져올 때 사용하는 도구이다.
         // => 단 한 개씩 가져온다. 한 번에 모두 가져오는 것이 아니다.
         //
-        try (ResultSet rs = stmt.executeQuery(
+        // ResultSet는 값을 리턴하지 않는다. 값을 가져오려면 next()를 호출하라.
+        try (ResultSet rs = stmt.executeQuery( 
             "select * from x_board order by board_id desc")) {
         
           // next() 

@@ -6,7 +6,7 @@ public class Test04 {
   
   public static void main(String[] args) throws Exception {
 
-    Thread t = new Thread() {
+    Thread t = new Thread() { // 익명클래스
       @Override
       public void run() {
         for (int i = 0; i < 1000; i++) {
@@ -14,6 +14,7 @@ public class Test04 {
         }
         try {
           sleep(5000); // 현재 스레드를 5초 동안 Not Runnable 상태에 둔다.
+          System.out.println("t 종료");
         } catch (Exception e) {}
       }
     }; // 스레드 객체 생성 => 준비 상태
