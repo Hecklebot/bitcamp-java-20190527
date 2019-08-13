@@ -5,21 +5,18 @@ import java.io.PrintStream;
 import java.util.List;
 import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.domain.Member;
-import com.eomcs.util.Input;
 
-public class MemberSearchCommand implements Command {
+public class MemberListCommand implements Command {
   private MemberDao memberDao;
   
-  public MemberSearchCommand(MemberDao memberDao) {
+  public MemberListCommand(MemberDao memberDao) {
     this.memberDao = memberDao;
   }
   
   @Override
   public void execute(BufferedReader in, PrintStream out) {
     try {
-      String keyword = Input.getStringValue(in, out, "검색어? ");
-      
-      List<Member> members = memberDao.findByKeyword(keyword);
+      List<Member> members = memberDao.findAll();
       for (Member member : members) {
         out.printf("%s, %s, %s, %s, %s\n", 
             member.getNo(), member.getName(), member.getEmail(), 
