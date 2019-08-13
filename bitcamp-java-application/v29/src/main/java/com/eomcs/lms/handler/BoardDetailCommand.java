@@ -37,5 +37,4 @@ public class BoardDetailCommand implements Command {
     System.out.printf("작성일: %s\n", board.getCreatedDate());
   }
 
-
 }

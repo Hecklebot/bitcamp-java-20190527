@@ -13,7 +13,7 @@ public class LessonListCommand implements Command {
     this.input = input;
     this.list = list;
   }
-  
+
   @Override
   public void execute() {
     Lesson[] lessons = list.toArray(new Lesson[] {});
@@ -23,6 +23,7 @@ public class LessonListCommand implements Command {
           lesson.getStartDate(), lesson.getEndDate(), lesson.getTotalHours());
     }
   }
+
 }
 
 

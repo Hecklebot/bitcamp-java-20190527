@@ -13,7 +13,7 @@ public class LessonDetailCommand implements Command {
     this.input = input;
     this.list = list;
   }
-  
+
   @Override
   public void execute() {
     int no = input.getIntValue("번호? ");
@@ -40,10 +40,6 @@ public class LessonDetailCommand implements Command {
     System.out.printf("일수업시간: %d\n", lesson.getDayHours());
   }
 
-
-  
-  
-  
 }
 
 

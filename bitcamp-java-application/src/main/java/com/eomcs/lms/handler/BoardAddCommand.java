@@ -14,10 +14,9 @@ public class BoardAddCommand implements Command {
     this.input = input;
     this.list = list;
   }
-  
+
   @Override
   public void execute() {
-    
     Board board = new Board();
     
     board.setNo(input.getIntValue("번호? "));
@@ -26,7 +25,6 @@ public class BoardAddCommand implements Command {
     
     list.add(board);
     System.out.println("저장하였습니다.");
-    
   }
 
 }

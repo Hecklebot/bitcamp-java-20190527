@@ -13,7 +13,7 @@ public class MemberAddCommand implements Command {
     this.input = input;
     this.list = list;
   }
-  
+
   @Override
   public void execute() {
     Member member = new Member();
@@ -29,4 +29,5 @@ public class MemberAddCommand implements Command {
     
     System.out.println("저장하였습니다.");
   }
+
 }

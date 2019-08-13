@@ -22,4 +22,5 @@ public class MemberListCommand implements Command {
           member.getTel(), member.getRegisteredDate());
     }
   }
+
 }

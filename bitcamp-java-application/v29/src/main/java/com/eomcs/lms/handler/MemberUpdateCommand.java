@@ -12,8 +12,6 @@ public class MemberUpdateCommand implements Command {
     this.input = input;
     this.list = list;
   }
-  
-  
   @Override
   public void execute() {
     int no = input.getIntValue("번호? ");
@@ -61,4 +59,5 @@ public class MemberUpdateCommand implements Command {
     
     System.out.println("데이터를 변경하였습니다.");
   }
+
 }

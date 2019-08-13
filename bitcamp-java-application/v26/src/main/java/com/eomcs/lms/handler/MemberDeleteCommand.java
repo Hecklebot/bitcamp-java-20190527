@@ -12,7 +12,7 @@ public class MemberDeleteCommand implements Command {
     this.input = input;
     this.list = list;
   }
-  
+
   @Override
   public void execute() {
     int no = input.getIntValue("번호? ");

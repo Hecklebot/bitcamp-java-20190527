@@ -54,19 +54,19 @@ public class App {
     // Input 생성자를 통해 Input이 의존하는 객체인 Scanner를 주입한다.
     Input input = new Input(keyScan);
     
-    //Command 객체를 보관할 Map준비
-    HashMap<String, Command> commandMap = new HashMap<String, Command>();
+    // Command 객체를 보관할 Map 준비
+    HashMap<String,Command> commandMap = new HashMap<>();
     
+    // Command 객체가 사용할 Collection 준비
+    ArrayList<Lesson> lessonList = new ArrayList<>();
+    LinkedList<Member> memberList = new LinkedList<>();
+    ArrayList<Board> boardList = new ArrayList<>();
+
     // 각 핸들러의 생성자를 통해 의존 객체 "Input"을 주입한다.
     // => 이렇게 어떤 객체가 필요로 하는 의존 객체를 주입하는 것을 
     //    "의존성 주입(Dependency Injection; DI)"라고 한다.
     // => DI를 전문적으로 처리해주는 프레임워크가 있으니 그 이름도 유명한 
     //    "Spring IoC 컨테이너"!
-    
-    ArrayList<Board> boardList = new ArrayList<Board>();
-    ArrayList<Lesson> lessonList = new ArrayList<Lesson>();
-    ArrayList<Member> memberList = new ArrayList<Member>();
-    
     commandMap.put("/lesson/add", new LessonAddCommand(input, lessonList));
     commandMap.put("/lesson/delete", new LessonDeleteCommand(input, lessonList));
     commandMap.put("/lesson/detail", new LessonDetailCommand(input, lessonList));
@@ -84,8 +84,8 @@ public class App {
     commandMap.put("/board/detail", new BoardDetailCommand(input, boardList));
     commandMap.put("/board/list", new BoardListCommand(input, boardList));
     commandMap.put("/board/update", new BoardUpdateCommand(input, boardList));
-
-    commandMap.put("hi", new HiCommand(input));
+    
+    commandMap.put("/hi", new HiCommand(input));
     commandMap.put("/calc/plus", new CalcPlusCommand(input));
     
     while (true) {
@@ -99,9 +99,8 @@ public class App {
       commandStack.push(command); // 사용자가 입력한 명령을 보관한다.
       commandQueue.offer(command); // 사용자가 입력한 명령을 보관한다.
       
-      //사용자가 입력한 명령어를 처리할 Command 객체를 Map에서 꺼낸다.
+      // 사용자가 입력한 명령어를 처리할 Command 객체를 Map에서 꺼낸다.
       Command executor = commandMap.get(command);
-      
       
       if (command.equals("quit")) {
         break;
@@ -116,8 +115,8 @@ public class App {
         
       } else {
         System.out.println("해당 명령을 지원하지 않습니다!");
-        
       }
+      
       System.out.println();
     }
   }

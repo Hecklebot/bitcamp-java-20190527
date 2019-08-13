@@ -26,4 +26,5 @@ public class BoardListCommand implements Command {
           board.getCreatedDate(), board.getViewCount());
     }
   }
+
 }
