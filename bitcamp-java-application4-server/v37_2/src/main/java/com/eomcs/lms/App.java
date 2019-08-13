@@ -1,4 +1,4 @@
-// v37_2: '규칙2' 프로토콜에 따라 클라이언트에게 추가 입력을 요구하기
+// v37_2: '규칙2' 프로토콜에 따라 클라이언트에게 파라미터 값을 요구하기
 package com.eomcs.lms;
 
 import java.io.BufferedReader;

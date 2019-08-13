@@ -1,6 +1,4 @@
-// client-v37_2: '규칙2' 프로토콜에 따라 서버가 요구하는 파라미터 값을 사용자로부터 입력받아 보내기
-package com.eomcs.lms;
-
+// client-v37_2 : '규칙2' 프로토콜에 따라 서버가 요구하는 파라미터 값을 사용자로부터 입력 받아 보내기
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
