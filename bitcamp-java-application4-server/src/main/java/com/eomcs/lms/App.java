@@ -46,12 +46,13 @@ public class App {
   int state;
 
   ExecutorService executorService = Executors.newCachedThreadPool();
+
   public App() throws Exception {
-    
+
     state = CONTINUE;
-    
+
     // 스레드 풀 적용
-    
+
     try {
       // DAO가 사용할 Connection 객체 준비하기
       con = DriverManager
@@ -98,24 +99,24 @@ public class App {
       System.out.println("애플리케이션 서버가 시작되었음!");
 
       while (true) {
-        // 클라이언트가 접속하면 작업을 수행할 RUnnable 객체를 만들어 스레드풀에 맡긴다.
+        // 클라이언트가 접속하면 작업을 수행할 Runnable 객체를 만들어 스레드풀에 맡긴다.
         executorService.submit(new CommandProcessor(serverSocket.accept()));
-        
-        // 한 클라이언트가 serverstop 명령을 보내면 종료상태로 설정되고, 다음 요청을 처리할 때 즉시 실행을 멈춘다. 
-        if(state == STOP) {
+
+        // 한 클라이언트가 serverstop 명령을 보내면 종료상태로 설정되고, 다음 요청을 처리할 때 즉시 실행을 멈춘다.
+        if (state == STOP) {
           break;
         }
       }
       // 스레드풀에게 실행 종료를 요청한다.
       // -> 스레드풀은 자신이 관리하는 스레드들이 실행이 종료되었는지 감시한다.
       executorService.shutdown();
-      
+
       // 스레드풀이 관리하는 모든 스레드가 종료되었는지 검사하여 매 0.5초마다 검사한다.
       // -> 스레드풀의 모든 스레드가 실행을 종료했으면 즉시 메인 스레드를 종료한다.
-      while(!executorService.isTerminated()) { // 종료되지 않은 스레드가 있으면
-        Thread.currentThread().sleep(500);     // 메인 스레드는 0.5초마다 모든 스레드가 종료되었는지 확인한다.
-}                                              // 모든 스레드가 종료되면 while문을 벗어나고 서버가 종료된다.
-      
+      while (!executorService.isTerminated()) { // 종료되지 않은 스레드가 있으면
+        Thread.currentThread().sleep(500);      // 메인 스레드는 0.5초마다 모든 스레드가 종료되었는지 확인한다.
+      }                                         // 모든 스레드가 종료되면 while문을 벗어나고 서버가 종료된다.
+
       System.out.println("애플리케이션 서버를 종료함!");
 
     } catch (Exception e) {
@@ -131,14 +132,15 @@ public class App {
     }
   }
 
-  
+
   class CommandProcessor implements Runnable {
-    
+
     Socket socket;
-    
+
     public CommandProcessor(Socket socket) {
       this.socket = socket;
     }
+
     @Override
     public void run() {
 
@@ -174,27 +176,27 @@ public class App {
       }
     }
   }
-  
-//  private void dummyRequest() {
-//    // 클라이언트에서 serverstop 명령을 보냈을 때, 즉시 서버 실행을 멈출 수 있도록 state의 값이 STOP로 바뀐다.
-//    // 이 state 상태를 인식할 수 있도록 가상의 클라이언트가 되어 요청을 보낸다.
-//    try (Socket socket = new Socket("localhost", 8888);
-//        PrintStream out = new PrintStream(socket.getOutputStream());
-//        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
-//      out.println("quit");
-//      out.flush();
-//      
-//      while(true) {
-//        if(in.readLine().equals("!end!")) {
-//          break;
-//        }
-//      }
-//    } catch(Exception e) {
-//      // 예외는 무시한다.
-//    }
-//  }
-  
-  
+
+  // private void dummyRequest() {
+  // // 클라이언트에서 serverstop 명령을 보냈을 때, 즉시 서버 실행을 멈출 수 있도록 state의 값이 STOP로 바뀐다.
+  // // 이 state 상태를 인식할 수 있도록 가상의 클라이언트가 되어 요청을 보낸다.
+  // try (Socket socket = new Socket("localhost", 8888);
+  // PrintStream out = new PrintStream(socket.getOutputStream());
+  // BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+  // out.println("quit");
+  // out.flush();
+  //
+  // while(true) {
+  // if(in.readLine().equals("!end!")) {
+  // break;
+  // }
+  // }
+  // } catch(Exception e) {
+  // // 예외는 무시한다.
+  // }
+  // }
+
+
   public static void main(String[] args) {
     try {
       App app = new App();

@@ -1,4 +1,4 @@
-/* 서브 쿼리
+/* 서브 쿼리 -> 비추
 => 쿼리문 안에 쿼리문을 실행하는 기법
 => 성능 문제를 생각하면서 사용해야 한다.
 */
@@ -52,7 +52,7 @@ select
     (select name from room where rno=l.rno) as room_name, 
     (select name from memb where mno=l.mno) as manager_name,
     (select posi from mgr where mno=l.mno) as manager_posi
-from lect l
+from lect l;
 
 /* 2단계: 위에서 준비한 select 결과를 가상 테이블로 사용하여 
              기존의 lect_appl 테이블과 조인한다.*/
