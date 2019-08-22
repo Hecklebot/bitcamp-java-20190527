@@ -1,4 +1,4 @@
-// v37_6: 스레드 풀 적용하기
+// v38_1 : 사진 게시판 만들기
 package com.eomcs.lms;
 
 import java.io.BufferedReader;
