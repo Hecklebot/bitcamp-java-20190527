@@ -1,4 +1,4 @@
-// v40_1 : 스레드 로컬 변수를 활용하여 작업 간에 DB 커넥션 공유하기
+// v39_1 : DB 커넥션 관리자 도입
 package com.eomcs.lms;
 
 import java.io.BufferedReader;
