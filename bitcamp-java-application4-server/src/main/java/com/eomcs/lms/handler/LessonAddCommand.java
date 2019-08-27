@@ -26,8 +26,15 @@ public class LessonAddCommand implements Command {
       lesson.setEndDate(Input.getDateValue(in, out, "종료일? "));
       lesson.setTotalHours(Input.getIntValue(in, out, "총수업시간? "));
       lesson.setDayHours(Input.getIntValue(in, out, "일수업시간? "));
-      lessonDao.insert(lesson);
-      out.println("저장하였습니다.");
+      
+      
+      if(lessonDao.insert(lesson) > 0) {
+        out.println("저장하였습니다.");
+      } else {
+        out.println("실패했습니다.");
+      }
+      
+      
       
     } catch (Exception e) {
       out.println("데이터 저장에 실패했습니다!");

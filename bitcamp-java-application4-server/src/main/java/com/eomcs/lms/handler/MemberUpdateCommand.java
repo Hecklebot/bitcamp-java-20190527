@@ -24,22 +24,43 @@ public class MemberUpdateCommand implements Command {
         return;
       }
 
-      member.setName(Input.getStringValue(in, out, "이름(" + member.getName() + ")? "));
-
-      member.setEmail(Input.getStringValue(in, out, "이메일(" + member.getEmail() + ")? "));
-
-      member.setPassword(Input.getStringValue(in, out, "암호? "));
-
-      member.setPhoto(Input.getStringValue(in, out, "사진(" + member.getPhoto() + ")? "));
-
-      member.setTel(Input.getStringValue(in, out, "전화(" + member.getTel() + ")? "));
-
-      memberDao.update(member);
-      out.println("데이터를 변경하였습니다.");
+      String str = Input.getStringValue(in, out, "이름(" + member.getName() + ")? ");
+      if (str.length() > 0) {
+        member.setName(str);
+      }
+      
+      str = Input.getStringValue(in, out, "이메일(" + member.getEmail() + ")? ");
+      if (str.length() > 0) {
+        member.setEmail(str);
+      }
+      
+      str = Input.getStringValue(in, out, "암호? ");
+      if (str.length() > 0) {
+        member.setPassword(str);
+      }
+      
+      str = Input.getStringValue(in, out, "사진(" + member.getPhoto() + ")? ");
+      if (str.length() > 0) {
+        member.setPhoto(str);
+      }
+      
+      str = Input.getStringValue(in, out, "전화(" + member.getTel() + ")? ");
+      if (str.length() > 0) {
+        member.setTel(str);
+      }
+      
+      if(memberDao.update(member) >0) {
+        out.println("데이터를 변경하였습니다.");
+      } else {
+        out.println("해당 데이터가 없습니다.");
+      }
+        
+      
 
     } catch (Exception e) {
       out.println("데이터 변경에 실패했습니다!");
       System.out.println(e.getMessage());
+      e.printStackTrace();
     }
   }
 

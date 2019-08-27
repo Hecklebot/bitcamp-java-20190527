@@ -1,7 +1,8 @@
-// v42_2: 로그인 기능 추가 + PreparedStatement를 사용하여 SQL 삽입 공격 해소하기
+// v43_1: MyBatis 도입
 package com.eomcs.lms;
 
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.ServerSocket;
@@ -9,6 +10,9 @@ import java.net.Socket;
 import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.dao.LessonDao;
 import com.eomcs.lms.dao.MemberDao;
@@ -61,19 +65,32 @@ public class App {
 
     try {
       // 커넥션 관리자를 준비한다.
-      dataSource = new DataSource(
-          "org.mariadb.jdbc.Driver", "jdbc:mariadb://localhost/bitcampdb", "bitcamp", "1111");
+      dataSource = new DataSource("org.mariadb.jdbc.Driver", "jdbc:mariadb://localhost/bitcampdb",
+          "bitcamp", "1111");
 
       // 트랜잭션 관리자를 준비한다.
       PlatformTransactionManager txManager = new PlatformTransactionManager(dataSource);
-      
+
+      // MyBatis의 SQL 실행 도구 준비
+      // 1) MyBatis 설정 파일을 읽을 때 사용할 입력 스트림 도구를 준비한다.
+      InputStream inputStream =
+          Resources.getResourceAsStream("com/eomcs/lms/conf/mybatis-config.xml");
+      // Resources.getResourcesAsStream(resource);
+      SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+
+      // 2) SQL을 실행할 때 사용할 도구(SqlSession)를 만들어주는
+      // 생성기(SqlSessionFactory) 공장(SqlSessionFactoryBuilder)을 준비한다.
+
+      // SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(inputStream);
+
       // Command 객체가 사용할 데이터 처리 객체를 준비한다.
-      BoardDao boardDao = new BoardDaoImpl(dataSource);
-      MemberDao memberDao = new MemberDaoImpl(dataSource);
-      LessonDao lessonDao = new LessonDaoImpl(dataSource);
-      PhotoBoardDao photoBoardDao = new PhotoBoardDaoImpl(dataSource);
-      PhotoFileDao photoFileDao = new PhotoFileDaoImpl(dataSource);
+      BoardDao boardDao = new BoardDaoImpl(sqlSessionFactory);
+      MemberDao memberDao = new MemberDaoImpl(sqlSessionFactory);
+      LessonDao lessonDao = new LessonDaoImpl(sqlSessionFactory);
+      PhotoBoardDao photoBoardDao = new PhotoBoardDaoImpl(sqlSessionFactory);
+      PhotoFileDao photoFileDao = new PhotoFileDaoImpl(sqlSessionFactory);
       
+
       // 클라이언트 명령을 처리할 커맨드 객체를 준비한다.
       commandMap.put("/lesson/add", new LessonAddCommand(lessonDao));
       commandMap.put("/lesson/delete", new LessonDeleteCommand(lessonDao));
@@ -93,12 +110,16 @@ public class App {
       commandMap.put("/board/detail", new BoardDetailCommand(boardDao));
       commandMap.put("/board/list", new BoardListCommand(boardDao));
       commandMap.put("/board/update", new BoardUpdateCommand(boardDao));
-      
-      commandMap.put("/photoboard/add", new PhotoBoardAddCommand(photoBoardDao, photoFileDao, txManager));
-      commandMap.put("/photoboard/delete", new PhotoBoardDeleteCommand(photoBoardDao, photoFileDao, txManager));
-      commandMap.put("/photoboard/detail", new PhotoBoardDetailCommand(photoBoardDao, photoFileDao));
+
+      commandMap.put("/photoboard/add",
+          new PhotoBoardAddCommand(photoBoardDao, photoFileDao, txManager));
+      commandMap.put("/photoboard/delete",
+          new PhotoBoardDeleteCommand(photoBoardDao, photoFileDao, txManager));
+      commandMap.put("/photoboard/detail",
+          new PhotoBoardDetailCommand(photoBoardDao, photoFileDao));
       commandMap.put("/photoboard/list", new PhotoBoardListCommand(photoBoardDao));
-      commandMap.put("/photoboard/update", new PhotoBoardUpdateCommand(photoBoardDao, photoFileDao, txManager));
+      commandMap.put("/photoboard/update",
+          new PhotoBoardUpdateCommand(photoBoardDao, photoFileDao, txManager));
 
       commandMap.put("/auth/login", new LoginCommand(memberDao));
 
@@ -131,8 +152,8 @@ public class App {
       // 스레드풀이 관리하는 모든 스레드가 종료되었는지 검사하여 매 0.5초마다 검사한다.
       // -> 스레드풀의 모든 스레드가 실행을 종료했으면 즉시 메인 스레드를 종료한다.
       while (!executorService.isTerminated()) { // 종료되지 않은 스레드가 있으면
-        Thread.currentThread().sleep(500);      // 메인 스레드는 0.5초마다 모든 스레드가 종료되었는지 확인한다.
-      }                                         // 모든 스레드가 종료되면 while문을 벗어나고 서버가 종료된다.
+        Thread.currentThread().sleep(500); // 메인 스레드는 0.5초마다 모든 스레드가 종료되었는지 확인한다.
+      } // 모든 스레드가 종료되면 while문을 벗어나고 서버가 종료된다.
 
       System.out.println("애플리케이션 서버를 종료함!");
 
@@ -190,7 +211,7 @@ public class App {
         // 새 커넥션 객체를 사용할 것이다.
         // 이게 다 스레드풀이 스레드를 재활용해서 생긴 문제
         dataSource.clearConnection();
-        
+
       }
     }
   }
@@ -213,7 +234,7 @@ public class App {
   // // 예외는 무시한다.
   // }
   // }
-  
+
 
   public static void main(String[] args) {
     try {

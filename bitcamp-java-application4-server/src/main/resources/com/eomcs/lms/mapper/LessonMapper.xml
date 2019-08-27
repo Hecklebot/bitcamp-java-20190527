@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="LessonDao">
+	<!-- Mybatis가 컬럼값을 객체에 담을 때 컬럼 이름으로 setter를 찾아 호출한다. -->
+<!-- <select id="findAll" resultType="com.eomcs.lms.domain.Lesson"> select 
+		lesson_id, /* Lesson의 setLesson_id(컬럼값)를 호출하여 컬럼값을 Lesson객체에 담는다. */ conts, 
+		/* Lesson의 setConts(컬럼값) 호출 */ cdt, /* Lesson의 setCdt(컬럼값) 호출 */ vw_cnt /* 
+		Lesson의 SetVw_cnt(컬럼값) 호출 */ from lms_lesson order by lesson_id desc </select> -->
+<!-- 만약 컬럼에 별명이 있다면 setter를 호출할 때도 그 별명과 일치하는 setter를 호출한다. 컬럼의 이름과 setter의 
+		이름이 다르다면 다음과 같이 setter 이름과 같은 이름으로 별명을 부여하라 그래야만 컬럼의 값을 객체에 제대로 담을 수 있다. -->
+  <select id="findAll" resultType="com.eomcs.lms.domain.Lesson">
+    select
+    lesson_id as no,
+      titl as title,
+      sdt as startDate,
+      edt as endDate,
+      tot_hr as totalHours
+    from lms_lesson order by sdt desc
+  </select>
+
+  <select id="findBy" parameterType="int" resultType="com.eomcs.lms.domain.Lesson">
+    select
+      lesson_id no,
+      sdt startDate,
+      edt endDate,
+      tot_hr totalHours,
+      day_hr dayHours,
+      titl title,
+      conts contents
+    from lms_lesson
+    where lesson_id=#{aa}
+  </select>
+
+  <insert id="insert" parameterType="com.eomcs.lms.domain.Lesson">
+    insert into lms_lesson(sdt,edt,tot_hr,day_hr,titl,conts)
+    values(
+      #{startDate},
+      #{endDate},
+      #{totalHours},
+      #{dayHours},
+      #{title},
+      #{contents})
+  </insert>
+
+  <update id="update" parameterType="com.eomcs.lms.domain.Lesson">
+    update lms_lesson set
+      titl=#{title},
+      conts=#{contents},
+      sdt=#{startDate},
+      edt=#{endDate},
+      tot_hr=#{totalHours},
+      day_hr=#{dayHours}
+    where lesson_id=#{no}
+</update>
+
+  <delete id="delete" parameterType="int">
+    delete from lms_lesson 
+    where lesson_id=#{no}
+  </delete>
+  </mapper>

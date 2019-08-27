@@ -28,7 +28,7 @@ public class LessonUpdateCommand implements Command {
 
       lesson.setTitle(Input.getStringValue(in, out, "수업명(" + lesson.getTitle() + ")? "));
 
-      lesson.setContents(Input.getStringValue(in, out, "수업내용? "));
+      lesson.setContents(Input.getStringValue(in, out, "수업내용"));
 
       lesson.setStartDate(
           Date.valueOf(Input.getStringValue(in, out, "시작일(" + lesson.getStartDate() + ")? ")));

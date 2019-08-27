@@ -10,7 +10,7 @@ public class Board implements Serializable {
   private String contents;
   private Date createdDate;
   private int viewCount;
-  
+    
   public int getNo() {
     return no;
   }

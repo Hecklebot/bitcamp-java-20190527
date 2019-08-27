@@ -40,6 +40,7 @@ public class PhotoBoardDeleteCommand implements Command {
       
       txManager.commit();
       out.println("데이터를 삭제하였습니다.");
+      out.flush();
 
     } catch (Exception e) {
       try {

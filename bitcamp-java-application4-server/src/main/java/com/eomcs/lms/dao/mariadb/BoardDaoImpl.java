@@ -1,108 +1,74 @@
 package com.eomcs.lms.dao.mariadb;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.domain.Board;
-import com.eomcs.util.DataSource;
 
 public class BoardDaoImpl implements BoardDao {
 
-  DataSource dataSource;
+  SqlSessionFactory sqlSessionFactory;
 
-  public BoardDaoImpl(DataSource conFactory) {
-    this.dataSource = conFactory;
+  public BoardDaoImpl(SqlSessionFactory sqlSessionFactory) {
+    this.sqlSessionFactory = sqlSessionFactory;
   }
 
   @Override
   public int insert(Board board) throws Exception {
-    try (Connection con  = dataSource.getConnection();
-        PreparedStatement stmt = con.prepareStatement(
-            "insert into lms_board(conts)"
-                + " values(?)")) {
+    SqlSession sqlSession = sqlSessionFactory.openSession();
+    try {
+      int count = sqlSession.insert("BoardDao.insert", board);
+      sqlSession.commit();
+      return count;
 
-      stmt.setString(1, board.getContents());
+    } catch(Exception e) {
+      sqlSession.rollback();
+      throw e;
 
-      return stmt.executeUpdate();
+    } finally {
+      sqlSession.close();
     }
   }
 
   @Override
   public List<Board> findAll() throws Exception {
-    try (Connection con  = dataSource.getConnection();
-        PreparedStatement stmt = con.prepareStatement(
-            "select * from lms_board order by board_id desc");
-        ResultSet rs = stmt.executeQuery()) {
-
-      ArrayList<Board> list = new ArrayList<>();
-
-      while (rs.next()) {
-        Board board = new Board();
-        board.setNo(rs.getInt("board_id"));
-        board.setContents(rs.getString("conts"));
-        board.setCreatedDate(rs.getDate("cdt"));
-        board.setViewCount(rs.getInt("vw_cnt"));
-
-        list.add(board);
-      }
-      return list;
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectList("BoardDao.findAll");
     }
   }
 
   @Override
   public Board findBy(int no) throws Exception {
-    try (Connection con  = dataSource.getConnection();
-        PreparedStatement stmt = con.prepareStatement(
-            "select * from lms_board where board_id=?")){
+    SqlSession sqlSession = sqlSessionFactory.openSession();
+    try {
+      Board board = sqlSession.selectOne("BoardDao.findBy", no);
 
-      stmt.setInt(1, no);
-
-      try(ResultSet rs = stmt.executeQuery()) {
-        if (rs.next()) {
-          Board board = new Board();
-          board.setNo(rs.getInt("board_id"));
-          board.setContents(rs.getString("conts"));
-          board.setCreatedDate(rs.getDate("cdt"));
-          board.setViewCount(rs.getInt("vw_cnt"));
-
-          // 게시글을 찾았으면 조회수를 증가시킨다.
-          stmt.executeUpdate("update lms_board set"
-              + " vw_cnt=vw_cnt + 1 where board_id=" + no);
-
-          return board;
-
-        } else {
-          return null;
-        }
+      if (board != null) {
+        sqlSession.update("BoardDao.increaseViewCount", no);
       }
+      sqlSession.commit();
+      return board;
+    } catch(Exception e) {
+      sqlSession.rollback();
+      throw e;
+    } finally {
+      sqlSession.close();
     }
   }
 
   @Override
   public int update(Board board) throws Exception {
-    try (Connection con  = dataSource.getConnection();
-        PreparedStatement stmt = con.prepareStatement("update lms_board set"
-            + " conts=?"
-            + " where board_id=?")) {
-
-      stmt.setString(1, board.getContents());
-      stmt.setInt(2, board.getNo());
-
-      return stmt.executeUpdate();
+    // openSession()을 호출할 때, 다음과 같이 boolean값을 넣으면 autoCommit 여부를 설정할 수 있다.
+    try (SqlSession sqlSession = sqlSessionFactory.openSession(true)) {
+      return sqlSession.update("BoardDao.update", board);
     }
   }
 
   @Override
   public int delete(int no) throws Exception {
-    try (Connection con  = dataSource.getConnection();
-        PreparedStatement stmt = con.prepareStatement(
-            "delete from lms_board where board_id=?")) {
-      stmt.setInt(1, no);
-
-      return stmt.executeUpdate();
+    try (SqlSession sqlSession = sqlSessionFactory.openSession(true)){
+      return sqlSession.delete("BoardDao.delete", no);
     }
   }
 
