@@ -20,9 +20,9 @@ public class Test03 {
     SqlSession sqlSession = sqlSessionFactory.openSession();
  
     Board board = new Board();
-    board.setNo(5);
+    board.setNo(15);
     board.setTitle("xxxxx");
-    board.setContents("내용이라네요...");
+    board.setContents("바뀔수도 있고, 안바뀔수도 있고...");
     
     int count = sqlSession.update("board.update", board);
     System.out.println(count);

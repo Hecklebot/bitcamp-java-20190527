@@ -4,13 +4,13 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="PhotoFileDao">
 	<!-- Mybatis가 컬럼값을 객체에 담을 때 컬럼 이름으로 setter를 찾아 호출한다. -->
-<!-- <select id="findAll" resultType="com.eomcs.lms.domain.PhotoBoard"> select 
+<!-- <select id="findAll" resultType="PhotoBoard"> select 
 		photo_id, /* PhotoBoard의 setPhotoBoard_id(컬럼값)를 호출하여 컬럼값을 PhotoBoard객체에 담는다. */ conts, 
 		/* PhotoBoard의 setConts(컬럼값) 호출 */ cdt, /* PhotoBoard의 setCdt(컬럼값) 호출 */ vw_cnt /* 
 		PhotoBoard의 SetVw_cnt(컬럼값) 호출 */ from lms_photo order by photo_id desc </select> -->
 <!-- 만약 컬럼에 별명이 있다면 setter를 호출할 때도 그 별명과 일치하는 setter를 호출한다. 컬럼의 이름과 setter의 
 		이름이 다르다면 다음과 같이 setter 이름과 같은 이름으로 별명을 부여하라 그래야만 컬럼의 값을 객체에 제대로 담을 수 있다. -->
-  <select id="findAll" parameterType="int" resultType="com.eomcs.lms.domain.PhotoFile">
+  <select id="findAll" parameterType="int" resultType="PhotoFile">
     select
       photo_file_id no,
       photo_id boardNo,
@@ -23,7 +23,7 @@
       photo_file_id asc
     </select>
 
-  <insert id="insert" parameterType="com.eomcs.lms.domain.PhotoFile">
+  <insert id="insert" parameterType="PhotoFile">
     insert into
       lms_photo_file(photo_id, file_path)
     values(

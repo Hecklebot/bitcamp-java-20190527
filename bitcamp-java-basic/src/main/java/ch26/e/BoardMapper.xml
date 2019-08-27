@@ -30,7 +30,12 @@
     프로퍼티명은 아무거나 상관없다.
   -->
   <select id="select2" resultMap="boardMap" parameterType="int">
-    select * from x_board where board_id = #{amuguna}
+    select
+      * 
+    from 
+      x_board 
+    where
+      board_id = #{amuguna}
   </select>
 
   <select id="select3" resultMap="boardMap" parameterType="string">
@@ -43,7 +48,7 @@
      파라미터 타입이 일반 클래스일 때 
      in-parameter의 이름은 그 클래스의 프로퍼티 이름으로 지정한다.
      #{프로퍼티명}
-     -->
+-->
   <insert id="insert1" parameterType="board">
     insert into x_board(title,contents) 
     values(#{title},#{contents})
@@ -65,7 +70,8 @@
   </update>
   
   <delete id="delete" parameterType="int">
-    delete from x_board
+    delete from 
+      x_board
     where
       board_id = #{value}
   </delete>

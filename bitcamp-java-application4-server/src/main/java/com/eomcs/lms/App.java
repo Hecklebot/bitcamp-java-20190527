@@ -1,4 +1,4 @@
-// v43_1: MyBatis 도입
+// v43_2: MyBatis 도입 + 도메인 클래스 별명 적용 + SQL Mapper에 resultMap 적용
 package com.eomcs.lms;
 
 import java.io.BufferedReader;

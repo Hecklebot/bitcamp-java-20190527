@@ -25,7 +25,7 @@ public class Test02 {
     //    왜? insert, update, delete 모두 JDBC에서 executeUpdate()를 호출하기 때문이다.
     // => 하지만 SQL의 명령과 메서드 이름을 가능한 같게 하라!
     Board board = new Board();
-    board.setTitle("오호라...제목이오!");
+    board.setTitle("오메라...제목이오!");
     board.setContents("내용이라네요...");
     
     // insert(sql id, 파라미터값을 담은 객체)
@@ -36,8 +36,8 @@ public class Test02 {
     // insert 할 때 파라미터를 맵 객체에 담아 넘겨도 된다.
     // => Map 객체에 값을 저장할 때 사용하는 key 값은 SQL 맵퍼에서 프로퍼티명으로 사용된다.
     HashMap<String,Object> board2 = new HashMap<>();
-    board2.put("title", "오호...제목!");
-    board2.put("contents", "오호..내용!");
+    board2.put("title", "오메...제목!");
+    board2.put("contents", "오메..내용!");
     count = sqlSession.insert("board.insert2", board2);
     System.out.println(count);
     
