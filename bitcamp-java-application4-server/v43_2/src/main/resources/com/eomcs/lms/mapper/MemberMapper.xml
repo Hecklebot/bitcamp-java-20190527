@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MemberDao">
+  <resultMap type="member" id="MemberMap">
+    <id column="member_id" property="no"/>
+    <result column="pwd" property="password"/>
+    <result column="cdt" property="registeredDate"/>
+  </resultMap>
+  
+  <select id="findAll" resultMap="MemberMap">
+    select
+      member_id,
+      name,
+      email,
+      tel,
+      cdt
+    from 
+      lms_member 
+    order by 
+      name asc
+  </select>
+  
+  <select id="findBy" parameterType="int" resultMap="MemberMap">
+    select
+      member_id, 
+      name,
+      email,
+      pwd,
+      photo,
+      tel,
+      cdt
+    from 
+      lms_member
+    where 
+    member_id=#{no}
+  </select>
+  
+  <select id="findByKeyword" parameterType = "String" resultMap="MemberMap">
+    select 
+      member_id no,
+      name,
+      email,
+      tel,
+      cdt
+    from lms_member
+    where name like concat('%', #{value}, '%')
+      or email like concat('%', #{value}, '%')
+      or tel like concat('%', #{value}, '%')
+    order by name asc
+  </select>
+  
+  <insert id="insert" parameterType="Member">
+    insert into lms_member(name,email,pwd,cdt,tel,photo)
+    values(
+      #{name},
+      #{email},
+      password(pwd=#{password}),
+      #{registeredDate},
+      #{tel},
+      #{photo})  
+    </insert>
+  
+  <update id="update" parameterType="Member">
+    update lms_member set
+      name=#{name},
+      email=#{email},
+      pwd=password(#{password}),
+      tel=#{tel},
+      photo=#{photo}
+    where member_id=#{no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete from lms_member where member_id=#{no}
+  </delete>
+  
+  <select id="findByEmailPassword" parameterType="Member" resultMap="MemberMap">
+    select 
+      member_id,
+      name,
+      email,
+      tel,
+      cdt
+    from lms_member
+    where email=#{email} and pwd=password(#{password})
+  </select>
+  
+
+</mapper>
