@@ -16,6 +16,8 @@ public class BoardDaoImpl implements BoardDao {
 
   @Override
   public int insert(Board board) throws Exception {
+    // 여기 SqlSession은 openSession()해서 리턴받은 오토커밋 켜진 SqlSession
+    //  -> photoboardAdd에 이는 SqlSession과 다름
     try(SqlSession sqlSession = sqlSessionFactory.openSession()) {
       int count = sqlSession.insert("BoardDao.insert", board);
       return count;

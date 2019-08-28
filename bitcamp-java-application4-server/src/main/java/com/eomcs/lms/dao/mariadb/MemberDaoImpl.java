@@ -17,10 +17,9 @@ public class MemberDaoImpl implements MemberDao {
   @Override
   public int insert(Member member) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      int count = sqlSession.insert("MemberDao.insert");
-      return count;
+      return sqlSession.insert("MemberDao.insert", member);
     }
-  }
+  } 
 
   @Override
   public List<Member> findAll() throws Exception {
@@ -38,11 +37,8 @@ public class MemberDaoImpl implements MemberDao {
 
   @Override
   public Member findBy(int no) throws Exception {
-    
     try(SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      Member member = sqlSession.selectOne("MemberDao.findBy", no);
-      sqlSession.commit();
-      return member;
+      return sqlSession.selectOne("MemberDao.findBy", no);
     } 
   }
 

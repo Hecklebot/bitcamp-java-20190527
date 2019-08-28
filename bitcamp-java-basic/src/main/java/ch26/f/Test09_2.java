@@ -1,4 +1,4 @@
-// dynamic SQL 다루기 - <foreach> 태그 사용법
+// dynamic SQL 다루기 - <foreach> 태그 사용법 II
 package ch26.f;
 
 import java.io.InputStream;
@@ -11,7 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-public class Test09 {
+public class Test09_2 {
 
   public static void main(String[] args) throws Exception {
     
@@ -22,18 +22,18 @@ public class Test09 {
     
     SqlSession sqlSession = sqlSessionFactory.openSession();
  
-    ArrayList<Integer> noList = new ArrayList<>();
+    ArrayList<String> list = new ArrayList<>();
     
     Scanner keyboard = new Scanner(System.in);
     
     while (true) {
       try {
-        System.out.print("조회할 게시물 번호? ");
+        System.out.print("게시물 제목? ");
         String value = keyboard.nextLine();
         if (value.length() == 0) {
           break;
         }
-        noList.add(Integer.valueOf(value));
+        list.add(value);
       } catch (Exception e) {
         break;
       }
@@ -42,9 +42,9 @@ public class Test09 {
     keyboard.close();
     
     HashMap<String,Object> params = new HashMap<>();
-    params.put("noList", noList);
+    params.put("list", list);
     
-    List<Board> boards = sqlSession.selectList("board.select9", params);
+    List<Board> boards = sqlSession.selectList("board.select9_2", params);
     
     for (Board b : boards) {
       System.out.println(b);

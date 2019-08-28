@@ -59,6 +59,7 @@ public class PhotoBoardUpdateCommand implements Command {
       String response = Input.getStringValue(in, out, "사진을 변경하시겠습니까? (Y/N)");
 
       if (!response.equalsIgnoreCase("Y")) {
+        txManager.commit();
         out.println("파일 변경을 취소합니다.");
         return;
       }

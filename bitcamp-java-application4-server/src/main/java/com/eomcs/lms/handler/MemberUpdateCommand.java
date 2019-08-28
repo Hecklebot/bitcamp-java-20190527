@@ -23,38 +23,36 @@ public class MemberUpdateCommand implements Command {
         System.out.println("해당 번호의 데이터가 없습니다!");
         return;
       }
-
+      
+      Member data = new Member();
+      data.setNo(no);
+      
       String str = Input.getStringValue(in, out, "이름(" + member.getName() + ")? ");
       if (str.length() > 0) {
-        member.setName(str);
+        data.setName(str);
       }
       
       str = Input.getStringValue(in, out, "이메일(" + member.getEmail() + ")? ");
       if (str.length() > 0) {
-        member.setEmail(str);
+        data.setEmail(str);
       }
       
       str = Input.getStringValue(in, out, "암호? ");
       if (str.length() > 0) {
-        member.setPassword(str);
+        data.setPassword(str);
       }
       
       str = Input.getStringValue(in, out, "사진(" + member.getPhoto() + ")? ");
       if (str.length() > 0) {
-        member.setPhoto(str);
+        data.setPhoto(str);
       }
       
       str = Input.getStringValue(in, out, "전화(" + member.getTel() + ")? ");
       if (str.length() > 0) {
-        member.setTel(str);
+        data.setTel(str);
       }
-      
-      if(memberDao.update(member) >0) {
-        out.println("데이터를 변경하였습니다.");
-      } else {
-        out.println("해당 데이터가 없습니다.");
-      }
-        
+      memberDao.update(data);
+      out.println("데이터를 변경하였습니다.");
       
 
     } catch (Exception e) {

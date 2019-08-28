@@ -48,8 +48,9 @@
   <update id="update" parameterType="PhotoBoard">
     update
       lms_photo
-    set
-      titl=#{title}
+    <set>
+      <if test="title != null">titl=#{title}</if>
+    </set>
     where
       photo_id=#{no}
   </update>

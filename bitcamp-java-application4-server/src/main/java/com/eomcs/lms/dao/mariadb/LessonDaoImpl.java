@@ -16,7 +16,7 @@ public class LessonDaoImpl implements LessonDao {
 
   @Override
   public int insert(Lesson lesson) throws Exception {
-    try (SqlSession sqlSession = sqlSessionFactory.openSession(true)){
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()){
       return sqlSession.insert("LessonDao.insert", lesson);
     }
   }
@@ -37,14 +37,14 @@ public class LessonDaoImpl implements LessonDao {
 
   @Override
   public int update(Lesson lesson) throws Exception {
-    try (SqlSession sqlSession = sqlSessionFactory.openSession(true)) {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       return sqlSession.update("LessonDao.update", lesson);
     }
   }
 
   @Override
   public int delete(int no) throws Exception {
-    try (SqlSession sqlSession = sqlSessionFactory.openSession(true)) {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       return sqlSession.delete("LessonDao.delete", no);
     }
   }

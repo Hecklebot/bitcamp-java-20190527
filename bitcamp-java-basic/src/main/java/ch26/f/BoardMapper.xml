@@ -88,7 +88,8 @@
 
 <!-- 여러 개의 조건 중에 한 개의 조건에 대해 SQL문을 처리하고 싶다면,
     <choose>,<when>,<otherwise> 태그를 사용하라!
-    자바의 switch 문과 용도가 같다. -->
+    자바의 switch 문과 용도가 같다. 맨 위부터 찾으면 거기서 빠져나온다. 
+    choose는 switch, when은 case, otherwise는 default-->
   <select id="select5" resultMap="boardMap" parameterType="map">
     select * 
     from x_board
@@ -118,10 +119,10 @@
 	      board_id = #{no}
 	    </if>
 	    <if test="title != null">
-	      or title like concat('%', #{title}, '%')
+	      title like concat('%', #{title}, '%')
 	    </if>
 	    <if test="contents != null">
-	      or contents like concat('%', #{contents}, '%')
+	      contents like concat('%', #{contents}, '%')
 	    </if>
     </trim>
   </select>
@@ -190,6 +191,24 @@
       board_id in /*(10, 12, 15, 28, 39)*/
         <foreach collection="noList" item="value" open="(" close=")" separator=",">
           #{value}
+        </foreach>
+  </select>
+
+  <select id="select9_2" resultMap="boardMap" parameterType="map">
+    select *
+    from x_board
+    where 
+        <foreach collection="list" item="value" separator="or">
+          title like concat('%', #{value}, '%')
+        </foreach>
+  </select>
+
+  <select id="select9_3" resultMap="boardMap" parameterType="map">
+    select *
+    from x_board
+    where 
+        <foreach collection="list" item="board" separator="or">
+          title like concat('%', #{board.title}, '%')
         </foreach>
   </select>
 </mapper>

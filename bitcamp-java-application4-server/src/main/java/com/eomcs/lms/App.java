@@ -1,4 +1,4 @@
-// v43_2: MyBatis 도입 + 도메인 클래스 별명 적용 + SQL Mapper에 resultMap 적용
+// v44_1: mybatis의 dynamic SQL 사용하기 
 package com.eomcs.lms;
 
 import java.io.BufferedReader;
@@ -120,7 +120,7 @@ public class App {
   @SuppressWarnings("static-access")
   private void service() {
 
-    try (ServerSocket serverSocket = new ServerSocket(8888);) {
+    try (ServerSocket serverSocket = new ServerSocket(8888)) {
       System.out.println("애플리케이션 서버가 시작되었음!");
 
       while (true) {
@@ -194,8 +194,8 @@ public class App {
       } finally {
         // 현재 스레드가 클라이언트 요청에 대해 응답을 완료했다면,
         // 현재 스레드에 보관된 Mybatis의 SqlSession 객체를 제거해야 한다.
-        // 그래야만 다음 클라이언트 요청이 들어왔을 때
-        // 새 SqlSession 객체를 사용할 것이다.
+        // 그래야만 다음 클라이언트 요청이 들어왔을 때 새 SqlSession 객체를 사용할 것이다.
+        // 그렇지 않으면 오토커밋 여부가 전에 쓴 스레드따라 달라진다.
         // 이게 다 스레드풀이 스레드를 재활용해서 생긴 문제
         ((SqlSessionFactoryProxy)sqlSessionFactory).clearSession();
 

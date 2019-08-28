@@ -40,9 +40,9 @@ public class SqlSessionFactoryProxy implements SqlSessionFactory {
     }
     
     // 스레드에 보관되지 않았다면 새로 만들어서 보관한다.
+    // close()가 수정돼서 realClose()로 닫아야 하는 SqlSession
     sqlSession = new SqlSessionProxy(realFactory.openSession());
     localSqlSession.set(sqlSession);
-    
   }
   
   public SqlSession openSession() {
@@ -53,6 +53,7 @@ public class SqlSessionFactoryProxy implements SqlSessionFactory {
     }
     
     // 트랜잭션을 수행하지 않는 상태라면, autoCommit가 true인 SqlSession을 리턴한다.
+    // close()가 수정되지 않아서 그냥 닫히는 SqlSession
     return realFactory.openSession(true);
   }
 

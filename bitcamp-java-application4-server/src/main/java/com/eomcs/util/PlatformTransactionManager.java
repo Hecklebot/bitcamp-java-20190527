@@ -20,6 +20,7 @@ public class PlatformTransactionManager {
   
   public void commit() throws Exception {
     // 현재 스레드의 주머니에서 SqlSession을 꺼낸다. 주머니에서 꺼낸 객체는 SqlSession이 아닌 SqlSessionProxy이다.
+    // 여기서 꺼낸 SqlSession은 prepareSessionInThread() 해서 생성된 SqlSession
     SqlSession sqlSession = sqlSessionFactory.openSession();
     sqlSession.commit();
     ((SqlSessionProxy)sqlSession).realClose();
@@ -27,6 +28,7 @@ public class PlatformTransactionManager {
   
   public void rollback() throws Exception {
     // 현재 스레드의 주머니에서 SqlSession을 꺼낸다. 주머니에서 꺼낸 객체는 SqlSession이 아닌 SqlSessionProxy이다.
+    // 여기서 꺼낸 SqlSession은 prepareSessionInThread() 해서 생성된 SqlSession
     SqlSession sqlSession = sqlSessionFactory.openSession();
     sqlSession.rollback();
     ((SqlSessionProxy)sqlSession).realClose();

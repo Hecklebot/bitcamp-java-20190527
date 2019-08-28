@@ -45,9 +45,11 @@
   </insert>
   
   <update id="update" parameterType="Board">
-    update lms_board set
-      conts=#{contents} /* getContents()의 리턴값이 놓인다. */
-    where board_id=#{no} /* getNo()의 리턴값이 놓인다.*/
+    update lms_board
+    <set>
+      <if test="contents!=null">conts=#{contents}</if>
+    </set>
+    where board_id=#{no}
   </update>
   
   <delete id="delete" parameterType="int">
