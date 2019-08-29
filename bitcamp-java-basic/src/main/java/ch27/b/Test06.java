@@ -10,7 +10,8 @@ public class Test06 {
     Class<?> clazz = C.class;
     
     // 상속 받은 메서드를 포함하여 모든 public 메서드의 정보 출력하기
-    // 
+
+//    Method[] methods = clazz.getDeclaredMethods(); // -> 클래스에 선언된 메서드만 출력하기
     Method[] methods = clazz.getMethods();
     for (Method m : methods) {
       // 메서드가 실제 정의된 클래스의 이름 출력하기

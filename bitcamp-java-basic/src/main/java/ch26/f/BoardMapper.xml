@@ -188,7 +188,7 @@
     select *
     from x_board
     where 
-      board_id in /*(10, 12, 15, 28, 39)*/
+      board_id in /*(10,12,15,28,39)*/
         <foreach collection="noList" item="value" open="(" close=")" separator=",">
           #{value}
         </foreach>

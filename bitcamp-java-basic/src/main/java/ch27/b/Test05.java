@@ -29,24 +29,24 @@ public class Test05 {
             p.getType().getName() // 파라미터 타입명
         );
       }
-      
-      System.out.println("리턴 타입:");
-      System.out.printf("    %s\n", m.getReturnType().getName());
-      
-      System.out.println("modifier:");
-      int modifiers = m.getModifiers();
-      if (Modifier.isPublic(modifiers))//(modifiers & Modifier.PUBLIC) == Modifier.PUBLIC)
-        System.out.println("    public");
-      else if ((modifiers & PROTECTED) != 0)
-        System.out.println("    protected");
-      else if ((modifiers & PRIVATE) != 0)
-        System.out.println("    private");
-      
-      if ((modifiers & STATIC) != 0)
-        System.out.println("    static");
-      
-      if ((modifiers & FINAL) != 0)
-        System.out.println("    final");
+//      
+//      System.out.println("리턴 타입:");
+//      System.out.printf("    %s\n", m.getReturnType().getName());
+//      
+//      System.out.println("modifier:");
+//      int modifiers = m.getModifiers();
+//      if (Modifier.isPublic(modifiers))//(modifiers & Modifier.PUBLIC) == Modifier.PUBLIC)
+//        System.out.println("    public");
+//      else if ((modifiers & PROTECTED) != 0)
+//        System.out.println("    protected");
+//      else if ((modifiers & PRIVATE) != 0)
+//        System.out.println("    private");
+//      
+//      if ((modifiers & STATIC) != 0)
+//        System.out.println("    static");
+//      
+//      if ((modifiers & FINAL) != 0)
+//        System.out.println("    final");
       System.out.println("-------------------------------------");
     }
     
