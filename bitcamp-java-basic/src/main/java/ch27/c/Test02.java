@@ -8,6 +8,7 @@ public class Test02 {
   public static void main(String[] args) throws Exception {
     
     Student s1 = new Student("홍길동", "hong@test.com", true, 25);
+    System.out.println(s1);
     
     // 인스턴스 메서드 호출하기:
     // => setName() 메서드 꺼내기 

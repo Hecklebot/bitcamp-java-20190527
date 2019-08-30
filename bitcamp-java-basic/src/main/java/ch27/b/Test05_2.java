@@ -1,12 +1,12 @@
 // reflection API - 메서드의 상세정보 꺼내기
 package ch27.b;
 
+// 어떤 클래스나 인터페이스의 스태틱 멤버를 import 할 수 있다.
+import static java.lang.reflect.Modifier.PRIVATE;
+import static java.lang.reflect.Modifier.STATIC;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
-
-// 어떤 클래스나 인터페이스의 스태틱 멤버를 import 할 수 있다.
-import static java.lang.reflect.Modifier.*;
 
 public class Test05_2 {
 
@@ -29,7 +29,7 @@ public class Test05_2 {
             p.getType().getName() // 파라미터 타입명
         );
       }
-      
+
       System.out.println("리턴 타입:");
       System.out.printf("    %s\n", m.getReturnType().getName());
       
