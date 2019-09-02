@@ -15,9 +15,9 @@ package ch28.b;
 
 import java.lang.annotation.Annotation;
 
-@MyAnnotation // .class 파일에서 확인할 수 있다.
-@MyAnnotation2 // .class 파일에 없다.
-@MyAnnotation3 // .class 파일에서 확인할 수 있다.
+@MyAnnotation // .class 파일에서 확인할 수 있다.(CLASS)
+@MyAnnotation2 // .class 파일에 없다.(SOURCE)
+@MyAnnotation3 // .class 파일에서 확인할 수 있다.(RUNTIME)
 public class Test01 {
   public static void main(String[] args) {
     // Test01.class 파일을 편집기로 열어서 확인해보라!
