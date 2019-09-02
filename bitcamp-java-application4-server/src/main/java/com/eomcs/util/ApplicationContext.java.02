@@ -183,7 +183,6 @@ public class ApplicationContext {
         new SqlSessionFactoryProxy(new SqlSessionFactoryBuilder().build(inputStream));
 
     objPool.put("sqlSessionFactory", sqlSessionFactory);
-
   }
 
   private void createTransactionManager() throws Exception {
