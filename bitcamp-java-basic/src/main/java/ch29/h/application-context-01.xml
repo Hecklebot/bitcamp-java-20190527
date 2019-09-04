@@ -5,7 +5,8 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
   
-  <!-- 빈을 생성한 후 보고를 받을 객체를 등록한다.
+  <!-- 
+       빈을 생성한 후 보고를 받을 객체를 등록한다.
        스프링 IoC 컨테이너는 등록된 객체 중에서 빈의 생성을 보고 받는 객체가 있다면
        즉 BeanPostProcessor 구현체가 있다면 
        각각의 빈을 생성한 후 그 객체에게 보고한다.

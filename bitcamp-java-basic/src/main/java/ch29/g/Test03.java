@@ -12,6 +12,7 @@ public class Test03 {
     System.out.println("---------------------------------------");
     
     System.out.println(iocContainer.getBean("c1"));
+    
   }
 }
 
