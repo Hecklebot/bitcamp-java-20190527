@@ -10,7 +10,6 @@ public class Test01 {
         new ClassPathXmlApplicationContext("ch29/e/application-context-01.xml");
     
     System.out.println("---------------------------------------");
-    
     System.out.println(iocContainer.getBean("c1"));
     System.out.println(iocContainer.getBean("c2"));
   }

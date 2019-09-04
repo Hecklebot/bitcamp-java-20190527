@@ -6,7 +6,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
-public class Test01 {
+public class Test01_1 {
   public static void main(String[] args) {
     // IoC(Inversion Of Control) 컨테이너
     // => bean container 라고도 부른다.
@@ -54,9 +54,9 @@ public class Test01 {
     //    file://
     ApplicationContext iocContainer2 = 
         new FileSystemXmlApplicationContext(
-            "file:///Users/eomjinyoung/git/bitcamp-java-2018-12/java-basic/bin/main/ch29/a/application-context.xml");
+            "file:///C://Users//bit//git//bitcamp-java-20190527//bitcamp-java-basic//src//main//java//ch29//a//application-context.xml");
     
-    // 3) 자바 클래스 파일의 애노테이션으로부터 설정 정보를 추출한다.
+    // 3) 자바 클래스 파일의 애노테이션으로부터 설정 정보를 추출한다. = java config라 부른다.
     // => 생성자에 설정 정보를 갖고 있는 클래스의 타입 정보를 넘긴다. 
     ApplicationContext iocContainer3 = 
         new AnnotationConfigApplicationContext(AppConfig.class);

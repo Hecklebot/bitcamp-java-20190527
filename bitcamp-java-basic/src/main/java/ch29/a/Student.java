@@ -8,6 +8,19 @@ public class Student {
   private int age;
   private boolean working;
   
+  public Student() {
+    // TODO Auto-generated constructor stub
+  }
+  
+  public Student(int a) {
+    // TODO Auto-generated constructor stub
+  }
+  
+  public Student(int a, int b) {
+    // TODO Auto-generated constructor stub
+  }
+  
+  
   @Override
   public String toString() {
     return "Student [name=" + name + ", email=" + email + ", password=" + password + ", tel=" + tel

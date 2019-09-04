@@ -162,8 +162,7 @@ public class ApplicationContext {
     if(obj == null) {
       throw new RuntimeException("해당 이름의 Bean을 찾을 수 없습니다.");
     }
-
-    return obj;
+    return obj;`
   }
 
   public void addBean(String name, Object obj) {

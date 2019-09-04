@@ -15,7 +15,6 @@
        빈을 저장할 때 클래스 이름으로 저장한다. 
    -->
   <context:component-scan base-package="ch29.a"/>
-    
 </beans>
 
 

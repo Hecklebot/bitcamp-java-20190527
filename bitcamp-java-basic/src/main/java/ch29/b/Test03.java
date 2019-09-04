@@ -1,17 +1,31 @@
-// 객체의 이름 설정
+// 객체의 생성 시점과 범위
 package ch29.b;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
+import ch29.SpringUtils;
 
 public class Test03 {
   public static void main(String[] args) {
     ApplicationContext iocContainer = 
         new ClassPathXmlApplicationContext("ch29/b/application-context-03.xml");
     
-    System.out.println("---------------------------------------");
+    Car3 obj = (Car3) iocContainer.getBean("c3");
+    obj = (Car3) iocContainer.getBean("c3");
+    obj = (Car3) iocContainer.getBean("c3");
+    obj = (Car3) iocContainer.getBean("c3");
+    obj = (Car3) iocContainer.getBean("c3");
+    obj = (Car3) iocContainer.getBean("c3");
+    obj = (Car3) iocContainer.getBean("c3");
+    obj = (Car3) iocContainer.getBean("c3");
+    obj = (Car3) iocContainer.getBean("c3");
+    obj = (Car3) iocContainer.getBean("c3");
+    obj = (Car3) iocContainer.getBean("c3");
+    
+    SpringUtils.printTypes(iocContainer);
+    System.out.println("-------------------------------------------------------");
     
     // Singleton 객체는 IoC 컨테이너를 생성할 때 미리 생성된다. 
     // getBean()을 호출할 때는 미리 생성된 객체를 리턴한다.

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE students PUBLIC "-//bitcamp//student dtd 1.0//EN" "test01.dtd">
+
+
+<students xmlns:s="http://bitcamp.co.kr/java130/students">
+  <student>
+    <type>일반</type>
+    <name>홍길동</name>
+    <age>20</age>
+    <tel>1111-1111</tel>
+    <tel>1111-1111</tel>
+    <tel>1111-1111</tel>
+    <tel>1111-1111</tel>
+    <school>
+      <name>한국대학교</name>
+      <grade>대학교</grade>
+    </school>
+    <school>
+      <name>한국고등학교</name>
+      <grade>고등학교</grade>
+    </school>
+      
+  </student>
+  
+  <!-- 주석
+  주석
+  주석
+  주석? -->
+  
+  <student2 name="홍길동" age="20" tel="2222-2222" />
+  <student2 age="3213" name="홍길동" type="재학생"/>
+<!--   <student2 age="3213" name="홍길동" type="working"/> 오류-->
+</students>
