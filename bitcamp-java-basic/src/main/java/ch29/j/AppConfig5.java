@@ -9,6 +9,7 @@ import org.springframework.core.env.Environment;
 //@Configuration // 스프링 IoC 컨테이너에게 이 클래스를 직접 알려주기 때문에 이 애노테이션은 필요없다.
 
 // .properties 파일을 로딩할 때 @PropertySource 애노테이션을 사용한다.
+// classpath: 는 생략할 수 없다.
 @PropertySource({
   "classpath:ch29/j/jdbc.properties",
   "classpath:ch29/j/jdbc2.properties"})

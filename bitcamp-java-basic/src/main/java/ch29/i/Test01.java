@@ -3,6 +3,7 @@ package ch29.i;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import ch29.SpringUtils;
 
 public class Test01 {
   public static void main(String[] args) {
@@ -19,6 +20,8 @@ public class Test01 {
           name, iocContainer.getBean(name).getClass().getName());
     }
     
+    System.out.println("---------------------------------------");
+    SpringUtils.printObjects(iocContainer);
     System.out.println("---------------------------------------");
     
     System.out.println(iocContainer.getBean("car"));

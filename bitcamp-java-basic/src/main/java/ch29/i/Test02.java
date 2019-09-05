@@ -3,6 +3,7 @@ package ch29.i;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import ch29.SpringUtils;
 
 public class Test02 {
   public static void main(String[] args) {
@@ -11,6 +12,8 @@ public class Test02 {
     
     // @Component 애노테이션 붙은 클래스의 인스턴스를 자동으로 생성한다.
     //
+    System.out.println("---------------------------------------");
+    SpringUtils.printObjects(iocContainer);
     System.out.println("---------------------------------------");
     
     String[] names = iocContainer.getBeanDefinitionNames();

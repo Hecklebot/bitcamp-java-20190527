@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 // "패키지명.클래스명#번호" 형태로 이름이 지어진다.
 // 그러나 @Component 애노테이션을 사용할 때는 
 // 클래스명만 빈의 이름으로 사용된다. 
+
 @Component
 public class BlackBox {
   private String maker;
