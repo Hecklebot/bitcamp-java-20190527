@@ -16,14 +16,23 @@ import org.springframework.context.annotation.Configuration;
 
 // Mybatis DAO 구현체 자동 생성하기
 // => @MapperScan(DAO 인터페이스가 들어 있는 패키지)
-@MapperScan("ch29.k1.dao")
-
+// -> DAO 인터페이스를 구현한 객체를 자동으로 생성하여, IoC 컨테이너에 보관한다.
+// -> DAO 객체의 메서드를 호출할 때, 인터페이스 이름과 메서드 명을 합쳐서
+//    SQL문을 mapper파일에서 찾는다.
+@MapperScan("ch29.k1.dao") // -> mapper와 상관없이 일단 만든다.
 public class MybatisConfig {
   
   // Mybatis의 SqlSessionFactory 객체 준비
   @Bean
   public SqlSessionFactory sqlSessionFactory(
       DataSource dataSource, ApplicationContext appCtx) throws Exception {
+    
+    // SqlSessionFactory를 만들 때, 기존의 SqlSessionFactoryBuilder를 사용하면
+    // MyBatis 설정 파일이 필요하다.(예: mybatis-config.xml)
+    // 이런 설정 파일 없이, Spring IoC 컨테이너에서 SqlSessionFactory를 만들 수 있도록
+    // 도와주는 클래스가 SqlSessionFactorybean이다.
+    // 이 클래스는 mybatis-spring 라이브러리에 들어있기 때문에 별도의 다운로드가 필요하다.
+    
     // SqlSessionFactoryBean 클래스는 FactoryBean 인터페이스를 구현한 클래스이다.
     // 보통 FactoryBean 구현체의 이름을 정의할 때는 
     // "생성하는 객체의 클래스명 + FactoryBean" 이름으로 짓는다. 예) CarFactoryBean
@@ -34,6 +43,7 @@ public class MybatisConfig {
     // 주의하라! 
     // 기존의 이름 관행에 따라 SqlSessionFactoryBean이 SqlSession 객체를 생성한다고 생각하기 쉬운데, 
     // 아니다! SqlSessionFactoryBean 은 SqlSessionFactory 객체를 생성해준다.
+    // 뭘 만드는 클래스인지 확인하려면 항상 어떤 클래스를 리턴하는지 확인할 것
     SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
     
     // DataSource를 주입한다.

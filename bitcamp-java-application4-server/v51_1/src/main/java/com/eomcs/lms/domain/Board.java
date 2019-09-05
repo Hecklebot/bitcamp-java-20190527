@@ -1,23 +1,16 @@
-// vo: Value Object
+package com.eomcs.lms.domain;
 
-package ch29.k1.vo;
 import java.io.Serializable;
 import java.sql.Date;
 
 public class Board implements Serializable {
   private static final long serialVersionUID = 1L;
-
+  
   private int no;
-  private String title;
   private String contents;
   private Date createdDate;
   private int viewCount;
-  
-  @Override
-  public String toString() {
-    return "Board [no=" + no + ", title=" + title + ", contents=" + contents + ", createdDate="
-        + createdDate + ", viewCount=" + viewCount + "]";
-  }
+    
   public int getNo() {
     return no;
   }
@@ -42,10 +35,5 @@ public class Board implements Serializable {
   public void setViewCount(int viewCount) {
     this.viewCount = viewCount;
   }
-  public String getTitle() {
-    return title;
-  }
-  public void setTitle(String title) {
-    this.title = title;
-  }
+  
 }

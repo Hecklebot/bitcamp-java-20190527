@@ -14,9 +14,9 @@
   <!-- SqlSessionFactory 객체 준비 -->
   <bean class="org.mybatis.spring.SqlSessionFactoryBean">
     <property name="dataSource" ref="dataSource" />
+    <property name="typeAliasesPackage" value="ch29.k2.vo"/>
     <property name="mapperLocations" 
               value="classpath*:ch29/k2/mapper/**/*.xml" />
-    <property name="typeAliasesPackage" value="ch29.k2.vo"/>
   </bean>
   
   <!-- DAO 구현체를 자동으로 생성해주는 객체 준비 
