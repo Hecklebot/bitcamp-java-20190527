@@ -34,9 +34,6 @@ dependencies {
     
     // log4j
     compile group: 'log4j', name: 'log4j', version: '1.2.17'
-    
-    // log4j 2
-    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.12.1'
 }
 
 application {

@@ -1,4 +1,4 @@
-// v53_2: log4j 2 적용하기
+// v53_1: log4j 1.2.x 적용하기
 package com.eomcs.lms;
 
 import java.io.BufferedReader;
