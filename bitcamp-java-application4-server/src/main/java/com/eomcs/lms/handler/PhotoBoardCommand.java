@@ -188,6 +188,11 @@ public class PhotoBoardCommand {
             photoBoard.getCreatedDate(), photoBoard.getViewCount(), photoBoard.getLessonNo());
       }
       out.println("</table>");
+      
+      out.println("<a href='/lesson/list'>수업 목록</a>");
+      out.println("<a href='/member/list'>회원 목록</a>");
+      out.println("<a href='/board/list'>게시판</a>");
+      
     } catch (Exception e) {
       out.println("<p>데이터 목록 조회에 실패했습니다!</p>");
       throw new RuntimeException(e);

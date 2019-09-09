@@ -12,8 +12,8 @@ import com.eomcs.lms.domain.Member;
 
 @Component
 public class MemberCommand {
-  
-//  private static final Logger logger = LogManager.getLogger(PhotoBoardCommand.class);
+
+  //  private static final Logger logger = LogManager.getLogger(PhotoBoardCommand.class);
 
   private MemberDao memberDao;
 
@@ -36,7 +36,7 @@ public class MemberCommand {
     out.println("</form>");
     out.println("</body></html>");
   }
-  
+
   @RequestMapping("/member/add")
   public void add(ServletRequest request, ServletResponse response) throws IOException {
     PrintWriter out = response.getWriter();
@@ -70,7 +70,7 @@ public class MemberCommand {
         + "<meta http-equiv='Refresh' content='1;url=/member/list'"
         + "</head>");
     out.println("<body><h1>회원정보 삭제</h1>");
-    
+
     try {
       int no = Integer.parseInt(request.getParameter("no"));
       if (memberDao.delete(no) > 0) {
@@ -130,8 +130,8 @@ public class MemberCommand {
         + "integrity=\'sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\' crossorigin=\'anonymous\'>"
         + "</head>");
     out.println("<body><h1>회원 목록</h1>");
-    out.println("<a href='/member/form'>새 회원</a> "
-        + "<a href='/auth/login'></a> <br/><br/>");
+    out.println("<a href='/member/form'>새 회원</a>");
+    
     try {
       out.println("<table class='table table-hover'>");
       out.println("<tr><th>번호</th><th>이름</th><th>이메일</th><th>사진</th><th>전화번호</th>"
@@ -146,18 +146,28 @@ public class MemberCommand {
             member.getRegisteredDate());
       }
       out.println("</table>");
-      out.println("로그인 ");
       out.println("<form action='http://localhost:8888/auth/login'>");
-      out.println("이메일 : <input type='text' name='email'>");
-      out.println("비밀번호 : <input type='text' name='password'><br/>");
-      out.println("<button>로그인</button>");
+      out.println("이메일 <input type='text' name='email'>");
+      out.println("비밀번호 <input type='text' name='password'>  ");
+      out.println("<button>로그인</button></br>");
       out.println("</form>");
+
+      out.println("<form action='http://localhost:8888/member/search'>");
+      out.println("<input type='text' name='name'>");
+      out.println("<button>검색</button><br/>");
+      out.println("</form>");
+
+      out.println("<a href='/lesson/list'>수업 목록</a>");
+      out.println("<a href='/board/list'>게시판</a>");
+      out.println("<a href='/photoboard/list'>사진게시판</a>");
+
 
     } catch (Exception e) {
       out.println("<p>데이터 목록 조회에 실패했습니다!</p>");
       throw new RuntimeException(e);
+    } finally {
+      out.println("</body></html>");
     }
-    out.println("</body></html>");
   }
 
   @RequestMapping("/member/update")
@@ -187,5 +197,41 @@ public class MemberCommand {
 
   }
 
+  @RequestMapping("/member/search")
+  public void search(ServletRequest request, ServletResponse response) throws IOException {
+    PrintWriter out = response.getWriter();
+    out.println("<html><head><title>회원 검색</title></head>");
+    out.println("<body><h1>회원 검색</h1>");
 
+    try {
+      String name = request.getParameter("name");
+      List<Member> list = memberDao.findByKeyword(name);
+
+      for (Member member : list) {
+        if(member == null) {
+          out.println("일치하는 회원이 없습니다.");
+        } else {
+          out.println("<form action='/member/update'>");
+          out.printf("번호: <input type='text' name='no' value='%d' readonly><br/>\n",  
+              member.getNo());
+          out.printf("이름: <input type='text' name='name' value='%s' readonly><br/>\n",
+              member.getName());
+          out.printf("이메일: <input type='text' name='email' value='%s' readonly><br/>\n", 
+              member.getEmail());
+          out.printf("사진: <input type='text' name='photo' value='%s' readonly><br/>\n", 
+              member.getPhoto());
+          out.printf("전화번호: <input type='text' name='tel' value='%s' readonly><br/>\n", 
+              member.getTel());
+          out.printf("등록일: <input type='text' name='registeredDate' value='%s' readonly><br/><br/>\n", 
+              member.getRegisteredDate());
+        }
+      }
+
+    } catch(Exception e) {
+      out.println("데이터 검색에 실패했습니다!");
+      System.out.println(e.getMessage());
+    } finally {
+      out.println("</body></html>");
+    }
+  }
 }

@@ -52,8 +52,8 @@
       lms_member
     where
       name like #{pattern}
-      or email like #{pattern}
-      or tel like #{pattern}
+<!--       or email like #{pattern} -->
+<!--       or tel like #{pattern} -->
     order by name asc
   </select>
   

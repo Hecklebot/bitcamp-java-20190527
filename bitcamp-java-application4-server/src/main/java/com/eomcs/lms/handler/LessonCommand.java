@@ -62,8 +62,9 @@ public class LessonCommand {
     } catch (Exception e) {
       out.println("<p>데이터 저장에 실패했습니다!</p>");
       throw new RuntimeException(e);
+    } finally {
+      out.println("</body></html>");
     }
-    out.println("</body></html>");
   }
   
   @RequestMapping("/lesson/delete")
@@ -150,6 +151,11 @@ public class LessonCommand {
             lesson.getTotalHours(), lesson.getDayHours());
       }
       out.println("</table>");
+      
+      out.println("<a href='/member/list'>회원 목록</a>");
+      out.println("<a href='/board/list'>게시판</a>");
+      out.println("<a href='/photoboard/list'>사진게시판</a>");
+
     } catch (Exception e) {
       out.println("<p>데이터 목록 조회에 실패했습니다!</p>");
       throw new RuntimeException(e);
