@@ -11,20 +11,3 @@
   <context:component-scan base-package="ch29.k2"/>
   
 </beans>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

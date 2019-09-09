@@ -19,7 +19,9 @@
       titl,
       sdt,
       edt,
-      tot_hr
+      tot_hr,
+      conts,
+      day_hr
   </sql>
   
   <select id="findAll" resultMap="LessonMap">

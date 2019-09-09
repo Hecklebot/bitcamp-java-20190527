@@ -12,9 +12,6 @@ dependencies {
     // MariaDB JDBC Driver
     compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.4.3'
     
-    implementation 'com.google.guava:guava:27.1-jre'
-    testImplementation 'junit:junit:4.12'
-
     // Mybatis Persistence Framework
     compile group: 'org.mybatis', name: 'mybatis', version: '3.5.2'
     
@@ -34,6 +31,12 @@ dependencies {
     
     // log4j 2
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.12.1'
+    
+    // HTTPclient
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.9'
+    
+    implementation 'com.google.guava:guava:27.1-jre'
+    testImplementation 'junit:junit:4.12'
 }
 
 application {

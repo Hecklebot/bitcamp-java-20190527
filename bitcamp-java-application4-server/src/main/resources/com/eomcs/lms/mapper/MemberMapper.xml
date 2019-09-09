@@ -19,6 +19,7 @@
       member_id,
       name,
       email,
+      photo, 
       tel,
       cdt
   </sql>

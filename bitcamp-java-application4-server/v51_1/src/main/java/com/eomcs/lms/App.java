@@ -46,8 +46,7 @@ public class App {
   }
 
   private RequestMappingHandlerMapping createRequestMappingHandlerMapping() {
-    RequestMappingHandlerMapping mapping = 
-        new RequestMappingHandlerMapping();
+    RequestMappingHandlerMapping mapping = new RequestMappingHandlerMapping();
 
     // 객체 풀에서 @Component가 붙은 객체 목록을 꺼낸다.
     Map<String,Object> components = appCtx.getBeansWithAnnotation(Component.class);

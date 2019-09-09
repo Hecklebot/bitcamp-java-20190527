@@ -26,9 +26,3 @@ public class MybatisConfig {
     return sqlSessionFactoryBean.getObject();
   }
 }
-
-
-
-
-
-
