@@ -1,0 +1,25 @@
+
+plugins {
+    id 'java'
+    id 'eclipse-wtp'
+    id 'war'
+}
+
+repositories {
+    jcenter()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+
+dependencies {
+
+    // Java Servlet API
+    providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+
+    implementation 'com.google.guava:guava:27.1-jre'
+    testImplementation 'junit:junit:4.12'
+}

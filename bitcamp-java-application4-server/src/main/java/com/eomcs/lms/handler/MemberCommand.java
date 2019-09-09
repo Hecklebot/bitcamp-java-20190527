@@ -1,13 +1,14 @@
 package com.eomcs.lms.handler;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.domain.Member;
-import com.eomcs.util.ServletRequest;
-import com.eomcs.util.ServletResponse;
 
 @Component
 public class MemberCommand {
@@ -21,7 +22,7 @@ public class MemberCommand {
   }
 
   @RequestMapping("/member/form")
-  public void form(ServletRequest request, ServletResponse response) {
+  public void form(ServletRequest request, ServletResponse response) throws IOException {
     PrintWriter out = response.getWriter();
     out.println("<html><head><title>회원 등록폼</title></head>");
     out.println("<body><h1>회원 등록폼</h1>");
@@ -37,7 +38,7 @@ public class MemberCommand {
   }
   
   @RequestMapping("/member/add")
-  public void add(ServletRequest request, ServletResponse response) {
+  public void add(ServletRequest request, ServletResponse response) throws IOException {
     PrintWriter out = response.getWriter();
     out.println("<html><head><title>회원 등록</title>"
         + "<meta http-equiv='Refresh' content='1;url=/member/list'"
@@ -63,7 +64,7 @@ public class MemberCommand {
   }
 
   @RequestMapping("/member/delete")
-  public void delete(ServletRequest request, ServletResponse response) {
+  public void delete(ServletRequest request, ServletResponse response) throws IOException {
     PrintWriter out = response.getWriter();
     out.println("<html><head><title>회원정보 삭제</title>"
         + "<meta http-equiv='Refresh' content='1;url=/member/list'"
@@ -85,7 +86,7 @@ public class MemberCommand {
   }
 
   @RequestMapping("/member/detail")
-  public void detail(ServletRequest request, ServletResponse response) {
+  public void detail(ServletRequest request, ServletResponse response) throws IOException {
     PrintWriter out = response.getWriter();
     out.println("<html><head><title>회원 상세</title></head>");
     out.println("<body><h1>회원 상세</h1>");
@@ -103,7 +104,7 @@ public class MemberCommand {
             member.getName());
         out.printf("이메일: <textarea name='email' rows='1' cols='50'>%s</textarea><br/>\n", 
             member.getEmail());
-        out.printf("사진:<textarea name='photo' rows='1' cols='50'>%s</textarea><br/>\n", 
+        out.printf("사진: <textarea name='photo' rows='1' cols='50'>%s</textarea><br/>\n", 
             member.getPhoto());
         out.printf("전화번호: <textarea name='tel' rows='1' cols='50'>%s</textarea><br/>\n", 
             member.getTel());
@@ -122,7 +123,7 @@ public class MemberCommand {
   }
 
   @RequestMapping("/member/list")
-  public void list(ServletRequest request, ServletResponse response) {
+  public void list(ServletRequest request, ServletResponse response) throws IOException {
     PrintWriter out = response.getWriter();
     out.println("<html><head><title>회원 목록</title>"
         + "<link rel=\'stylesheet\' href=\'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\' "
@@ -160,7 +161,7 @@ public class MemberCommand {
   }
 
   @RequestMapping("/member/update")
-  public void update(ServletRequest request, ServletResponse response) {
+  public void update(ServletRequest request, ServletResponse response) throws IOException {
     PrintWriter out = response.getWriter();
     out.println("<html><head><title>회원정보 변경</title>"
         + "<meta http-equiv='Refresh' content='1;url=/member/list'"

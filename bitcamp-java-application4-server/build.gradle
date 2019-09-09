@@ -1,11 +1,23 @@
 plugins {
     id 'java'
-    id 'application'
-    id 'eclipse'
+    // 웹 애플리케이션 프로젝트를 다룰 때 사용할 명령어 포함시키기
+    id 'war'
+    id 'eclipse-wtp'
 }
 
 repositories {
     jcenter()
+}
+
+war {
+    archiveName = 'app4.war'
+}
+
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
 }
 
 dependencies {
@@ -24,6 +36,7 @@ dependencies {
     // MyBatis-Spring
     compile group: 'org.mybatis', name: 'mybatis-spring', version: '2.0.2'
     
+    
     compile group: 'javax.annotation', name: 'javax.annotation-api', version: '1.3.2'
     
     // Spring Web MVC
@@ -35,10 +48,9 @@ dependencies {
     // HTTPclient
     compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.9'
     
+    // Java Servlet API
+    providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+    
     implementation 'com.google.guava:guava:27.1-jre'
     testImplementation 'junit:junit:4.12'
-}
-
-application {
-    mainClassName = 'com.eomcs.lms.App'
 }

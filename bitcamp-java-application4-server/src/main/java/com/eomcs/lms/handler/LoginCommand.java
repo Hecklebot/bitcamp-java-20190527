@@ -1,13 +1,14 @@
 package com.eomcs.lms.handler;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.domain.Member;
-import com.eomcs.util.ServletRequest;
-import com.eomcs.util.ServletResponse;
 
 @Component
 public class LoginCommand {
@@ -21,8 +22,12 @@ public class LoginCommand {
   }
 
   @RequestMapping("/auth/login")
-  public void login(ServletRequest request, ServletResponse response) {
+  public void login(ServletRequest request, ServletResponse response) throws IOException {
     PrintWriter out = response.getWriter();
+    out.println("<html><head><title>로그인</title>"
+        + "<meta http-equiv='Refresh' content='1';url=/member/list'" 
+        + "</head>");
+    out.println("<body><h1>로그인</h1>");
 
     try {
       HashMap<String,Object> params = new HashMap<>();
