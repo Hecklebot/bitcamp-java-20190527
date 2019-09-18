@@ -22,8 +22,8 @@
   
 '''
 이클립스 IDE로 import
-
 '''
+
 - 웹 자원을 둘 폴더 생성
   - src/main/webapp 폴더 생성
   - src/main/webapp/index.html 테스트 페이지 생성
@@ -35,15 +35,16 @@
 '''
 
 이클립스에 톰캣 서버 등록하기
+
 '''
 - Window-preperences 클릭
   - Server 노드 클릭
   - Server Runtime Environments 노드 클릭
   - add 버튼 클릭하여 로컬에 설치한 톰캣 서버의 폴더를 등록한다.
-
 '''
 
 프로젝트를 테스트할 때 사용할 톰캣 서버 환경 추가
+
 '''
 1) 이클립스 perspective가 'Java EE'인지 확인
   - 아니면 window-perspective-Open Perspective 메뉴 클릭

@@ -19,6 +19,12 @@ dependencies {
 
     // Java Servlet API
     providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+    
+    // Apache Fileupload
+    compile group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
+    
+    // Thumbnailator
+    compile group: 'net.coobird', name: 'thumbnailator', version: '0.4.8'
 
     implementation 'com.google.guava:guava:27.1-jre'
     testImplementation 'junit:junit:4.12'
