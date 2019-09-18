@@ -8,20 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
-import com.eomcs.lms.dao.MemberDao;
-import com.eomcs.lms.domain.Member;
+import com.eomcs.lms.dao.BoardDao;
+import com.eomcs.lms.domain.Board;
 
-@WebServlet("/member/detail")
-public class MemberDetailCommand extends HttpServlet {
-
+@WebServlet("/board/detail")
+public class BoardDetailServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
-  private MemberDao memberDao;
+  private BoardDao boardDao;
+
 
   @Override
   public void init() throws ServletException {
     ApplicationContext appCtx = 
         (ApplicationContext) getServletContext().getAttribute("iocContainer");
-    memberDao = appCtx.getBean(MemberDao.class);
+    boardDao = appCtx.getBean(BoardDao.class);
   }
 
   @Override
@@ -30,46 +30,41 @@ public class MemberDetailCommand extends HttpServlet {
     request.setCharacterEncoding("UTF-8");
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
-    out.println("<html><head><title>회원 상세</title>"
+    out.println("<html><head><title>게시물 상세</title>"
         + "<link rel=\'stylesheet\' href=\'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\'integrity=\'sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\' crossorigin=\'anonymous\'>"
         + "<link rel='stylesheet' href='/css/common.css'>"
         + "</head>");
     out.println("<body>");
     request.getRequestDispatcher("/header").include(request, response);
     out.println("<div id='content'>");
-    out.println("<h1>회원 상세</h1>");
+    out.println("<h1>게시물 상세</h1>");
     try {
       // 클라이언트에게 번호를 요구하여 받는다.
       int no = Integer.parseInt(request.getParameter("no"));
-      Member member = memberDao.findBy(no);
+      Board board = boardDao.findBy(no);
 
-      if (member == null) {
+      if (board == null) {
         out.println("<p>해당 번호의 데이터가 없습니다!</p>");
       } else {
-        out.println("<form action='/member/update' method='post' enctype='multipart/form-data'>");
-        out.printf("<img src='/upload/member/%s' class='photo1'><br/>\n", member.getPhoto());
-        out.printf("<input type='file' name='photo'><br/>");
-        out.printf("번호: <input type='text' name='no' value='%d' readonly><br/>", 
-            member.getNo());
-        out.printf("이름: <input type='text' name='name' value='%s'><br/>\n",
-            member.getName());
-        out.printf("이메일: <input type='text' name='email' value='%s'><br/>\n", 
-            member.getEmail());
-        out.printf("전화번호: <input type='text' name='tel' value='%s'><br/>\n", 
-            member.getTel());
-        out.printf("등록일: <input type='text' name='registeredDate' value='%s'><br/>\n", 
-            member.getRegisteredDate());
+        out.println("<form action='/board/update' method='post'>");
+        out.printf("번호: <input type='text' name='no' value='%d' readonly><br/>",  board.getNo());
+        out.printf("내용: <textarea name='contents' rows='5' cols='50'>%s</textarea><br/>\n",
+            board.getContents());
+        out.printf("등록일: %s<br/>\n", board.getCreatedDate());
+        out.printf("조회수: %d<br/>\n", board.getViewCount());
         out.println("<button>변경</button>");
-        out.printf("<button><a href='/member/delete?no=%d'>삭제</a></button>\n", 
-            member.getNo());
+        out.printf("<button><a href='/board/delete?no=%d'>삭제</a></button>\n", board.getNo());
         out.println("</form>");
+        boardDao.increaseViewCount(no);
       }
+
     } catch (Exception e) {
       System.out.println("<p>데이터 조회에 실패했습니다!</p>");
       System.out.println(e.getMessage());
+    } finally {
+      out.println("</div>");
+      request.getRequestDispatcher("/footer").include(request, response);
+      out.println("</body></html>");
     }
-    out.println("</div>");
-    request.getRequestDispatcher("/footer").include(request, response);
-    out.println("</body></html>");
   }
 }

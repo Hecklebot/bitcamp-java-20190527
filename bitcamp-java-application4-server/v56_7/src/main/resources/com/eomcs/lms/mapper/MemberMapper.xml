@@ -34,7 +34,7 @@
     from 
       lms_member 
     order by 
-      member_id asc
+      name asc
   </select>
   
   <select id="findBy" parameterType="int" resultMap="MemberMap">

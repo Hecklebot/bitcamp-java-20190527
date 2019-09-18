@@ -46,18 +46,17 @@ public class MemberDetailCommand extends HttpServlet {
       if (member == null) {
         out.println("<p>해당 번호의 데이터가 없습니다!</p>");
       } else {
-        out.println("<form action='/member/update' method='post' enctype='multipart/form-data'>");
-        out.printf("<img src='/upload/member/%s' class='photo1'><br/>\n", member.getPhoto());
-        out.printf("<input type='file' name='photo'><br/>");
-        out.printf("번호: <input type='text' name='no' value='%d' readonly><br/>", 
-            member.getNo());
-        out.printf("이름: <input type='text' name='name' value='%s'><br/>\n",
+        out.println("<form action='/member/update' method='post'>");
+        out.printf("번호: <input type='text' name='no' value='%d' readonly><br/>",  member.getNo());
+        out.printf("이름: <textarea name='name' rows='1' cols='50'>%s</textarea><br/>\n",
             member.getName());
-        out.printf("이메일: <input type='text' name='email' value='%s'><br/>\n", 
+        out.printf("이메일: <textarea name='email' rows='1' cols='50'>%s</textarea><br/>\n", 
             member.getEmail());
-        out.printf("전화번호: <input type='text' name='tel' value='%s'><br/>\n", 
+        out.printf("사진: <textarea name='photo' rows='1' cols='50'>%s</textarea><br/>\n", 
+            member.getPhoto());
+        out.printf("전화번호: <textarea name='tel' rows='1' cols='50'>%s</textarea><br/>\n", 
             member.getTel());
-        out.printf("등록일: <input type='text' name='registeredDate' value='%s'><br/>\n", 
+        out.printf("등록일: <textarea name='registeredDate' rows='1' cols='50'>%s</textarea><br/>\n", 
             member.getRegisteredDate());
         out.println("<button>변경</button>");
         out.printf("<button><a href='/member/delete?no=%d'>삭제</a></button>\n", 

@@ -31,7 +31,6 @@ public class HeaderServlet extends HttpServlet {
     out.println("<div id='header'>");
     out.println("  <img src='/images/dance.gif'>");
     out.println("  <span>수업 관리 시스템</span>");
-    out.println("  <img src='/images/dance.gif'>");
     HttpSession session = request.getSession();
     Member loginUser = (Member) session.getAttribute("loginUser");
     
