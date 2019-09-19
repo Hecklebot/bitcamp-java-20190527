@@ -27,8 +27,7 @@ pageContext.setAttribute("s4", "윤봉길");
  --%>
 <jsp:useBean id="s2" type="java.lang.String" scope="session"/>
 <jsp:useBean id="s3" type="java.lang.String" scope="request"/>
-<jsp:useBean id="s4" type="java.lang.String" scope="page"/>
-
+<jsp:useBean id="s4" type="java.lang.String" scope="page"/> <%--page == pageContext --%>
 <%=s1%><br>
 <%=s2%><br>
 <%=s3%><br>
@@ -37,7 +36,7 @@ pageContext.setAttribute("s4", "윤봉길");
 <%-- 보관소에 없는 객체를 꺼내려 하면 예외 발생! --%>
 <%-- 
 <jsp:useBean id="s5" type="java.lang.String" scope="page"/>
---%>
+ --%>
 
 </body>
 </html>

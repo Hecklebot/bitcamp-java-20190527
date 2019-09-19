@@ -3,7 +3,7 @@
     contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"
-    isErrorPage="true"%>
+    isErrorPage="true"%> <%--java파일에 exceprion 변수가 추가된다. --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -13,7 +13,8 @@
 </head>
 <body>
 <h1>오류 발생!</h1>
-<%=exception.getMessage()%>
+<%--isErrorPage를 true로 설정해 exception 변수가 생겨서 사용할 수 있다. --%>
+<%=exception.getMessage()%> 
 </body>
 </html>
 <%--

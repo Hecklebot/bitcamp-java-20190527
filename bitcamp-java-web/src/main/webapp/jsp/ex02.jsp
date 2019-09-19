@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>ex02</title>
 </head>
+
+
 <body>
 <h1>템플릿 데이터(template data)</h1>
 <pre>

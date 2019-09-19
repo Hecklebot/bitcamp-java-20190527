@@ -31,7 +31,7 @@
 <jsp:setProperty name="b3" property="createdDate" value="2019-4-8"/>
 --%>
 
-<%=b1%><br>
+<%=b1.toString()%><br>
 <%=b2%><br>
 <%=b3%><br>
 

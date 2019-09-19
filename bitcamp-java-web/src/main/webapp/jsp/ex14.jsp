@@ -29,6 +29,7 @@ pageContext.setAttribute("list", names);
 <jsp:useBean id="list" type="java.util.List<String>" scope="page"/>
 <%-- 자바코드로 표현해보면,
   type 속성에 인터페이스를 지정해도 된다. 위 태그는 다음의 자바 코드와 같다.
+  없다면 에러를 띄운다.
   java.util.List<String> list = 
     (java.util.List<String>) pageContext.getAttribute("list");
  --%>

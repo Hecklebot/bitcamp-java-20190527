@@ -16,6 +16,7 @@ public void jspDestroy() {
   System.out.println("ex06.jsp의 jspDestroy()");
 }
 %>
+
 <body>
 <h1>선언부(declaration element)</h1>
 
@@ -28,7 +29,7 @@ double interest = 0.025; // 인스턴스 변수
 private String calculate(long money) { // 인스턴스 메서드 
   return String.format("%.2f", money + (money * interest));
 }
-%>
+%> 
 
 <%!
 { // 인스턴스 블록
