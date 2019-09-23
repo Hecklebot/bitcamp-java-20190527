@@ -16,11 +16,11 @@
 </pre>
 
 <c:if test="${param.search == 'naver'}">
-    <c:redirect url="http://www.naver.com"/>
+  <c:redirect url="http://www.naver.com"/>
 </c:if>
 
 <c:if test="${param.search == 'daum'}">
-    <c:redirect url="http://www.daum.net"/>
+  <c:redirect url="http://www.daum.net"/>
 </c:if>
 
 <p>search 라는 이름으로 검색 엔진을 지정하세요!<br>

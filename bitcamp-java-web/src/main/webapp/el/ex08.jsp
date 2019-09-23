@@ -24,7 +24,7 @@ pageContext.setAttribute("member", member);
 ${member.no}<br>
 ${member["no"]}<br>
 ${member['no']}<br>
-${member.getNo()}<br>
+${member.getTel()}<br> <%-- 불편 --%>
 
 </body>
 </html>

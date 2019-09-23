@@ -16,7 +16,7 @@
 </pre>
 
 <c:set var="name" value="홍길동"/>
-<c:set var="age" value="16"/>
+<c:set var="age" value="26"/>
 <c:set var="gender" value="woman"/>
 
 <c:if test="${not empty name}">
