@@ -1,9 +1,6 @@
 package com.eomcs.lms.servlet;
 
 import java.io.IOException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -12,9 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import static org.reflections.ReflectionUtils.*;
 import org.springframework.context.ApplicationContext;
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.eomcs.lms.controller.PageController;
 
 @MultipartConfig(maxFileSize = 1024 * 1024 * 10)
 @WebServlet("/app/*")
@@ -40,19 +36,12 @@ public class DispatcherServlet extends HttpServlet {
     logger.debug("요청 => servletPath: " + servletPath + " pathInfo: " + pathInfo);
 
     try {
-      // 클라이언트 요청을 처리할 PageController를 찾는다.
-      Object pageController = iocContainer.getBean(pathInfo);
+      // 클라이언트 요청을 처리할 PageController 구현체를 찾는다.
+      PageController pageController = (PageController) iocContainer.getBean(pathInfo);
 
-      // 페이지 컨트롤러에서 @RequestMapping을 찾는다.
-      Method requestHandler = findRequestHandler(pageController);
-      
-      if (requestHandler == null) {
-        throw new Exception(pathInfo + "요청을 처리할 수 없습니다.");
-      }
+      // PageController에게 실행을 위임한다.
+      String viewUrl = pageController.execute(request, response);
 
-      // requestHandler를 실행한다.
-      String viewUrl = (String) requestHandler.invoke(pageController, request, response);
-      
       // 응답 콘텐트에 MIME 타입과 문자집합을 설정한다.
       String contentType = (String) request.getAttribute("contentType");
       if (contentType != null) {
@@ -69,21 +58,10 @@ public class DispatcherServlet extends HttpServlet {
           request.getRequestDispatcher(viewUrl).include(request, response);
         }
       }
-
+      // 못찾으면 예외를 띄운다.
     } catch(Exception e) {
       request.setAttribute("error", e);
-      request.getRequestDispatcher("/jsp/error.jsp").forward(request, response);
+      request.getRequestDispatcher("/jsp/error/jsp").forward(request, response);
     }
-  }
-
-  @SuppressWarnings("unchecked")
-  private Method findRequestHandler(Object obj) {
-    Set<Method> methods = getMethods(
-        obj.getClass(), withAnnotation(RequestMapping.class), withModifier(Modifier.PUBLIC));
-
-    for (Method method : methods) {
-      return method;
-    }
-    return null;
   }
 }
