@@ -1,35 +1,25 @@
-package com.eomcs.lms.controller;
+package com.eomcs.lms.web;
 
 import java.util.List;
-import java.util.Map;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.domain.Board;
 
 @Controller
+@RequestMapping("/board")
 public class BoardController {
 
   @Resource
   private BoardDao boardDao;
   
-  @RequestMapping("/board/list")
-  public String list(Map<String, Object> model) 
-      throws Exception {
-    
-    List<Board> boards = boardDao.findAll();
-    model.put("boards", boards);
-    return "/jsp/board/list.jsp";
-  }
-
-  @RequestMapping("/board/form")
-  public String form() 
-      throws Exception {
-    return "/jsp/board/form.jsp";
+  @RequestMapping("form")
+  public void form() {
   }
   
-  @RequestMapping("/board/add")
+  @RequestMapping("add")
   public String add(Board board) 
       throws Exception {
 
@@ -37,7 +27,7 @@ public class BoardController {
     return "redirect:list";
   }
 
-  @RequestMapping("/board/delete")
+  @RequestMapping("delete")
   public String delete(int no) 
       throws Exception {
     if (boardDao.delete(no) == 0) {
@@ -46,8 +36,8 @@ public class BoardController {
     return "redirect:list";
   }
 
-  @RequestMapping("/board/detail")
-  public String detail(Map<String, Object> model, int no) 
+  @RequestMapping("detail")
+  public void detail(Model model, int no) 
       throws Exception {
   
     Board board = boardDao.findBy(no);
@@ -57,11 +47,18 @@ public class BoardController {
   
     boardDao.increaseViewCount(no);
   
-    model.put("board", board);
-    return "/jsp/board/detail.jsp";
+    model.addAttribute("board", board);
   }
 
-  @RequestMapping("/board/update")
+  @RequestMapping("list")
+  public void list(Model model) 
+      throws Exception {
+    
+    List<Board> boards = boardDao.findAll();
+    model.addAttribute("boards", boards);
+  }
+
+  @RequestMapping("update")
   public String update(Board board) 
       throws Exception {
     boardDao.update(board);
