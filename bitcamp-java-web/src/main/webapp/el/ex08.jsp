@@ -1,4 +1,4 @@
-<%@page import="bitcamp.vo.Member"%>
+<%@page import="bitcamp.Member"%>
 <%@ page language="java" 
     contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"

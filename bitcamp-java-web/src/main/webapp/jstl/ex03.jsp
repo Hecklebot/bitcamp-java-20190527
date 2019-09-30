@@ -31,7 +31,7 @@
 3: ${name3}<br><br>
 
 <h2>객체의 프로퍼티 값 설정하기</h2>
-<jsp:useBean id="m1" class="bitcamp.vo.Member"/>
+<jsp:useBean id="m1" class="bitcamp.Member"/>
 <%--
 Member m1 = (Member) pageContext.getAttribute("m1");
 if (m1 == null) {

@@ -29,6 +29,10 @@ dependencies {
     // JSTL
     compile group: 'javax.servlet', name: 'jstl', version: '1.2'
 
+    // log4j 2
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.12.1'
+
+
     implementation 'com.google.guava:guava:27.1-jre'
     testImplementation 'junit:junit:4.12'
 }
