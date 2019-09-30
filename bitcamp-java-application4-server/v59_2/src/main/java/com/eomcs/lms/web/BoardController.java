@@ -5,39 +5,32 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.eomcs.lms.dao.LessonDao;
-import com.eomcs.lms.domain.Lesson;
+import com.eomcs.lms.dao.BoardDao;
+import com.eomcs.lms.domain.Board;
 
 @Controller
-@RequestMapping("/lesson")
-public class LessonController {
+@RequestMapping("/board")
+public class BoardController {
 
   @Resource
-  private LessonDao lessonDao;
-
+  private BoardDao boardDao;
+  
   @RequestMapping("form")
   public void form() {
   }
-
-  @RequestMapping("list")
-  public void list(Model model) 
+  
+  @RequestMapping("add")
+  public String add(Board board) 
       throws Exception {
 
-    List<Lesson> lessons = lessonDao.findAll();
-    model.addAttribute("lessons", lessons);
-  }
-
-  @RequestMapping("add")
-  public String add(Lesson lesson) throws Exception {
-    lessonDao.insert(lesson);
+    boardDao.insert(board);
     return "redirect:list";
   }
 
   @RequestMapping("delete")
   public String delete(int no) 
       throws Exception {
-
-    if (lessonDao.delete(no) == 0) {
+    if (boardDao.delete(no) == 0) {
       throw new Exception("해당 데이터가 없습니다.");
     }
     return "redirect:list";
@@ -46,19 +39,30 @@ public class LessonController {
   @RequestMapping("detail")
   public void detail(Model model, int no) 
       throws Exception {
-
-    Lesson lesson = lessonDao.findBy(no);
-    if (lesson == null) {
+  
+    Board board = boardDao.findBy(no);
+    if (board == null) {
       throw new Exception("해당 번호의 데이터가 없습니다!");
-    }
+    } 
+  
+    boardDao.increaseViewCount(no);
+  
+    model.addAttribute("board", board);
+  }
 
-    model.addAttribute("lesson", lesson);
+  @RequestMapping("list")
+  public void list(Model model) 
+      throws Exception {
+    
+    List<Board> boards = boardDao.findAll();
+    model.addAttribute("boards", boards);
   }
 
   @RequestMapping("update")
-  public String update(Lesson lesson) 
+  public String update(Board board) 
       throws Exception {
-    lessonDao.update(lesson);
+    boardDao.update(board);
+  
     return "redirect:list";
   }
 }
