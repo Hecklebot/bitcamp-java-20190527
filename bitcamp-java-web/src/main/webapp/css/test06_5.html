@@ -14,10 +14,10 @@
   }
 
   div {
-    border: 1px solid red;
+/*     border: 1px solid red; */
   }
+  
   address {
-    /* border: 1px solid blue; */
     display: inline;
     font-style: normal;
   }
@@ -25,8 +25,8 @@
   #bitcamp {
     background-color: gray;
     color: white;
-    border-radius: 4px;
     padding: 3px 3px 0px 3px;
+    border-radius: 6px;
   }
 
   #company {
@@ -37,11 +37,17 @@
     background-color: lightgray;
     font-size: 1.2em;
     width: 180px;
-    box-sizing: border-box;
     padding: 10px;
     float: left;
+    margin: 20px;
+    box-sizing: border-box;
   }
-
+  
+  #menu ul > li:last-child {
+    text-decoration: none;
+  }
+  
+  
   #menu ul > li {
     font-weight: bold;
     text-decoration: underline;
@@ -50,20 +56,23 @@
 
   #menu ol {
     font-weight: normal;
+    text-decoration: line-through;
   }
-
 
   #content {
     font-family: 바탕체, 궁서체, AppleMyungjo, serif;
-    margin-left: 210px;
+    margin-left: 180px;
+    padding: 10px;
   }
-
+  
   #footer {
     font-size: 80%; 
     /* 왼쪽에 이 태그의 내용을 가리는 것이 있다면 
     그 아래로 위치하도록 이동시킨다.*/
     clear: left;
     text-align: center;
+    background-color:gray;
+    color:white;
   }
 
   #footer > p {

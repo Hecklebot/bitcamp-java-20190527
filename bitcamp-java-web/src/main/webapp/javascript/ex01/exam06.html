@@ -6,22 +6,24 @@
 <script>
   // script에 선언된 변수나 함수는 그 다음 script에서 사용할 수 있다.
   var v1 = "Hello";
-  function f1(str) {console.log(str);}
-  
+  function f1(str) {
+    console.log(str);
+  }
+
   // 그러나 아래 태그를 실행하기 전에는 아래 태그에서 선언한 변수나 함수를 사용할 수 없다.
-  //console.log(v2); // 실행 오류!
-  
+  //   console.log(v2); // 실행 오류!
+
   // 만약 아래의 script 태그를 실행한 후라면 그 태그에서 선언한 변수나 함수를 사용할 수 있다.
   function f2() {console.log(v2);}
-  
+
   // 아직 v2라는 변수는 존재하지 않기 때문에 f2()를 실행하면 오류 발생!
-  //f2();
+  f2();
 </script>
 </head>
 <body>
-<h1>script 태그에 선언된 자바스크립트의 사용 범위</h1>
+  <h1>script 태그에 선언된 자바스크립트의 사용 범위</h1>
 
-<script>
+  <script>
   // 이전 script 태그에서 정의한 모든 변수와 함수를 그대로 사용할 수 있다.
   console.log(v1);
   f1("안녕하세요!");

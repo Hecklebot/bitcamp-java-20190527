@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>HTML</title>
   <style>
-  /* 실렉터(selector) III
+  /* 셀렉터(selector) III
      특정 조건을 갖는 대상자를 지정하기
      => 대상자를 지정할 때 조건을 나열할 수 있다.
      => 문법
@@ -21,19 +21,21 @@
     margin: 10px;
   }
 
-  ul.c2 {
+  ul.c1.c2 {
     background-color: yellow;
   }
 
-  div#menu li.c2 {
+
+  div#menu li.c1 {
     display: none;
   }
+
   </style>
 </head>
 <body>
 <div id="menu">
 <img src='http://bitcamp.co.kr/resources/images/logo/head_logo.gif'>
-<ul>
+<ul class="c1">
   <li class="c1">교육안내</li>
   <li class="c1">교육과정</li>
   <li class="c2">수강신청</li>
@@ -57,7 +59,7 @@
 IT 분야로의 성공적인 취업과 창업준비!!<br>
 이젠 실무프로젝트로 승부한다.
 </p>
-<ul class="c2">
+<ul class="c1 c2">
   <li>자바 웹개발자 양성과정</li>
   <li>IoT 개발자 양성과정</li>
   <li class="c2">윈도우 프로그래머 과정</li>
