@@ -9,7 +9,7 @@
 <script>
 "use strict"
 // 함수 안에 정의된 함수를 보통 클로저(closure)라 부른다.
-// => inner functoin, nested function 이라고도 표현한다.
+// => inner function, nested function 이라고도 표현한다.
 // => 클로저의 핵심 개념 
 //    closure에서 바깥 함수의 로컬 변수를 사용할 때, 
 //    바깥 함수의 호출이 끝나면 해당 로컬 변수가 제거되기 때문에
@@ -35,6 +35,13 @@ var test2 = createGreeting("임꺽정");
 
 test1();
 test2();
+
+if(createGreeting.message == test1.message) {
+  console.log("createGreeting.message == test1.message");
+}
+if(createGreeting.message == test2.message) {
+  console.log("createGreeting.message == test2.message");
+}
 
 </script>
 

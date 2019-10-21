@@ -20,6 +20,7 @@ obj2.v1 = 100;
 obj2.v2 = true;
 obj2.v3 = "문자열";
 obj2.v4 = () => console.log("v4()....");
+obj2.v5 = (a, b) => console.log(a+b);
 
 // 이렇게 프로퍼티의 값으로 다른 객체의 주소를 저장할 수 있다.
 obj.other = obj2;
@@ -33,6 +34,7 @@ console.log(obj.other.v3);
 // 객체의 함수 호출
 obj.f1();
 obj.other.v4();
+obj.other.v5(1,2);
 
 </script>
 </body>

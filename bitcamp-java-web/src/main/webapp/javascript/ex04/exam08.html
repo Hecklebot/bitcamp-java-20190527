@@ -19,7 +19,7 @@ var obj = {
 	kor: 100, 
 	eng: 90, 
 	math:80,
-	test1: () => console.log(this),
+	test1: () => console.log(this), // this는 window 객체를 의미
 	test2: function() {console.log(this);},
 	test3() {console.log(this);},
 	sum: () => this.kor + this.eng + this.math,

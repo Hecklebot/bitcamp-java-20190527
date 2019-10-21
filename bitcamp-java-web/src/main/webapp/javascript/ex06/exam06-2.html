@@ -9,18 +9,22 @@
 <p>form의 submit 버튼을 클릭하면 서버에 요청을 한다.</p>
 
 <form>
+  <input type="text" name="title">
   <button>전송</button>
 </form>
 
 <form onsubmit="return false">
+  <input type="text" name="title">
   <button>전송 막기1</button>
 </form>
 
 <form id="form2">
+  <input type="text" name="title">
   <button>전송 막기2</button>
 </form>
 
 <form id="form3">
+  <input type="text" name="title">
   <button>전송 막기3</button>
 </form>
 
@@ -29,6 +33,14 @@
   <button type="button">전송 막기4</button>
 </form>
 
+<form id="form5">
+  <!-- 일반 버튼은 서버에 전송을 수행하지 않는다. -->
+  <button type="button">전송 막기5</button>
+</form>
+<form id="form6">
+  <!-- 일반 버튼은 서버에 전송을 수행하지 않는다. -->
+  <button type="button">전송 막기6</button>
+</form>
 <script>
 "use strict"
 

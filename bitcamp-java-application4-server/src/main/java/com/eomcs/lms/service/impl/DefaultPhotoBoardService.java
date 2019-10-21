@@ -68,7 +68,6 @@ public class DefaultPhotoBoardService implements PhotoBoardService {
 
   @Override
   public void update(PhotoBoard photoBoard) throws Exception {
-
     if (photoBoard.getFiles().size() == 0) {
       throw new Exception("사진 파일 없음!");
     }
@@ -76,9 +75,6 @@ public class DefaultPhotoBoardService implements PhotoBoardService {
     photoBoardDao.update(photoBoard);
     photoFileDao.deleteAll(photoBoard.getNo());
     for (PhotoFile file : photoBoard.getFiles()) {
-      // 사진 파일 데이터를 저장하기 전에,
-      // 이전에 저장한 사진 게시물 번호를 먼저 설정한다.
-      // 사진 파일 데이터를 저장할 때 이 게시물 번호를 사용하기 때문이다.
       file.setBoardNo(photoBoard.getNo());
       photoFileDao.insert(file);
     }

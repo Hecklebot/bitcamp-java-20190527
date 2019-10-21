@@ -1,7 +1,3 @@
-<%@page import="com.eomcs.lms.dao.PhotoBoardDao"%>
-<%@page import="com.eomcs.lms.domain.PhotoFile"%>
-<%@page import="java.util.List"%>
-<%@page import="com.eomcs.lms.domain.PhotoBoard"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -20,7 +16,7 @@
   <form action='update' method='post' enctype='multipart/form-data'>
     번호 : <input type='text' name='no' value='${photoBoard.no}' readonly><br>
     제목 : <input type='text' name='title' value='${photoBoard.title}'><br>
-    작성일: ${photoBoard.lessonNo}<br>
+    작성일: ${photoBoard.createdDate}<br>
     조회수: ${photoBoard.viewCount}<br> 
     <p>
       <c:forEach items="${photoBoard.files}" var="file">  
